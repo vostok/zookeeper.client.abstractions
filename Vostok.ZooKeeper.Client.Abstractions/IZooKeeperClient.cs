@@ -95,7 +95,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.
         /// Никогда не вызывается конкурентно.
         /// </summary>
-        event Action<ConnectionState> ConnectionStateChanged;
+        IObservable<ZooKeeperConnectionState> ObserveConnectionStateChanged { get; }
 
         /// <summary>
         /// Возвращает true, если в текущий момент соединение с кластером установлено, или false в противном случае.
