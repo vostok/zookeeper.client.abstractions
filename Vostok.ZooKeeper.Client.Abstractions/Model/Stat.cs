@@ -1,5 +1,7 @@
 ﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
+    // CR(iloktionov): Human-friendly property names.
+
     /// <summary>
     /// Представляет статистику по конкретной ноде.
     /// </summary>

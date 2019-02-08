@@ -1,11 +1,21 @@
 ﻿using System;
-using System.Data;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
 
 namespace Vostok.ZooKeeper.Client.Abstractions
 {
+    // CR(iloktionov): Common practices:
+    // CR(iloktionov): 1. JB annotations (PublicApi, CanBeNull, ...)
+    // CR(iloktionov): 2. English xml-docs.
+    // CR(iloktionov): 3. Every class in a separate file.
+    // CR(iloktionov): 4. Requests, results: I propose to remove word 'ZooKeeper' from names.
+    // CR(iloktionov): 5. Unit tests for ZooKeeperResult.
+    // CR(iloktionov): 6. Requests: only mandatory params in ctor, setters for the rest.
+    // CR(iloktionov): 7. Synchronous extensions (IZooKeeperClientExtensions).
+
+
+    // CR(iloktionov): IZooKeeperClient should not inherit from IDisposable.
     [PublicAPI]
     public interface IZooKeeperClient : IDisposable
     {
@@ -91,12 +101,14 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <returns>Результат - blob с содержимым ноды и ее статистика.</returns>
         Task<GetDataZooKeeperResult> GetDataAsync(GetDataZooKeeperRequest request);
 
+        // CR(iloktionov): Rename to something suitable for a property (without verb).
         /// <summary>
         /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.
         /// Никогда не вызывается конкурентно.
         /// </summary>
-        IObservable<ZooKeeperConnectionState> ObserveConnectionStateChanged { get; }
+        IObservable<ConnectionState> ObserveConnectionStateChanged { get; }
 
+        // CR(iloktionov): Substitite wuth current ConnectionState getter? IsConnected may become an extension then.
         /// <summary>
         /// Возвращает true, если в текущий момент соединение с кластером установлено, или false в противном случае.
         /// </summary>

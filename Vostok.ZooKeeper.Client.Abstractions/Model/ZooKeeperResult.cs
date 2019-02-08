@@ -23,6 +23,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
             return Status == ZooKeeperStatus.Ok;
         }
 
+
+        // CR(iloktionov): Remove IsXXX() methods.
         /// <summary>
         /// Возвращает true, если операция завершилась с системной ошибкой (проблемы с соединением, клиентские исключения).
         /// </summary>
@@ -139,6 +141,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         }
     }
 
+    // CR(iloktionov): Get rid of ordinary tuples in favor of ValueTuple.
     public class GetChildrenWithStatZooKeeperResult : ZooKeeperResult<Tuple<string[], Stat>>
     {
         public string[] Children => Payload.Item1;

@@ -1,5 +1,8 @@
 ﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
+    // CR(iloktionov): 1. Do not expose numeric values from implementation.
+    // CR(iloktionov): 2. Reduce the set of values to those which can be reasonably handled by user.
+
     public enum ZooKeeperStatus
     {
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
+    // CR(iloktionov): Rename to WatchedEventType?
+
     public enum EventType
     {
         NodeCreated = 1,
