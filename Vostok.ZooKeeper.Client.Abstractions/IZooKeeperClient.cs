@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
+using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
+using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 
 namespace Vostok.ZooKeeper.Client.Abstractions
 {
@@ -101,12 +103,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <returns>Результат - blob с содержимым ноды и ее статистика.</returns>
         Task<GetDataZooKeeperResult> GetDataAsync(GetDataZooKeeperRequest request);
 
-        // CR(iloktionov): Rename to something suitable for a property (without verb).
         /// <summary>
         /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.
         /// Никогда не вызывается конкурентно.
         /// </summary>
-        IObservable<ConnectionState> ObserveConnectionStateChanged { get; }
+        IObservable<ConnectionState> OnConnectionStateChanged { get; }
 
         // CR(iloktionov): Substitite wuth current ConnectionState getter? IsConnected may become an extension then.
         /// <summary>
