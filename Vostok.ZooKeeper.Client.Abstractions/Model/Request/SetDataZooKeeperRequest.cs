@@ -2,6 +2,10 @@
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
+    /// <summary>
+    /// Represents ZooKeeper set data request.
+    /// </summary>
+    [PublicAPI]
     [PublicAPI]
     public class SetDataZooKeeperRequest : ZooKeeperRequest
     {

@@ -2,6 +2,9 @@
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
+    /// <summary>
+    /// Represents ZooKeeper create node request.
+    /// </summary>
     [PublicAPI]
     public class CreateZooKeeperRequest : ZooKeeperRequest
     {

@@ -3,12 +3,13 @@
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
     /// <summary>
-    /// Represents ZooKeeper request.
+    /// Represents base ZooKeeper request with node path.
     /// </summary>
     [PublicAPI]
     public abstract class ZooKeeperRequest
     {
         /// <inheritdoc cref="ZooKeeperRequest" />
+        /// <param name="path">Node path.</param>
         protected ZooKeeperRequest([NotNull] string path)
         {
             Path = path;
