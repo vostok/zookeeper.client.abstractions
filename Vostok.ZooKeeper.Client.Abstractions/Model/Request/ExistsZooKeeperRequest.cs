@@ -8,5 +8,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
             : base(path, watcher)
         {
         }
+
+        public override string ToString() => $"EXISTS {base.ToString()}";
     }
 }

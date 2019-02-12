@@ -11,5 +11,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         {
             Watcher = watcher;
         }
+
+        public override string ToString() => $"{base.ToString()}";
     }
 }

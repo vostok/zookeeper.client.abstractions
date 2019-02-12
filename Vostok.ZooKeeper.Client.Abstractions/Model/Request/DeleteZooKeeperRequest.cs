@@ -14,5 +14,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
             Version = version;
             DeleteChildrenIfNeeded = deleteChildrenIfNeeded;
         }
+
+        public override string ToString() => $"DELETE {base.ToString()}, {nameof(Version)}: {Version}, {nameof(DeleteChildrenIfNeeded)}: {DeleteChildrenIfNeeded}";
     }
 }

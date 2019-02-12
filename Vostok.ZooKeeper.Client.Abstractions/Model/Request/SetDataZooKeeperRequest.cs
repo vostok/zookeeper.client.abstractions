@@ -11,8 +11,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         public SetDataZooKeeperRequest(string path, byte[] data, int version = -1)
             : base(path)
         {
-            Data = data;
+            Data = data ?? new byte[0];
             Version = version;
         }
+
+        public override string ToString() => $"SET DATA {base.ToString()}, {nameof(Data)} length: {Data.Length}, {nameof(Version)}: {Version}";
     }
 }

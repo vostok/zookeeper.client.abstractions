@@ -18,6 +18,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
 
     // CR(iloktionov): IZooKeeperClient should not inherit from IDisposable.
+
+    /// <inheritdoc />
+    /// <summary>
+    /// <para>Represents a ZooKeeper client.</para>
+    /// </summary>
     [PublicAPI]
     public interface IZooKeeperClient : IDisposable
     {
