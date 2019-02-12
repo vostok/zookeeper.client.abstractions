@@ -4,8 +4,8 @@
     {
         public string NewPath => Payload;
 
-        public CreateZooKeeperResult(ZooKeeperStatus status, string path, string payload)
-            : base(status, path, payload)
+        public CreateZooKeeperResult(ZooKeeperStatus status, string path, string newPath)
+            : base(status, path, newPath)
         {
         }
     }

@@ -1,120 +1,127 @@
-﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model
-{
-    // CR(iloktionov): Human-friendly property names.
+﻿using JetBrains.Annotations;
 
+namespace Vostok.ZooKeeper.Client.Abstractions.Model
+{
     /// <summary>
-    /// Представляет статистику по конкретной ноде.
+    /// Represents node statistic
     /// </summary>
+    [PublicAPI]
     public class Stat
     {
-        public Stat(long czxid, long mzxid, long ctime, long mtime, int version, int cversion, int aversion, long ephemeralOwner, int dataLength, int numChildren, long pzxid)
+        /// <inheritdoc />
+        public Stat(long createdZxid, long modifiedZxid, long modifiedChildrenZxid, long createdTime, long modifiedtime, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
         {
-            Czxid = czxid;
-            Mzxid = mzxid;
-            Ctime = ctime;
-            Mtime = mtime;
+            CreatedZxid = createdZxid;
+            ModifiedZxid = modifiedZxid;
+            ModifiedChildrenZxid = modifiedChildrenZxid;
+            CreatedTime = createdTime;
+            Modifiedtime = modifiedtime;
             Version = version;
-            Cversion = cversion;
-            Aversion = aversion;
+            ChildrenVersion = childrenVersion;
+            AclVersion = aclVersion;
             EphemeralOwner = ephemeralOwner;
             DataLength = dataLength;
-            NumChildren = numChildren;
-            Pzxid = pzxid;
+            NumberOfChildren = numberOfChildren;
         }
 
         /// <summary>
-        /// Zxid операции, вызвавшей создание ноды.
+        /// Returns the zxid of the change that caused this znode to be created.
         /// </summary>
-        public long Czxid { get; private set; }
+        public long CreatedZxid { get; }
 
         /// <summary>
-        /// Zxid операции, вызвавшей последнее изменение ноды.
+        /// Returns the zxid of the change that last modified this znode.
         /// </summary>
-        public long Mzxid { get; private set; }
+        public long ModifiedZxid { get; }
 
         /// <summary>
-        /// Время в мс. с эпохи, в которую произошло создание ноды.
+        /// Returns the zxid of the change that last modified children of this znode.
         /// </summary>
-        public long Ctime { get; private set; }
+        public long ModifiedChildrenZxid { get; }
 
         /// <summary>
-        /// Время в мс. с эпохи, в которую произошло последнее изменение ноды.
+        /// Returns the time in milliseconds from epoch when this znode was created.
         /// </summary>
-        public long Mtime { get; private set; }
+        public long CreatedTime { get; }
 
         /// <summary>
-        /// Количество изменений содержимого ноды.
+        /// Returns the time in milliseconds from epoch when this znode was last modified.
         /// </summary>
-        public int Version { get; private set; }
+        public long Modifiedtime { get; }
 
         /// <summary>
-        /// Количество изменений состава дочерних нод.
+        /// Returns the number of changes to the data of this znode.
         /// </summary>
-        public int Cversion { get; private set; }
+        public int Version { get; }
 
         /// <summary>
-        /// Количество изменений ACL ноды.
+        /// Returns the number of changes to the children of this znode.
         /// </summary>
-        public int Aversion { get; private set; }
+        public int ChildrenVersion { get; }
 
         /// <summary>
-        /// Если нода эфемерная, возвращает Id сессии создавшего ее клиента. В противном случае возвращает 0.
+        /// Returns the number of changes to the ACL of this znode.
         /// </summary>
-        public long EphemeralOwner { get; private set; }
+        public int AclVersion { get; }
 
         /// <summary>
-        /// Длина содержимого ноды.
+        /// Returns the session id of the owner of this znode if the znode is an ephemeral node.
+        /// If it is not an ephemeral node, it will be zero.
         /// </summary>
-        public int DataLength { get; private set; }
+        public long EphemeralOwner { get; }
 
         /// <summary>
-        /// Количетсво дочерних нод.
+        /// Returns the length of the data field of this znode.
         /// </summary>
-        public int NumChildren { get; private set; }
-        public long Pzxid { get; private set; }
+        public int DataLength { get; }
+
+        /// <summary>
+        /// Returns the number of children of this znode.
+        /// </summary>
+        public int NumberOfChildren { get; }
 
         #region Equality members
-        protected bool Equals(Stat other)
+
+        /// <summary>
+        /// Compares two <see cref="Stat"/> instances.
+        /// </summary>
+        public bool Equals(Stat other)
         {
-            return Czxid == other.Czxid
-                && Mzxid == other.Mzxid
-                && Ctime == other.Ctime
-                && Mtime == other.Mtime
-                && Version == other.Version
-                && Cversion == other.Cversion
-                && Aversion == other.Aversion
-                && EphemeralOwner == other.EphemeralOwner
-                && DataLength == other.DataLength
-                && NumChildren == other.NumChildren
-                && Pzxid == other.Pzxid;
+            return CreatedZxid == other.CreatedZxid && ModifiedZxid == other.ModifiedZxid && ModifiedChildrenZxid == other.ModifiedChildrenZxid && CreatedTime == other.CreatedTime && Modifiedtime == other.Modifiedtime && Version == other.Version && ChildrenVersion == other.ChildrenVersion && AclVersion == other.AclVersion && EphemeralOwner == other.EphemeralOwner && DataLength == other.DataLength && NumberOfChildren == other.NumberOfChildren;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != this.GetType())
+                return false;
             return Equals((Stat)obj);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             unchecked
             {
-                int hashCode = Czxid.GetHashCode();
-                hashCode = (hashCode * 397) ^ Mzxid.GetHashCode();
-                hashCode = (hashCode * 397) ^ Ctime.GetHashCode();
-                hashCode = (hashCode * 397) ^ Mtime.GetHashCode();
+                var hashCode = CreatedZxid.GetHashCode();
+                hashCode = (hashCode * 397) ^ ModifiedZxid.GetHashCode();
+                hashCode = (hashCode * 397) ^ ModifiedChildrenZxid.GetHashCode();
+                hashCode = (hashCode * 397) ^ CreatedTime.GetHashCode();
+                hashCode = (hashCode * 397) ^ Modifiedtime.GetHashCode();
                 hashCode = (hashCode * 397) ^ Version;
-                hashCode = (hashCode * 397) ^ Cversion;
-                hashCode = (hashCode * 397) ^ Aversion;
+                hashCode = (hashCode * 397) ^ ChildrenVersion;
+                hashCode = (hashCode * 397) ^ AclVersion;
                 hashCode = (hashCode * 397) ^ EphemeralOwner.GetHashCode();
                 hashCode = (hashCode * 397) ^ DataLength;
-                hashCode = (hashCode * 397) ^ NumChildren;
-                hashCode = (hashCode * 397) ^ Pzxid.GetHashCode();
+                hashCode = (hashCode * 397) ^ NumberOfChildren;
                 return hashCode;
             }
         }
+
         #endregion
     }
 }
