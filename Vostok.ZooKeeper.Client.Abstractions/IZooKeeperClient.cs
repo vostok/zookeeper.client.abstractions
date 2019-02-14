@@ -67,7 +67,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
         /// <summary>
         /// <para>Проверяет существование ноды по указанному пути.</para>
-        /// <para>Если передан отличный от null <see cref="IWatcher"/>, он будет вызван в случае создания/удаления/изменения ноды по указанному пути.</para>
+        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае создания/удаления/изменения ноды по указанному пути.</para>
         /// <para>ВАЖНО: обработчки событий срабатывают ровно один раз, после чего удаляются сервером.</para>
         /// </summary>
         /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
@@ -77,7 +77,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
         /// <summary>
         /// <para>Возвращает список дочерних нод.</para>
-        /// <para>Если передан отличный от null <see cref="IWatcher"/>, он будет вызван в случае удаления ноды по указанному пути или создания дочерних нод.</para>
+        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае удаления ноды по указанному пути или создания дочерних нод.</para>
         /// <para>ВАЖНО: обработчки событий срабатывают ровно один раз, после чего удаляются сервером.</para>
         /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
         /// </summary>
@@ -88,7 +88,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
         /// <summary>
         /// <para>Возвращает список дочерних нод и статистику ноды по указанному пути..</para>
-        /// <para>Если передан отличный от null <see cref="IWatcher"/>, он будет вызван в случае удаления ноды по указанному пути или создания дочерних нод.</para>
+        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае удаления ноды по указанному пути или создания дочерних нод.</para>
         /// <para>ВАЖНО: обработчики событий срабатывают ровно один раз, после чего удаляются сервером.</para>
         /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
         /// </summary>
@@ -99,7 +99,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
         /// <summary>
         /// <para>Возвращает содержимое и статистику ноды по указанному пути.</para>
-        /// <para>Если передан отличный от null <see cref="IWatcher"/>, он будет вызван в случае изменения данных ноды по указанному пути.</para>
+        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае изменения данных ноды по указанному пути.</para>
         /// <para>ВАЖНО: обработчки событий срабатывают ровно один раз, после чего удаляются сервером.</para>
         /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
         /// </summary>
@@ -112,7 +112,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.
         /// Никогда не вызывается конкурентно.
         /// </summary>
-        IObservable<ConnectionState> OnConnectionStateChanged { get; }
+        IObservable<ConnectionStateChangedEvent> OnConnectionStateChanged { get; }
 
         // CR(iloktionov): Substitite wuth current ConnectionState getter? IsConnected may become an extension then.
         /// <summary>

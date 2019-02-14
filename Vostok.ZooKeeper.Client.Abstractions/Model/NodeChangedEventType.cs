@@ -2,7 +2,7 @@
 {
     // CR(iloktionov): Rename to WatchedEventType?
 
-    public enum EventType
+    public enum NodeChangedEventType
     {
         NodeCreated = 1,
         NodeDeleted = 2,

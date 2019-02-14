@@ -8,8 +8,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     /// Представляет интерфейс для клиентских обработчиков событий, на которые можно подписаться при операциях чтения.
     /// </summary>
     [PublicAPI]
-    public interface IWatcher
+    public interface INodeWatcher
     {
-        void ProcessEvent(EventType type, string path);
+        void ProcessEvent(NodeChangedEventType type, string path);
     }
 }
