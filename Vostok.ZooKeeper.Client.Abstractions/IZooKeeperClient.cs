@@ -112,7 +112,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.
         /// Никогда не вызывается конкурентно.
         /// </summary>
-        IObservable<ConnectionStateChangedEvent> OnConnectionStateChanged { get; }
+        IObservable<ConnectionState> OnConnectionStateChanged { get; }
 
         // CR(iloktionov): Substitite wuth current ConnectionState getter? IsConnected may become an extension then.
         /// <summary>
