@@ -118,7 +118,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <summary>
         /// Возвращает true, если в текущий момент соединение с кластером установлено, или false в противном случае.
         /// </summary>
-        bool IsConnected { get; }
+        ConnectionState ConnectionState { get; }
 
         /// <summary>
         /// Возвращает идентификатор сессии, если она уже установлена, или 0 в противном случае.
