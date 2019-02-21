@@ -6,10 +6,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     /// Represents node statistic
     /// </summary>
     [PublicAPI]
-    public class Stat
+    public class NodeStat
     {
         /// <inheritdoc />
-        public Stat(long createdZxid, long modifiedZxid, long modifiedChildrenZxid, long createdTime, long modifiedtime, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
+        public NodeStat(long createdZxid, long modifiedZxid, long modifiedChildrenZxid, long createdTime, long modifiedtime, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
         {
             CreatedZxid = createdZxid;
             ModifiedZxid = modifiedZxid;
@@ -83,9 +83,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         #region Equality members
 
         /// <summary>
-        /// Compares two <see cref="Stat"/> instances.
+        /// Compares two <see cref="NodeStat"/> instances.
         /// </summary>
-        public bool Equals(Stat other)
+        public bool Equals(NodeStat other)
         {
             return CreatedZxid == other.CreatedZxid && ModifiedZxid == other.ModifiedZxid && ModifiedChildrenZxid == other.ModifiedChildrenZxid && CreatedTime == other.CreatedTime && Modifiedtime == other.Modifiedtime && Version == other.Version && ChildrenVersion == other.ChildrenVersion && AclVersion == other.AclVersion && EphemeralOwner == other.EphemeralOwner && DataLength == other.DataLength && NumberOfChildren == other.NumberOfChildren;
         }
@@ -99,7 +99,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
                 return true;
             if (obj.GetType() != this.GetType())
                 return false;
-            return Equals((Stat)obj);
+            return Equals((NodeStat)obj);
         }
 
         /// <inheritdoc />

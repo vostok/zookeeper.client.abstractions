@@ -2,11 +2,11 @@
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
-    public class AnonymousWatcher : INodeWatcher
+    public class AdHocWatcher : INodeWatcher
     {
         private readonly Action<NodeChangedEventType, string> processingDelegate;
 
-        public AnonymousWatcher(Action<NodeChangedEventType, string> processingDelegate)
+        public AdHocWatcher(Action<NodeChangedEventType, string> processingDelegate)
         {
             this.processingDelegate = processingDelegate;
         }

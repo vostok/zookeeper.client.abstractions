@@ -1,12 +1,12 @@
 ﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
-    public class ExistsZooKeeperResult : ZooKeeperResult<Stat>
+    public class ExistsZooKeeperResult : ZooKeeperResult<NodeStat>
     {
         public bool Exists => Payload != null;
-        public Stat Stat => Payload;
+        public NodeStat NodeStat => Payload;
 
-        public ExistsZooKeeperResult(ZooKeeperStatus status, string path, Stat stat)
-            : base(status, path, stat)
+        public ExistsZooKeeperResult(ZooKeeperStatus status, string path, NodeStat nodeStat)
+            : base(status, path, nodeStat)
         {
         }
     }
