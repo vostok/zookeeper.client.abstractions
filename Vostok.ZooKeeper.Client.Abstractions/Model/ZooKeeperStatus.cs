@@ -20,7 +20,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Operation finished with some network/cluster error.
         /// </summary>
-        Error,
+        UnknownError,
 
         /// <summary>
         /// Invalid <see cref="ZooKeeperRequest"/> was given.
@@ -37,6 +37,50 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// </summary>
         NodeAlreadyExists,
 
+        /// <summary>
+        /// Node not found.
+        /// </summary>
+        NodeNotFound,
+
+        /// <summary>
+        /// Connection lost during operation execution.
+        /// </summary>
+        ConnectionLoss,
+
+        /// <summary>
+        /// Session expired during operation execution.
+        /// </summary>
+        SessionExpired,
+
+        /// <summary>
+        /// Session moved to another server, so operation is ignored.
+        /// </summary>
+        SessionMoved,
+
+        /// <summary>
+        /// Can not obtain connected client for operation execution.
+        /// </summary>
+        DisconnectedClient,
+
+        /// <summary>
+        /// Operation timed out.
+        /// </summary>
+        Timeout,
+
+        /// <summary>
+        /// Conflict of versions was found.
+        /// </summary>
+        VersionConflict,
+
+        /// <summary>
+        /// Node has children.
+        /// </summary>
+        NodeHasChildren,
+
+        /// <summary>
+        /// Write operation rejected in read-only mode.
+        /// </summary>
+        NotReadonlyOperation,
     }
 
     //public enum ZooKeeperStatus
