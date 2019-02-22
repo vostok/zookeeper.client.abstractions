@@ -6,12 +6,12 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     /// Represents ZooKeeper delete node request.
     /// </summary>
     [PublicAPI]
-    public class DeleteZooKeeperRequest : ZooKeeperRequest
+    public class DeleteRequest : ZooKeeperRequest
     {
         public int Version { get; }
         public bool DeleteChildrenIfNeeded { get; }
 
-        public DeleteZooKeeperRequest(string path, int version = -1, bool deleteChildrenIfNeeded = false)
+        public DeleteRequest(string path, int version = -1, bool deleteChildrenIfNeeded = false)
             : base(path)
         {
             Version = version;

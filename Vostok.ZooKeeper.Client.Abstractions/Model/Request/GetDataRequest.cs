@@ -6,9 +6,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     /// Represents ZooKeeper get data request.
     /// </summary>
     [PublicAPI]
-    public class GetDataZooKeeperRequest : GetZooKeeperRequest
+    public class GetDataRequest : GetRequest
     {
-        public GetDataZooKeeperRequest([NotNull] string path, INodeWatcher watcher = null)
+        public GetDataRequest([NotNull] string path, INodeWatcher watcher = null)
             : base(path, watcher)
         {
         }

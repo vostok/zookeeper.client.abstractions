@@ -6,13 +6,13 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     /// Represents ZooKeeper create node request.
     /// </summary>
     [PublicAPI]
-    public class CreateZooKeeperRequest : ZooKeeperRequest
+    public class CreateRequest : ZooKeeperRequest
     {
         public byte[] Data { get; }
         public CreateMode CreateMode { get; }
         public bool WithProtection { get; }
 
-        public CreateZooKeeperRequest(string path, byte[] data, CreateMode createMode, bool withProtection = false)
+        public CreateRequest(string path, byte[] data, CreateMode createMode, bool withProtection = false)
             : base(path)
         {
             Data = data ?? new byte[0];

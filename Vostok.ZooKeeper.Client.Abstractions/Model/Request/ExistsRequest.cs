@@ -6,9 +6,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     /// Represents ZooKeeper exists node request.
     /// </summary>
     [PublicAPI]
-    public class ExistsZooKeeperRequest : GetZooKeeperRequest
+    public class ExistsRequest : GetRequest
     {
-        public ExistsZooKeeperRequest([NotNull] string path, INodeWatcher watcher = null)
+        public ExistsRequest([NotNull] string path, INodeWatcher watcher = null)
             : base(path, watcher)
         {
         }

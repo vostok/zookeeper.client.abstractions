@@ -24,23 +24,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         }
 
 
-        // CR(iloktionov): Remove IsXXX() methods.
-        /// <summary>
-        /// Возвращает true, если операция завершилась с системной ошибкой (проблемы с соединением, клиентские исключения).
-        /// </summary>
-        public bool IsSystemError()
-        {
-            return Status < ZooKeeperStatus.Ok && Status > ZooKeeperStatus.NoNode;
-        }
-
-        /// <summary>
-        /// Возвращает true, если операция завершилась осмысленной ошибкой (предусмотренной протоколом ZK).
-        /// </summary>
-        public bool IsApiError()
-        {
-            return Status <= ZooKeeperStatus.NoNode;
-        }
-
         /// <summary>
         /// В случае неуспешного статуса выбрасывает исключение <see cref="ZooKeeperException"/>. 
         /// </summary>
@@ -53,7 +36,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 
         public override string ToString()
         {
-            return string.Format("'{0}' for path '{1}'", Status, Path);
+            return $"'{Status}' for path '{Path}'";
         }
 
         /// <summary>
@@ -66,6 +49,4 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// </summary>
         public string Path { get; private set; }
     }
-
-    
 }

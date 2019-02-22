@@ -7,12 +7,12 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     /// </summary>
     [PublicAPI]
     [PublicAPI]
-    public class SetDataZooKeeperRequest : ZooKeeperRequest
+    public class SetDataRequest : ZooKeeperRequest
     {
         public byte[] Data { get; }
         public int Version { get; }
 
-        public SetDataZooKeeperRequest(string path, byte[] data, int version = -1)
+        public SetDataRequest(string path, byte[] data, int version = -1)
             : base(path)
         {
             Data = data ?? new byte[0];

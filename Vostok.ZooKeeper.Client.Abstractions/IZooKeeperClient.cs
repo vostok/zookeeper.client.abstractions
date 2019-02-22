@@ -38,7 +38,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="createMode">Тип ноды.</param>
         /// <param name="withProtection">В случае создания sequential-ноды добавляет к имени GUID-префикс, позволяющий распознать собственную ноду после false negative (когда сервер все-таки ее создал, а клиент не дождался).</param>
         /// <returns>Результат - результирующий полный путь созданной ноды (может отличаться от переданного при флаге sequential).</returns>
-        Task<CreateZooKeeperResult> CreateAsync(CreateZooKeeperRequest request);
+        Task<CreateResult> CreateAsync(CreateRequest request);
 
         /// <summary>
         /// <para>Удаляет ноду по указанному пути, если ее версия совпадает с указанной.</para>
@@ -51,7 +51,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="version">Ожидаемая версия ноды (-1 соответствует любой версии).</param>
         /// <param name="deleteChildrenIfNeeded">Определяет, удалять ли автоматически дочерние ноды в случае обнаружения таковых.</param>
         /// <returns></returns>
-        Task<DeleteZooKeeperResult> DeleteAsync(DeleteZooKeeperRequest request);
+        Task<DeleteResult> DeleteAsync(DeleteRequest request);
 
         /// <summary>
         /// <para>Устанавливает содержимое ноды по указанному пути, если ее версия совпадает с указанной. Размер содержимого не должен превышать 1 МБ!</para>
@@ -63,7 +63,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="data">Новое содержимое ноды. Не может быть длиннее 1 МБ.</param>
         /// <param name="version">Ожидаемая версия ноды (-1 соответствует любой версии).</param>
         /// <returns></returns>
-        Task<SetDataZooKeeperResult> SetDataAsync(SetDataZooKeeperRequest request);
+        Task<SetDataResult> SetDataAsync(SetDataRequest request);
 
         /// <summary>
         /// <para>Проверяет существование ноды по указанному пути.</para>
@@ -73,7 +73,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
         /// <param name="watcher">Обработчик события изменения ноды.</param>
         /// <returns>Результат - статистика ноды, если она существует, и null в противном случае.</returns>
-        Task<ExistsZooKeeperResult> ExistsAsync(ExistsZooKeeperRequest request);
+        Task<ExistsResult> ExistsAsync(ExistsRequest request);
 
         /// <summary>
         /// <para>Возвращает список дочерних нод.</para>
@@ -84,7 +84,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
         /// <param name="watcher">Обработчик события изменения ноды.</param>
         /// <returns>Результат - неупорядоченный массив имен (не полных путей!) дочерних нод.</returns>
-        Task<GetChildrenZooKeeperResult> GetChildrenAsync(GetChildrenZooKeeperRequest request);
+        Task<GetChildrenResult> GetChildrenAsync(GetChildrenRequest request);
 
         /// <summary>
         /// <para>Возвращает список дочерних нод и статистику ноды по указанному пути..</para>
@@ -95,7 +95,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
         /// <param name="watcher">Обработчик события изменения ноды.</param>
         /// <returns>Результат - неупорядоченный массив имен (не полных путей!) дочерних нод и статистика parent-ноды.</returns>
-        Task<GetChildrenWithStatZooKeeperResult> GetChildrenWithStatAsync(GetChildrenZooKeeperRequest request);
+        Task<GetChildrenWithStatResult> GetChildrenWithStatAsync(GetChildrenRequest request);
 
         /// <summary>
         /// <para>Возвращает содержимое и статистику ноды по указанному пути.</para>
@@ -106,7 +106,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
         /// <param name="watcher">Обработчик события изменения ноды.</param>
         /// <returns>Результат - blob с содержимым ноды и ее статистика.</returns>
-        Task<GetDataZooKeeperResult> GetDataAsync(GetDataZooKeeperRequest request);
+        Task<GetDataResult> GetDataAsync(GetDataRequest request);
 
         /// <summary>
         /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.

@@ -6,9 +6,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     /// Represents ZooKeeper get children.
     /// </summary>
     [PublicAPI]
-    public class GetChildrenZooKeeperRequest : GetZooKeeperRequest
+    public class GetChildrenRequest : GetRequest
     {
-        public GetChildrenZooKeeperRequest([NotNull] string path, INodeWatcher watcher = null)
+        public GetChildrenRequest([NotNull] string path, INodeWatcher watcher = null)
             : base(path, watcher)
         {
         }
