@@ -31,7 +31,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         public ZooKeeperResult EnsureSuccess()
         {
             if (!IsSuccessful)
-                throw new ZooKeeperException(Status, Path);
+                throw new ZooKeeperException(Status, Path, Exception);
             return this;
         }
 
@@ -46,8 +46,13 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         public ZooKeeperStatus Status { get; private set; }
 
         /// <summary>
+        /// Returns exception if unseccessful result.
+        /// </summary>
+        public Exception Exception { get; set; }
+
+        /// <summary>
         /// Returns operation node path.
         /// </summary>
-        public string Path { get; private set; }
+        public string Path { get; set; }
     }
 }

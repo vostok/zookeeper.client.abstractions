@@ -11,14 +11,14 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// <summary>
         /// Creates a new instance of <see cref="ZooKeeperRequest"/>
         /// </summary>
-        /// <param name="path">Path of node.</param>
+        /// <param name="path">Absolute, slash-separated path of node.</param>
         protected ZooKeeperRequest([NotNull] string path)
         {
             Path = path;
         }
 
         /// <summary>
-        /// Path of node.
+        /// Absolute, slash-separated path of node.
         /// </summary>
         [NotNull]
         public string Path { get; set; }
