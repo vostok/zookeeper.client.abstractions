@@ -19,25 +19,17 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
     // CR(iloktionov): IZooKeeperClient should not inherit from IDisposable.
 
-    /// <inheritdoc />
     /// <summary>
-    /// <para>Represents a ZooKeeper client.</para>
+    /// <para>Represents a client for ZooKeeper.</para>
+    /// <para>Nodes in a ZooKeeper comprise a tree, and the main operations this client presents is create, delete, get, set node by path.</para>
     /// </summary>
     [PublicAPI]
-    public interface IZooKeeperClient : IDisposable
+    public interface IZooKeeperClient
     {
         /// <summary>
-        /// <para>Создает ноду по указанному пути. Содержимое ноды будет равно переданному массиву байтов.</para>
-        /// <para>В случае отсутствия необходимых родительских нод создает их с пустым содержимым.</para>
-        /// <para>В случае успеха вызывает срабатывание обработчиков, установленных с помощью <see cref="Exists"/> и <see cref="GetChildren"/></para>
-        /// <para>В случае, если нода уже существует, возвращает статус <see cref="ZooKeeperStatus.NodeExists"/>.</para>
-        /// <para>В случае, если родительская нода является эфемерной, возаращает статус <see cref="ZooKeeperStatus.NoChildrenForEphemerals"/>.</para>
+        /// <para>Creates new node using given <paramref name="request" />.</para>
+        /// <para>This operation, if successful, will trigger all the <see cref="INodeWatcher"/> watchers left on the node.</para>
         /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="data">Новое содержимое ноды. Не может быть длиннее 1 МБ.</param>
-        /// <param name="createMode">Тип ноды.</param>
-        /// <param name="withProtection">В случае создания sequential-ноды добавляет к имени GUID-префикс, позволяющий распознать собственную ноду после false negative (когда сервер все-таки ее создал, а клиент не дождался).</param>
-        /// <returns>Результат - результирующий полный путь созданной ноды (может отличаться от переданного при флаге sequential).</returns>
         Task<CreateResult> CreateAsync(CreateRequest request);
 
         /// <summary>

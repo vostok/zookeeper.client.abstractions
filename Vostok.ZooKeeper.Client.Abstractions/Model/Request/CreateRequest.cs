@@ -8,18 +8,31 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     [PublicAPI]
     public class CreateRequest : ZooKeeperRequest
     {
-        public byte[] Data { get; }
-        public CreateMode CreateMode { get; }
-        public bool WithProtection { get; }
+        /// <summary>
+        /// <para>Data of node to be created.</para>
+        /// <para>The maximum allowable size of the data array is 1 MB (1,048,576 bytes).</para>
+        /// </summary>
+        public byte[] Data { get; set; }
 
-        public CreateRequest(string path, byte[] data, CreateMode createMode, bool withProtection = false)
+        /// <summary>
+        /// Type of node to be created. May be ephemeral/persistent and/or sequential.
+        /// </summary>
+        public CreateMode CreateMode { get; }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="CreateRequest"/>.
+        /// </summary>
+        /// <param name="path">Path of node to be created. All parent nodes will be created if they do not exist.</param>
+        /// <param name="createMode">Type of node to be created. May be ephemeral/persistent and/or sequential.</param>
+        public CreateRequest([NotNull] string path, CreateMode createMode)
             : base(path)
         {
-            Data = data ?? new byte[0];
             CreateMode = createMode;
-            WithProtection = withProtection;
         }
 
-        public override string ToString() => $"CREATE {base.ToString()}, {nameof(Data)} length: {Data.Length}, {nameof(CreateMode)}: {CreateMode}, {nameof(WithProtection)}: {WithProtection}";
+        /// <summary>
+        /// Returns string representation of <see cref="CreateRequest"/>.
+        /// </summary>
+        public override string ToString() => $"CREATE {base.ToString()}, {nameof(Data)} length: {Data?.Length}, {nameof(CreateMode)}: {CreateMode}";
     }
 }

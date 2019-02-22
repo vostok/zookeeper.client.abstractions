@@ -4,11 +4,16 @@ using JetBrains.Annotations;
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
     /// <summary>
-    /// Представляет результат клиентской операции.
+    /// Represents base ZooKeeper node result with path and status.
     /// </summary>
     [PublicAPI]
     public class ZooKeeperResult
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="ZooKeeperResult"/>.
+        /// </summary>
+        /// <param name="status">Operation status.</param>
+        /// <param name="path">Path of node.</param>
         public ZooKeeperResult(ZooKeeperStatus status, string path)
         {
             Status = status;
@@ -16,36 +21,32 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         }
 
         /// <summary>
-        /// Возвращает true, если операция завершилась успешно.
+        /// Checks that operation is successful.
         /// </summary>
-        public bool IsSuccessful()
-        {
-            return Status == ZooKeeperStatus.Ok;
-        }
-
+        public bool IsSuccessful => Status == ZooKeeperStatus.Ok;
 
         /// <summary>
-        /// В случае неуспешного статуса выбрасывает исключение <see cref="ZooKeeperException"/>. 
+        /// Throws <see cref="ZooKeeperException"/> in case of unsuccessful operation status.
         /// </summary>
         public ZooKeeperResult EnsureSuccess()
         {
-            if (!IsSuccessful())
+            if (!IsSuccessful)
                 throw new ZooKeeperException(Status, Path);
             return this;
         }
 
-        public override string ToString()
-        {
-            return $"'{Status}' for path '{Path}'";
-        }
+        /// <summary>
+        /// Returns string representation of <see cref="ZooKeeperResult"/>.
+        /// </summary>
+        public override string ToString() => $"'{Status}' for path '{Path}'";
 
         /// <summary>
-        /// Статус операции.
+        /// Returns operation status.
         /// </summary>
         public ZooKeeperStatus Status { get; private set; }
 
         /// <summary>
-        /// Путь ноды, соответствующей операции.
+        /// Returns operation node path.
         /// </summary>
         public string Path { get; private set; }
     }

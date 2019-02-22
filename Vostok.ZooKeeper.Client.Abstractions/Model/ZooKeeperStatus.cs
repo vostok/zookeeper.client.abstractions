@@ -1,110 +1,146 @@
-﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model
+﻿using JetBrains.Annotations;
+using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
+
+namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
     // CR(iloktionov): 1. Do not expose numeric values from implementation.
     // CR(iloktionov): 2. Reduce the set of values to those which can be reasonably handled by user.
 
+    /// <summary>
+    /// Represents ZooKeeper operation status.
+    /// </summary>
+    [PublicAPI]
     public enum ZooKeeperStatus
     {
         /// <summary>
-        /// Все хорошо!
+        /// Operation finished successfully.
         /// </summary>
-        Ok = 0,
-
-        RuntimeInconsistency = -2,
+        Ok,
 
         /// <summary>
-        /// Была обнаружена неконсистетность данных.
+        /// Operation finished with some network/cluster error.
         /// </summary>
-        DataInconsistency = -3,
+        Error,
 
         /// <summary>
-        /// Соединение с сервером было потеряно или не было установлено за отведенное время.
+        /// Invalid <see cref="ZooKeeperRequest"/> was given.
         /// </summary>
-        ConnectionLoss = -4,
+        BadArguments,
 
         /// <summary>
-        /// Ошибка при маршаллинге данных.
+        /// Creating children inside ephemeral nodes are not allowed.
         /// </summary>
-        MarshallingError = -5,
+        ChildrenForEphemeralsAreNotAllowed,
 
         /// <summary>
-        /// Операция не реализована на сервере.
+        /// Creating already existing node are not allowed.
         /// </summary>
-        Unimplemented = -6,
+        NodeAlreadyExists,
 
-        /// <summary>
-        /// Операция не могла быть выполнена за отведенное время.
-        /// </summary>
-        OperationTimeout = -7,
-
-        /// <summary>
-        /// В клиент были переданы некорректные аргументы.
-        /// </summary>
-        BadArguments = -8,
-
-        /// <summary>
-        /// Эзкемпляр клиента не был запущен или был закрыт.
-        /// </summary>
-        ClientNotRunning = -98,
-
-        /// <summary>
-        /// Неизвестная клиентская ошибка.
-        /// </summary>
-        UnclassifiedError = -99,
-
-        /// <summary>
-        /// Нода с указанным путем не существует.
-        /// </summary>
-        NoNode = -101,
-
-        /// <summary>
-        /// Аутентификация не произошла.
-        /// </summary>
-        NoAuth = -102,
-
-        /// <summary>
-        /// Указанная версия не совпала с актуальной.
-        /// </summary>
-        BadVersion = -103,
-
-        /// <summary>
-        /// Попытка создать дочернюю ноду для эфемерной.
-        /// </summary>
-        NoChildrenForEphemerals = -108,
-
-        /// <summary>
-        /// Попытка создать уже существующую ноду.
-        /// </summary>
-        NodeExists = -110,
-
-        /// <summary>
-        /// Попытка удалить ноду, имеющую дочерние.
-        /// </summary>
-        NotEmpty = -111,
-
-        /// <summary>
-        /// Клиентская сессия истекла.
-        /// </summary>
-        SessionExpired = -112,
-
-        InvalidCallback = -113,
-
-        InvalidACL = -114,
-
-        /// <summary>
-        /// Отказано в аутентификации.
-        /// </summary>
-        AuthFailed = -115,
-
-        /// <summary>
-        /// Сессия переехала на другой сервер, операция проигнорирована.
-        /// </summary>
-        SessionMoved = -118,
-
-        /// <summary>
-        /// Попытка записи при соединении с сервером в режиме чтения.
-        /// </summary>
-        NotReadonly = -119,
     }
+
+    //public enum ZooKeeperStatus
+    //{
+    //    /// <summary>
+    //    /// Все хорошо!
+    //    /// </summary>
+    //    Ok = 0,
+
+    //    RuntimeInconsistency = -2,
+
+    //    /// <summary>
+    //    /// Была обнаружена неконсистетность данных.
+    //    /// </summary>
+    //    DataInconsistency = -3,
+
+    //    /// <summary>
+    //    /// Соединение с сервером было потеряно или не было установлено за отведенное время.
+    //    /// </summary>
+    //    ConnectionLoss = -4,
+
+    //    /// <summary>
+    //    /// Ошибка при маршаллинге данных.
+    //    /// </summary>
+    //    MarshallingError = -5,
+
+    //    /// <summary>
+    //    /// Операция не реализована на сервере.
+    //    /// </summary>
+    //    Unimplemented = -6,
+
+    //    /// <summary>
+    //    /// Операция не могла быть выполнена за отведенное время.
+    //    /// </summary>
+    //    OperationTimeout = -7,
+
+    //    /// <summary>
+    //    /// В клиент были переданы некорректные аргументы.
+    //    /// </summary>
+    //    BadArguments = -8,
+
+    //    /// <summary>
+    //    /// Эзкемпляр клиента не был запущен или был закрыт.
+    //    /// </summary>
+    //    ClientNotRunning = -98,
+
+    //    /// <summary>
+    //    /// Неизвестная клиентская ошибка.
+    //    /// </summary>
+    //    UnclassifiedError = -99,
+
+    //    /// <summary>
+    //    /// Нода с указанным путем не существует.
+    //    /// </summary>
+    //    NoNode = -101,
+
+    //    /// <summary>
+    //    /// Аутентификация не произошла.
+    //    /// </summary>
+    //    NoAuth = -102,
+
+    //    /// <summary>
+    //    /// Указанная версия не совпала с актуальной.
+    //    /// </summary>
+    //    BadVersion = -103,
+
+    //    /// <summary>
+    //    /// Попытка создать дочернюю ноду для эфемерной.
+    //    /// </summary>
+    //    NoChildrenForEphemerals = -108,
+
+    //    /// <summary>
+    //    /// Попытка создать уже существующую ноду.
+    //    /// </summary>
+    //    NodeExists = -110,
+
+    //    /// <summary>
+    //    /// Попытка удалить ноду, имеющую дочерние.
+    //    /// </summary>
+    //    NotEmpty = -111,
+
+    //    /// <summary>
+    //    /// Клиентская сессия истекла.
+    //    /// </summary>
+    //    SessionExpired = -112,
+
+    //    InvalidCallback = -113,
+
+    //    InvalidACL = -114,
+
+    //    /// <summary>
+    //    /// Отказано в аутентификации.
+    //    /// </summary>
+    //    AuthFailed = -115,
+
+    //    /// <summary>
+    //    /// Сессия переехала на другой сервер, операция проигнорирована.
+    //    /// </summary>
+    //    SessionMoved = -118,
+
+    //    /// <summary>
+    //    /// Попытка записи при соединении с сервером в режиме чтения.
+    //    /// </summary>
+    //    NotReadonly = -119,
+    //}
 
 }

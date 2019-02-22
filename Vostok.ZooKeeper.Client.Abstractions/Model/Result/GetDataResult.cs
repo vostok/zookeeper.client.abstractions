@@ -6,10 +6,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     public class GetDataResult : ZooKeeperResult<Tuple<byte[], NodeStat>>
     {
         public byte[] Data => Payload.Item1;
-        public NodeStat NodeStat => Payload.Item2;
+        public NodeStat Stat => Payload.Item2;
 
-        public GetDataResult(ZooKeeperStatus status, string path, byte[] data, NodeStat nodeStat)
-            : base(status, path, new Tuple<byte[], NodeStat>(data, nodeStat))
+        public GetDataResult(ZooKeeperStatus status, string path, byte[] data, NodeStat stat)
+            : base(status, path, new Tuple<byte[], NodeStat>(data, stat))
         {
         }
     }
