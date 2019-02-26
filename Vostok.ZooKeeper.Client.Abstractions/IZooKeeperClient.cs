@@ -28,6 +28,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     {
         /// <summary>
         /// <para>Creates new node using given <paramref name="request" />.</para>
+        /// <para>In case of unsuccessful, result of this operation is not guaranteed.</para>
         /// <para>This operation, if successful, will trigger all the <see cref="INodeWatcher"/> watchers left on the node.</para>
         /// </summary>
         Task<CreateResult> CreateAsync(CreateRequest request);
@@ -90,14 +91,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<GetChildrenWithStatResult> GetChildrenWithStatAsync(GetChildrenRequest request);
 
         /// <summary>
-        /// <para>Возвращает содержимое и статистику ноды по указанному пути.</para>
-        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае изменения данных ноды по указанному пути.</para>
-        /// <para>ВАЖНО: обработчки событий срабатывают ровно один раз, после чего удаляются сервером.</para>
-        /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
+        /// <para>Returns the data and the stat of the node using given <paramref name="request" />.</para>
         /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="watcher">Обработчик события изменения ноды.</param>
-        /// <returns>Результат - blob с содержимым ноды и ее статистика.</returns>
         Task<GetDataResult> GetDataAsync(GetDataRequest request);
 
         /// <summary>

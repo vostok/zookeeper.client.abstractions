@@ -43,6 +43,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         NodeNotFound,
 
         /// <summary>
+        /// Client is not curently connected to ZooKeeper cluster.
+        /// </summary>
+        NotConnected,
+
+        /// <summary>
         /// Connection lost during operation execution.
         /// </summary>
         ConnectionLoss,

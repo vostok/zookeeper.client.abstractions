@@ -8,8 +8,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     [PublicAPI]
     public class ExistsRequest : GetRequest
     {
-        public ExistsRequest([NotNull] string path, INodeWatcher watcher = null)
-            : base(path, watcher)
+        public ExistsRequest([NotNull] string path)
+            : base(path)
         {
         }
 
