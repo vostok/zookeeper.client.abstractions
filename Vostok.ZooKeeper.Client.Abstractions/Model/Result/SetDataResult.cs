@@ -4,8 +4,8 @@
     /// <para>Represents ZooKeeper set data result.</para>
     /// <para>Possible unsuccessful statuses:</para>
     /// <list type="bullet">
-    /// <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
-    /// /// <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/></description></item>
     /// </list>
     /// </summary>
     public class SetDataResult : ZooKeeperResult<NodeStat>

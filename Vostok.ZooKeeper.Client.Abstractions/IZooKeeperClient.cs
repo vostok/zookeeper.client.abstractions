@@ -34,31 +34,18 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<CreateResult> CreateAsync(CreateRequest request);
 
         /// <summary>
-        /// <para>Удаляет ноду по указанному пути, если ее версия совпадает с указанной.</para>
-        /// <para>В случае успеха вызывает срабатывание обработчиков, установленных с помощью <see cref="Exists"/> и <see cref="GetChildren"/></para>
-        /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
-        /// <para>В случае, если нода имеет дочерние и не указан параметр <see cref="deleteChildrenIfNeeded"/>, возвращает статус <see cref="ZooKeeperStatus.NotEmpty"/>.</para>
-        /// <para>В случае, если указанная версия не совпадает с актуальной, возвращает статус <see cref="ZooKeeperStatus.BadVersion"/>.</para>
+        /// Deletes the node using given <paramref name="request"/>.
         /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="version">Ожидаемая версия ноды (-1 соответствует любой версии).</param>
-        /// <param name="deleteChildrenIfNeeded">Определяет, удалять ли автоматически дочерние ноды в случае обнаружения таковых.</param>
-        /// <returns></returns>
         Task<DeleteResult> DeleteAsync(DeleteRequest request);
 
         /// <summary>
-        /// <para>Sets the data for the node using given <paramref name="request" />.</para>
+        /// Sets the data for the node using given <paramref name="request" />.
         /// </summary>
         Task<SetDataResult> SetDataAsync(SetDataRequest request);
 
         /// <summary>
-        /// <para>Проверяет существование ноды по указанному пути.</para>
-        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае создания/удаления/изменения ноды по указанному пути.</para>
-        /// <para>ВАЖНО: обработчки событий срабатывают ровно один раз, после чего удаляются сервером.</para>
+        /// Checks whether the node exists or not using given <paramref name="request" />.
         /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="watcher">Обработчик события изменения ноды.</param>
-        /// <returns>Результат - статистика ноды, если она существует, и null в противном случае.</returns>
         Task<ExistsResult> ExistsAsync(ExistsRequest request);
 
         /// <summary>

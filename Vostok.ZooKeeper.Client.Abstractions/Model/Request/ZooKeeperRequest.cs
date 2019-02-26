@@ -21,7 +21,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Absolute, slash-separated path of node.
         /// </summary>
         [NotNull]
-        public string Path { get; set; }
+        public string Path { get; }
 
         /// <summary>
         /// Returns string representation of <see cref="ZooKeeperRequest"/>.
