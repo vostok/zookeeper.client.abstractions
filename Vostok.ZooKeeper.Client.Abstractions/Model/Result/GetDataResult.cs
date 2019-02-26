@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
@@ -11,6 +12,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
     /// </list>
     /// </summary>
+    [PublicAPI]
     public class GetDataResult : ZooKeeperResult<Tuple<byte[], NodeStat>>
     {
         /// <summary>

@@ -70,9 +70,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         Timeout,
 
         /// <summary>
-        /// Conflict of versions was found.
+        /// Mismatch of current and provided node versions.
         /// </summary>
-        VersionConflict,
+        VersionsMismatch,
 
         /// <summary>
         /// Node has children.

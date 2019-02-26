@@ -47,15 +47,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<DeleteResult> DeleteAsync(DeleteRequest request);
 
         /// <summary>
-        /// <para>Устанавливает содержимое ноды по указанному пути, если ее версия совпадает с указанной. Размер содержимого не должен превышать 1 МБ!</para>
-        /// <para>В случае успеха вызывает срабатывание обработчиков, установленных с помощью <see cref="GetData"/></para>
-        /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
-        /// <para>В случае, если указанная версия не совпадает с актуальной, возвращает статус <see cref="ZooKeeperStatus.BadVersion"/>.</para>
+        /// <para>Sets the data for the node using given <paramref name="request" />.</para>
         /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="data">Новое содержимое ноды. Не может быть длиннее 1 МБ.</param>
-        /// <param name="version">Ожидаемая версия ноды (-1 соответствует любой версии).</param>
-        /// <returns></returns>
         Task<SetDataResult> SetDataAsync(SetDataRequest request);
 
         /// <summary>
