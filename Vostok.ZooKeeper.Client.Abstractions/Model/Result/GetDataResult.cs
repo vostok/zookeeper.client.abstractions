@@ -13,17 +13,17 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// </list>
     /// </summary>
     [PublicAPI]
-    public class GetDataResult : ZooKeeperResult<Tuple<byte[], NodeStat>>
+    public class GetDataResult : ZooKeeperResult<(byte[] data, NodeStat stat)>
     {
         /// <summary>
         /// Returns data of node.
         /// </summary>
-        public byte[] Data => Payload.Item1;
+        public byte[] Data => Payload.data;
 
         /// <summary>
         /// Returns stat of node.
         /// </summary>
-        public NodeStat Stat => Payload.Item2;
+        public NodeStat Stat => Payload.stat;
 
         /// <summary>
         /// Creates a new instance of <see cref="CreateResult"/>.
@@ -33,7 +33,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <param name="data">Data of node.</param>
         /// <param name="stat">Stat of node.</param>
         public GetDataResult(ZooKeeperStatus status, string path, byte[] data, NodeStat stat)
-            : base(status, path, new Tuple<byte[], NodeStat>(data, stat))
+            : base(status, path, (data, stat))
         {
         }
     }

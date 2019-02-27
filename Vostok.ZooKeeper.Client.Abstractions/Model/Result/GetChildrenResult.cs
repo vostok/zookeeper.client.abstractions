@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
-    // CR(iloktionov): Get rid of ordinary tuples in favor of ValueTuple.
-
     /// <summary>
     /// <para>Represents ZooKeeper get children result.</para>
     /// <para>Possible unsuccessful statuses:</para>
@@ -14,17 +11,17 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// </list>
     /// </summary>
     [PublicAPI]
-    public class GetChildrenResult : ZooKeeperResult<Tuple<List<string>, NodeStat>>
+    public class GetChildrenResult : ZooKeeperResult<(List<string> childrenNames, NodeStat stat)>
     {
         /// <summary>
         /// Returns unordered children names (not absolute pathes) of the node.
         /// </summary>
-        public List<string> ChildrenNames => Payload.Item1;
+        public List<string> ChildrenNames => Payload.childrenNames;
 
         /// <summary>
         /// Returns stat of node.
         /// </summary>
-        public NodeStat Stat => Payload.Item2;
+        public NodeStat Stat => Payload.stat;
 
         /// <summary>
         /// Creates a new instance of <see cref="CreateResult"/>.
@@ -34,7 +31,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <param name="childrenNames">Node children names.</param>
         /// <param name="stat">Stat of node.</param>
         public GetChildrenResult(ZooKeeperStatus status, string path, List<string> childrenNames, NodeStat stat)
-            : base(status, path, new Tuple<List<string>, NodeStat>(childrenNames, stat))
+            : base(status, path, (childrenNames, stat))
         {
         }
     }
