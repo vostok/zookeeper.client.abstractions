@@ -49,26 +49,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<ExistsResult> ExistsAsync(ExistsRequest request);
 
         /// <summary>
-        /// <para>Возвращает список дочерних нод.</para>
-        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае удаления ноды по указанному пути или создания дочерних нод.</para>
-        /// <para>ВАЖНО: обработчки событий срабатывают ровно один раз, после чего удаляются сервером.</para>
-        /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
+        /// Returns the stat and children list for given <paramref name="request" />.
         /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="watcher">Обработчик события изменения ноды.</param>
-        /// <returns>Результат - неупорядоченный массив имен (не полных путей!) дочерних нод.</returns>
         Task<GetChildrenResult> GetChildrenAsync(GetChildrenRequest request);
-
-        /// <summary>
-        /// <para>Возвращает список дочерних нод и статистику ноды по указанному пути..</para>
-        /// <para>Если передан отличный от null <see cref="INodeWatcher"/>, он будет вызван в случае удаления ноды по указанному пути или создания дочерних нод.</para>
-        /// <para>ВАЖНО: обработчики событий срабатывают ровно один раз, после чего удаляются сервером.</para>
-        /// <para>В случае, если нода не существует, возвращает статус <see cref="ZooKeeperStatus.NoNode"/>.</para>
-        /// </summary>
-        /// <param name="path">Полный путь до ноды (например, "/foo/bar").</param>
-        /// <param name="watcher">Обработчик события изменения ноды.</param>
-        /// <returns>Результат - неупорядоченный массив имен (не полных путей!) дочерних нод и статистика parent-ноды.</returns>
-        Task<GetChildrenWithStatResult> GetChildrenWithStatAsync(GetChildrenRequest request);
 
         /// <summary>
         /// <para>Returns the data and the stat of the node using given <paramref name="request" />.</para>
