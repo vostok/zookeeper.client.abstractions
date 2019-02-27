@@ -1,14 +1,17 @@
-﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
+﻿using JetBrains.Annotations;
+
+namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
     /// <summary>
     /// <para>Represents ZooKeeper delete node result.</para>
     /// <para>Possible unsuccessful statuses:</para>
     /// <list type="bullet">
-    /// <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
-    /// /// <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/></description></item>
-    /// /// <item><description><see cref="ZooKeeperStatus.NodeHasChildren"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeHasChildren"/></description></item>
     /// </list>
     /// </summary>
+    [PublicAPI]
     public class DeleteResult : ZooKeeperResult
     {
         /// <summary>

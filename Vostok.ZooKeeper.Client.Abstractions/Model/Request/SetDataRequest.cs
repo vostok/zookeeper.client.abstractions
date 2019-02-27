@@ -25,7 +25,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// </summary>
         /// <param name="path">Path of node.</param>
         /// <param name="data">Data of node to be saved.</param>
-        public SetDataRequest(string path, byte[] data)
+        public SetDataRequest([NotNull] string path, byte[] data)
             : base(path)
         {
             Data = data;

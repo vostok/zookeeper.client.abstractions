@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
@@ -9,9 +10,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <para>Represents ZooKeeper get children result.</para>
     /// <para>Possible unsuccessful statuses:</para>
     /// <list type="bullet">
-    /// <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
     /// </list>
     /// </summary>
+    [PublicAPI]
     public class GetChildrenResult : ZooKeeperResult<Tuple<List<string>, NodeStat>>
     {
         /// <summary>

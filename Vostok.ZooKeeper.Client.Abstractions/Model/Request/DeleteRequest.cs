@@ -16,17 +16,17 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 
         /// <summary>
         /// <para>Request will be successful if <see cref="DeleteChildrenIfNeeded"/> are specified or node have not any one.</para>
-        /// <para>If the <see cref="DeleteChildrenIfNeeded"/> and <see cref="Version"/> are specified, and node version is changing during request execution,
+        /// <para>If the <see cref="DeleteChildrenIfNeeded"/> and <see cref="Version"/> are specified, and node version is changed during request execution,
         ///     all children will be deleted, but result will be <see cref="ZooKeeperStatus.VersionsMismatch"/> and node will not be deleted. </para>
         /// </summary>
         public bool DeleteChildrenIfNeeded { get; set; }
 
         /// <inheritdoc/>
         /// <summary>
-        /// Creates a new instance of <see cref="GetDataRequest"/>.
+        /// Creates a new instance of <see cref="DeleteRequest"/>.
         /// </summary>
         /// <param name="path">Path of node.</param>
-        public DeleteRequest(string path)
+        public DeleteRequest([NotNull] string path)
             : base(path)
         {
         }

@@ -2,8 +2,9 @@
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
+    /// <inheritdoc/>
     /// <summary>
-    /// Represents ZooKeeper get children.
+    /// Represents ZooKeeper get children request.
     /// </summary>
     [PublicAPI]
     public class GetChildrenRequest : GetRequest

@@ -6,8 +6,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <para>Represents ZooKeeper create node result.</para>
     /// <para>Possible unsuccessful statuses:</para>
     /// <list type="bullet">
-    /// <item><description><see cref="ZooKeeperStatus.NodeAlreadyExists"/></description></item>
-    /// <item><description><see cref="ZooKeeperStatus.ChildrenForEphemeralsAreNotAllowed"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeAlreadyExists"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.ChildrenForEphemeralsAreNotAllowed"/></description></item>
     /// </list>
     /// </summary>
     [PublicAPI]

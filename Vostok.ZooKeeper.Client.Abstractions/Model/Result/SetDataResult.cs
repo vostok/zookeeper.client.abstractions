@@ -1,4 +1,6 @@
-﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
+﻿using JetBrains.Annotations;
+
+namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
     /// <summary>
     /// <para>Represents ZooKeeper set data result.</para>
@@ -8,6 +10,7 @@
     ///     <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/></description></item>
     /// </list>
     /// </summary>
+    [PublicAPI]
     public class SetDataResult : ZooKeeperResult<NodeStat>
     {
         /// <summary>
