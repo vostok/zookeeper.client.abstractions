@@ -2,14 +2,15 @@
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
-    // CR(iloktionov): Implement AdHocWatcher supplied with user-provided Action.
-
     /// <summary>
-    /// Представляет интерфейс для клиентских обработчиков событий, на которые можно подписаться при операциях чтения.
+    /// Represents an node event handler class.
     /// </summary>
     [PublicAPI]
     public interface INodeWatcher
     {
+        /// <summary>
+        /// Processes the specified event with given <paramref name="type"/> and node <paramref name="path"/>.
+        /// </summary>
         void ProcessEvent(NodeChangedEventType type, string path);
     }
 }
