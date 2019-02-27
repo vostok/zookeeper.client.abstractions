@@ -3,7 +3,7 @@
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
     /// <summary>
-    /// Represents node statistic
+    /// Represents node statistic.
     /// </summary>
     [PublicAPI]
     public class NodeStat

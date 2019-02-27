@@ -1,10 +1,31 @@
-﻿namespace Vostok.ZooKeeper.Client.Abstractions.Model
+﻿using JetBrains.Annotations;
+
+namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
+    /// <summary>
+    /// Represents node changed event type.
+    /// </summary>
+    [PublicAPI]
     public enum NodeChangedEventType
     {
-        NodeCreated,
-        NodeDeleted,
-        NodeDataChanged,
-        NodeChildrenChanged
+        /// <summary>
+        /// Node was created.
+        /// </summary>
+        Created,
+
+        /// <summary>
+        /// Node was deleted.
+        /// </summary>
+        Deleted,
+
+        /// <summary>
+        /// Node data was changed.
+        /// </summary>
+        DataChanged,
+
+        /// <summary>
+        /// Node children was changed.
+        /// </summary>
+        ChildrenChanged
     }
 }

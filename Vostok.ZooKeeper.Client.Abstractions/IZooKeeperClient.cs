@@ -7,17 +7,7 @@ using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 
 namespace Vostok.ZooKeeper.Client.Abstractions
 {
-    // CR(iloktionov): Common practices:
-    // CR(iloktionov): 1. JB annotations (PublicApi, CanBeNull, ...)
-    // CR(iloktionov): 2. English xml-docs.
-    // CR(iloktionov): 3. Every class in a separate file.
-    // CR(iloktionov): 4. Requests, results: I propose to remove word 'ZooKeeper' from names.
-    // CR(iloktionov): 5. Unit tests for ZooKeeperResult.
-    // CR(iloktionov): 6. Requests: only mandatory params in ctor, setters for the rest.
     // CR(iloktionov): 7. Synchronous extensions (IZooKeeperClientExtensions).
-
-
-    // CR(iloktionov): IZooKeeperClient should not inherit from IDisposable.
 
     /// <summary>
     /// <para>Represents a client for ZooKeeper.</para>
@@ -54,25 +44,28 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<GetChildrenResult> GetChildrenAsync(GetChildrenRequest request);
 
         /// <summary>
-        /// <para>Returns the data and the stat of the node using given <paramref name="request" />.</para>
+        /// Returns the data and the stat of the node using given <paramref name="request" />.
         /// </summary>
         Task<GetDataResult> GetDataAsync(GetDataRequest request);
 
         /// <summary>
-        /// Событие, выстреливающее при любом изменении состоянии клиентского соединения.
-        /// Никогда не вызывается конкурентно.
+        /// Returns an observable of client connection state.
         /// </summary>
         IObservable<ConnectionState> OnConnectionStateChanged { get; }
 
-        // CR(iloktionov): Substitite wuth current ConnectionState getter? IsConnected may become an extension then.
         /// <summary>
-        /// Возвращает true, если в текущий момент соединение с кластером установлено, или false в противном случае.
+        /// Returns client connection state.
         /// </summary>
         ConnectionState ConnectionState { get; }
 
         /// <summary>
-        /// Возвращает идентификатор сессии, если она уже установлена, или 0 в противном случае.
+        /// Returns client session id or 0 if not connected.
         /// </summary>
         long SessionId { get; }
+
+        /// <summary>
+        /// Returns client session password or null if not connected.
+        /// </summary>
+        byte[] SessionPassword { get; }
     }
 }
