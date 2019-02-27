@@ -8,17 +8,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     [PublicAPI]
     public class SetDataRequest : ZooKeeperRequest
     {
-        /// <summary>
-        /// Data of node to be saved.
-        /// </summary>
-        public byte[] Data { get; }
-
-        /// <summary>
-        /// <para>Request will be successful if <see cref="Version"/> matches the current version of the node.</para>
-        /// <para>If the given version is -1, it matches any node's versions.</para>
-        /// </summary>
-        public int Version { get; set; } = -1;
-
         /// <inheritdoc/>
         /// <summary>
         /// Creates a new instance of <see cref="GetDataRequest"/>.
@@ -30,6 +19,17 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         {
             Data = data;
         }
+
+        /// <summary>
+        /// Data of node to be saved.
+        /// </summary>
+        public byte[] Data { get; }
+
+        /// <summary>
+        /// <para>Request will be successful if <see cref="Version"/> matches the current version of the node.</para>
+        /// <para>If the given version is -1, it matches any node's versions.</para>
+        /// </summary>
+        public int Version { get; set; } = -1;
 
         /// <summary>
         /// Returns string representation of <see cref="SetDataRequest"/>.

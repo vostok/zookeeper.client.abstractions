@@ -9,16 +9,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     public class ExistsResult : ZooKeeperResult<NodeStat>
     {
         /// <summary>
-        /// Returns is node exists or not.
-        /// </summary>
-        public bool Exists => Payload != null;
-
-        /// <summary>
-        /// Returns stat of node.
-        /// </summary>
-        public NodeStat Stat => Payload;
-
-        /// <summary>
         /// Creates a new instance of <see cref="CreateResult"/>.
         /// </summary>
         /// <param name="status">Operation status.</param>
@@ -28,5 +18,15 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
             : base(status, path, stat)
         {
         }
+
+        /// <summary>
+        /// Returns is node exists or not.
+        /// </summary>
+        public bool Exists => Payload != null;
+
+        /// <summary>
+        /// Returns stat of node.
+        /// </summary>
+        public NodeStat Stat => Payload;
     }
 }

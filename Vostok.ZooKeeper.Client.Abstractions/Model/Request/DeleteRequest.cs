@@ -8,6 +8,16 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     [PublicAPI]
     public class DeleteRequest : ZooKeeperRequest
     {
+        /// <inheritdoc/>
+        /// <summary>
+        /// Creates a new instance of <see cref="DeleteRequest"/>.
+        /// </summary>
+        /// <param name="path">Path of node.</param>
+        public DeleteRequest([NotNull] string path)
+            : base(path)
+        {
+        }
+
         /// <summary>
         /// <para>Request will be successful if <see cref="Version"/> matches the current version of the node.</para>
         /// <para>If the given version is -1, it matches any node's versions.</para>
@@ -20,16 +30,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         ///     all children will be deleted, but result will be <see cref="ZooKeeperStatus.VersionsMismatch"/> and node will not be deleted. </para>
         /// </summary>
         public bool DeleteChildrenIfNeeded { get; set; }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Creates a new instance of <see cref="DeleteRequest"/>.
-        /// </summary>
-        /// <param name="path">Path of node.</param>
-        public DeleteRequest([NotNull] string path)
-            : base(path)
-        {
-        }
 
         /// <summary>
         /// Returns string representation of <see cref="DeleteRequest"/>.

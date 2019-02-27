@@ -8,6 +8,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     [PublicAPI]
     public class ZooKeeperResult<TPayload> : ZooKeeperResult
     {
+        private readonly TPayload payload;
+
         /// <summary>
         /// Creates a new instance of <see cref="ZooKeeperResult"/>.
         /// </summary>
@@ -31,7 +33,5 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
                 return payload;
             }
         }
-
-        private readonly TPayload payload;
     }
 }

@@ -11,13 +11,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     [PublicAPI]
     public abstract class GetRequest : ZooKeeperRequest
     {
-        /// <summary>
-        /// <para>If the watcher is specified and the call is successful, a watcher will be left on the node with the given path.</para>
-        /// <para>The watcher will be triggered by a successful operation that sets data on the node, creates or deletes the node.</para>
-        /// <para>The watcher will be triggered only once.</para>
-        /// </summary>
-        public INodeWatcher Watcher { get; set; }
-
         /// <inheritdoc/>
         /// <summary>
         /// Creates a new instance of <see cref="GetRequest"/>.
@@ -27,6 +20,13 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
             : base(path)
         {
         }
+
+        /// <summary>
+        /// <para>If the watcher is specified and the call is successful, a watcher will be left on the node with the given path.</para>
+        /// <para>The watcher will be triggered by a successful operation that sets data on the node, creates or deletes the node.</para>
+        /// <para>The watcher will be triggered only once.</para>
+        /// </summary>
+        public INodeWatcher Watcher { get; set; }
 
         /// <summary>
         /// Returns string representation of <see cref="GetRequest"/>.

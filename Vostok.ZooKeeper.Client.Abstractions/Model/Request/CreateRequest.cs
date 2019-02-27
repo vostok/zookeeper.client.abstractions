@@ -8,17 +8,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     [PublicAPI]
     public class CreateRequest : ZooKeeperRequest
     {
-        /// <summary>
-        /// <para>Data of node to be created.</para>
-        /// <para>The maximum allowed size of the data array is 1 Mb.</para>
-        /// </summary>
-        public byte[] Data { get; set; }
-
-        /// <summary>
-        /// Type of node to be created. May be ephemeral/persistent and/or sequential.
-        /// </summary>
-        public CreateMode CreateMode { get; }
-
         /// <inheritdoc/>
         /// <summary>
         /// Creates a new instance of <see cref="CreateRequest"/>.
@@ -30,6 +19,17 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         {
             CreateMode = createMode;
         }
+
+        /// <summary>
+        /// <para>Data of node to be created.</para>
+        /// <para>The maximum allowed size of the data array is 1 Mb.</para>
+        /// </summary>
+        public byte[] Data { get; set; }
+
+        /// <summary>
+        /// Type of node to be created. May be ephemeral/persistent and/or sequential.
+        /// </summary>
+        public CreateMode CreateMode { get; }
 
         /// <summary>
         /// Returns string representation of <see cref="CreateRequest"/>.

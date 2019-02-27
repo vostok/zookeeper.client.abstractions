@@ -17,6 +17,26 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     public interface IZooKeeperClient
     {
         /// <summary>
+        /// Returns an observable of client connection state.
+        /// </summary>
+        IObservable<ConnectionState> OnConnectionStateChanged { get; }
+
+        /// <summary>
+        /// Returns client connection state.
+        /// </summary>
+        ConnectionState ConnectionState { get; }
+
+        /// <summary>
+        /// Returns client session id or 0 if not connected.
+        /// </summary>
+        long SessionId { get; }
+
+        /// <summary>
+        /// Returns client session password or null if not connected.
+        /// </summary>
+        byte[] SessionPassword { get; }
+
+        /// <summary>
         /// <para>Creates new node using given <paramref name="request" />.</para>
         /// <para>In case of unsuccessful, result of this operation is not guaranteed.</para>
         /// <para>This operation, if successful, will trigger all the <see cref="INodeWatcher"/> watchers left on the node.</para>
@@ -47,25 +67,5 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// Returns the data and the stat of the node using given <paramref name="request" />.
         /// </summary>
         Task<GetDataResult> GetDataAsync(GetDataRequest request);
-
-        /// <summary>
-        /// Returns an observable of client connection state.
-        /// </summary>
-        IObservable<ConnectionState> OnConnectionStateChanged { get; }
-
-        /// <summary>
-        /// Returns client connection state.
-        /// </summary>
-        ConnectionState ConnectionState { get; }
-
-        /// <summary>
-        /// Returns client session id or 0 if not connected.
-        /// </summary>
-        long SessionId { get; }
-
-        /// <summary>
-        /// Returns client session password or null if not connected.
-        /// </summary>
-        byte[] SessionPassword { get; }
     }
 }

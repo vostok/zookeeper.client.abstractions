@@ -26,21 +26,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         public bool IsSuccessful => Status == ZooKeeperStatus.Ok;
 
         /// <summary>
-        /// Throws <see cref="ZooKeeperException"/> in case of unsuccessful operation status.
-        /// </summary>
-        public ZooKeeperResult EnsureSuccess()
-        {
-            if (!IsSuccessful)
-                throw new ZooKeeperException(Status, Path, Exception);
-            return this;
-        }
-
-        /// <summary>
-        /// Returns string representation of <see cref="ZooKeeperResult"/>.
-        /// </summary>
-        public override string ToString() => $"'{Status}' for path '{Path}'";
-
-        /// <summary>
         /// Returns operation status.
         /// </summary>
         public ZooKeeperStatus Status { get; private set; }
@@ -54,5 +39,20 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// Returns operation node path.
         /// </summary>
         public string Path { get; set; }
+
+        /// <summary>
+        /// Throws <see cref="ZooKeeperException"/> in case of unsuccessful operation status.
+        /// </summary>
+        public ZooKeeperResult EnsureSuccess()
+        {
+            if (!IsSuccessful)
+                throw new ZooKeeperException(Status, Path, Exception);
+            return this;
+        }
+
+        /// <summary>
+        /// Returns string representation of <see cref="ZooKeeperResult"/>.
+        /// </summary>
+        public override string ToString() => $"'{Status}' for path '{Path}'";
     }
 }

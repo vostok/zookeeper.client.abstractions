@@ -14,11 +14,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     public class CreateResult : ZooKeeperResult<string>
     {
         /// <summary>
-        /// Returns path of created node.
-        /// </summary>
-        public string NewPath => Payload;
-
-        /// <summary>
         /// Creates a new instance of <see cref="CreateResult"/>.
         /// </summary>
         /// <param name="status">Operation status.</param>
@@ -28,5 +23,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
             : base(status, path, newPath)
         {
         }
+
+        /// <summary>
+        /// Returns path of created node.
+        /// </summary>
+        public string NewPath => Payload;
     }
 }
