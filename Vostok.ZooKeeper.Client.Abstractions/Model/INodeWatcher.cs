@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
@@ -11,6 +12,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Processes the specified event with given <paramref name="type"/> and node <paramref name="path"/>.
         /// </summary>
-        void ProcessEvent(NodeChangedEventType type, string path);
+        Task ProcessEvent(NodeChangedEventType type, string path);
     }
 }

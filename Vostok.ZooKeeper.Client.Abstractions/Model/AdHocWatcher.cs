@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
@@ -21,9 +22,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         }
 
         /// <inheritdoc />
-        public void ProcessEvent(NodeChangedEventType type, string path)
+        public Task ProcessEvent(NodeChangedEventType type, string path)
         {
             processingDelegate(type, path);
+            return Task.CompletedTask;
         }
     }
 }

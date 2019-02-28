@@ -26,6 +26,12 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Node children was changed.
         /// </summary>
-        ChildrenChanged
+        ChildrenChanged,
+
+        /// <summary>
+        /// <para>ZooKeeper client that create <see cref="INodeWatcher"/> was disconnected.</para>
+        /// <para>In this case, event path will be null.</para>
+        /// </summary>
+        ClientDisconected
     }
 }
