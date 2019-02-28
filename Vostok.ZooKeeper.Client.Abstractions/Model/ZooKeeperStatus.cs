@@ -60,11 +60,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         SessionMoved,
 
         /// <summary>
-        /// Can not obtain connected client for operation execution.
-        /// </summary>
-        DisconnectedClient,
-
-        /// <summary>
         /// Operation timed out.
         /// </summary>
         Timeout,
