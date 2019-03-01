@@ -10,21 +10,21 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     [PublicAPI]
     public class AdHocWatcher : INodeWatcher
     {
-        private readonly Action<NodeChangedEventType, ConnectionState, string> processingDelegate;
+        private readonly Action<NodeChangedEventType, string> processingDelegate;
 
         /// <summary>
         /// Creates a new instance of <see cref="AdHocWatcher"/>.
         /// </summary>
-        /// <param name="processingDelegate">Delegate for node events processing. Recieves <see cref="NodeChangedEventType"/>, <see cref="ConnectionState"/> and node path.</param>
-        public AdHocWatcher(Action<NodeChangedEventType, ConnectionState, string> processingDelegate)
+        /// <param name="processingDelegate">Delegate for node events processing. Recieves <see cref="NodeChangedEventType"/> and node path.</param>
+        public AdHocWatcher(Action<NodeChangedEventType, string> processingDelegate)
         {
             this.processingDelegate = processingDelegate;
         }
 
         /// <inheritdoc />
-        public Task ProcessEvent(NodeChangedEventType type, ConnectionState connectionState, string path)
+        public Task ProcessEvent(NodeChangedEventType type, string path)
         {
-            processingDelegate(type, connectionState, path);
+            processingDelegate(type, path);
             return Task.CompletedTask;
         }
     }
