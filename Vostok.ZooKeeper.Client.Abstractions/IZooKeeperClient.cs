@@ -7,8 +7,6 @@ using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 
 namespace Vostok.ZooKeeper.Client.Abstractions
 {
-    // CR(iloktionov): 7. Synchronous extensions (IZooKeeperClientExtensions).
-
     /// <summary>
     /// <para>Represents a client for ZooKeeper.</para>
     /// <para>Nodes in a ZooKeeper comprise a tree, and the main operations this client presents is create, delete, get, set node by path.</para>

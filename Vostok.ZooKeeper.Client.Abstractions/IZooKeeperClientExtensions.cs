@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using JetBrains.Annotations;
-using Vostok.ZooKeeper.Client.Abstractions.Model;
+﻿using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 

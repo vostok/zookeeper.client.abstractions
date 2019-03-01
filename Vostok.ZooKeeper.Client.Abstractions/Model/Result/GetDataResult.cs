@@ -1,10 +1,7 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
-    // CR(iloktionov): Get rid of ordinary tuples in favor of ValueTuple.
-
     /// <summary>
     /// <para>Represents ZooKeeper get data result.</para>
     /// <para>Possible unsuccessful statuses:</para>
