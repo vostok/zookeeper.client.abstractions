@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   
   <Import Project="..\..\vostok.devtools\library-common-props\Main-Project.props" />
@@ -16,13 +16,13 @@
 
   <PropertyGroup>
     <Title>Vostok.ZooKeeper.Client.Abstractions</Title>
-    <Description>Vostok.ZooKeeper.Client.Abstractions</Description>
+    <Description>Facade with ZooKeeper client interface and its request and result models.</Description>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageProjectUrl>https://github.com/vostok/zookeeper.client.abstractions</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/vostok/zookeeper.client.abstractions/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageTags>vostok</PackageTags>
+    <PackageTags>vostok vostok.zookeeper</PackageTags>
     <RepositoryUrl>https://github.com/vostok/zookeeper.client.abstractions</RepositoryUrl>
   </PropertyGroup>
   
