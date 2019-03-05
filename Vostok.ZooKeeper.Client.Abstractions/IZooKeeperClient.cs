@@ -16,7 +16,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     {
         /// <summary>
         /// <para>Returns an observable of client connection state.</para>
-        /// <para>Calls <see cref="IObserver{ConnectionState}.OnNext"/> on each connection state changed.</para>
+        /// <para>Calls <see cref="IObserver{T}.OnNext"/> on each connection state changed.</para>
         /// <para>May calls <see cref="IObserver{T}.OnCompleted"/> if client implementation is disposed.</para>
         /// <para>Does not call <see cref="IObserver{ConnectionState}.OnError"/></para>
         /// <para>All calls are consequent.</para>
@@ -34,11 +34,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// Returns client session id or 0 if not connected.
         /// </summary>
         long SessionId { get; }
-
-        /// <summary>
-        /// Returns client session password or null if not connected.
-        /// </summary>
-        byte[] SessionPassword { get; }
 
         /// <summary>
         /// <para>Creates new node using given <paramref name="request" />.</para>
