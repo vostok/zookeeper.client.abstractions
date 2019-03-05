@@ -9,23 +9,23 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     public enum CreateMode
     {
         /// <summary>
-        /// <para>The node will not be automatically deleted upon client's disconnect.</para>
+        /// <para>The node will not be automatically deleted upon client's session is expired.</para>
         /// </summary>
         Persistent = 0,
 
         /// <summary>
-        /// <para>The node will be deleted upon the client's disconnect.</para>
+        /// <para>The node will be deleted upon the client's session is expired.</para>
         /// </summary>
         Ephemeral = 1,
 
         /// <summary>
-        /// <para>The node will not be automatically deleted upon client's disconnect.</para>
+        /// <para>The node will not be automatically deleted upon client's session is expired.</para>
         /// <para>A monotonically increasing number will be appended to node name.</para>
         /// </summary>
         PersistentSequential = 2,
 
         /// <summary>
-        /// <para>The node will be deleted upon the client's disconnect.</para>
+        /// <para>The node will be deleted upon the client's session is expired.</para>
         /// <para>A monotonically increasing number will be appended to node name.</para>
         /// </summary>
         EphemeralSequential = 3
