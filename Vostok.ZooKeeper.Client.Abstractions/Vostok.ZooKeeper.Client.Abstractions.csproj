@@ -19,6 +19,10 @@
     <Description>Facade with ZooKeeper client interface and its request and result models.</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
+  </ItemGroup>
+
   <PropertyGroup>
     <PackageProjectUrl>https://github.com/vostok/zookeeper.client.abstractions</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/vostok/zookeeper.client.abstractions/blob/master/LICENSE</PackageLicenseUrl>

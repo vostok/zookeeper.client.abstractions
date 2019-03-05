@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
+using Vostok.Commons.Time;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
@@ -9,13 +11,13 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     public class NodeStat
     {
         /// <inheritdoc />
-        public NodeStat(long createdZxid, long modifiedZxid, long modifiedChildrenZxid, long createdTime, long modifiedTime, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
+        public NodeStat(long createdZxid, long modifiedZxid, long modifiedChildrenZxid, long createdTimeMs, long modifiedTimeMs, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
         {
             CreatedZxid = createdZxid;
             ModifiedZxid = modifiedZxid;
             ModifiedChildrenZxid = modifiedChildrenZxid;
-            CreatedTime = createdTime;
-            ModifiedTime = modifiedTime;
+            CreatedTimeMs = createdTimeMs;
+            ModifiedTimeMs = modifiedTimeMs;
             Version = version;
             ChildrenVersion = childrenVersion;
             AclVersion = aclVersion;
@@ -42,12 +44,22 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Returns the time in milliseconds from epoch when this znode was created.
         /// </summary>
-        public long CreatedTime { get; }
+        public long CreatedTimeMs { get; }
+
+        /// <summary>
+        /// Returns the time when this znode was created.
+        /// </summary>
+        public DateTimeOffset CreatedTime => EpochHelper.FromUnixTimeMilliseconds(CreatedTimeMs);
 
         /// <summary>
         /// Returns the time in milliseconds from epoch when this znode was last modified.
         /// </summary>
-        public long ModifiedTime { get; }
+        public long ModifiedTimeMs { get; }
+
+        /// <summary>
+        /// Returns the time when this znode was created.
+        /// </summary>
+        public DateTimeOffset ModifiedTime => EpochHelper.FromUnixTimeMilliseconds(ModifiedTimeMs);
 
         /// <summary>
         /// Returns the number of changes to the data of this znode.
@@ -87,7 +99,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// </summary>
         public bool Equals(NodeStat other)
         {
-            return CreatedZxid == other.CreatedZxid && ModifiedZxid == other.ModifiedZxid && ModifiedChildrenZxid == other.ModifiedChildrenZxid && CreatedTime == other.CreatedTime && ModifiedTime == other.ModifiedTime && Version == other.Version && ChildrenVersion == other.ChildrenVersion && AclVersion == other.AclVersion && EphemeralOwner == other.EphemeralOwner && DataLength == other.DataLength && NumberOfChildren == other.NumberOfChildren;
+            return CreatedZxid == other.CreatedZxid && ModifiedZxid == other.ModifiedZxid && ModifiedChildrenZxid == other.ModifiedChildrenZxid && CreatedTimeMs == other.CreatedTimeMs && ModifiedTimeMs == other.ModifiedTimeMs && Version == other.Version && ChildrenVersion == other.ChildrenVersion && AclVersion == other.AclVersion && EphemeralOwner == other.EphemeralOwner && DataLength == other.DataLength && NumberOfChildren == other.NumberOfChildren;
         }
 
         /// <inheritdoc />
@@ -110,8 +122,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
                 var hashCode = CreatedZxid.GetHashCode();
                 hashCode = (hashCode * 397) ^ ModifiedZxid.GetHashCode();
                 hashCode = (hashCode * 397) ^ ModifiedChildrenZxid.GetHashCode();
-                hashCode = (hashCode * 397) ^ CreatedTime.GetHashCode();
-                hashCode = (hashCode * 397) ^ ModifiedTime.GetHashCode();
+                hashCode = (hashCode * 397) ^ CreatedTimeMs.GetHashCode();
+                hashCode = (hashCode * 397) ^ ModifiedTimeMs.GetHashCode();
                 hashCode = (hashCode * 397) ^ Version;
                 hashCode = (hashCode * 397) ^ ChildrenVersion;
                 hashCode = (hashCode * 397) ^ AclVersion;
