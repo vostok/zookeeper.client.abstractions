@@ -10,9 +10,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
     {
         /// <inheritdoc/>
         /// <summary>
-        /// Creates a new instance of <see cref="CreateRequest"/>.
+        /// <para>Creates a new instance of <see cref="CreateRequest"/>.</para>
+        /// <para>By default, all parent nodes will be created if they do not exist.</para>
         /// </summary>
-        /// <param name="path">Path of node to be created. All parent nodes will be created if they do not exist.</param>
+        /// <param name="path">Path of node to be created.</param>
         /// <param name="createMode">Type of node to be created. May be ephemeral/persistent and/or sequential.</param>
         public CreateRequest([NotNull] string path, CreateMode createMode)
             : base(path)
@@ -30,6 +31,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Type of node to be created. May be ephemeral/persistent and/or sequential.
         /// </summary>
         public CreateMode CreateMode { get; }
+
+        /// <summary>
+        /// Request will be successful if <see cref="CreateParrentsIfNeeded"/> are specified or all parent nodes already exist.
+        /// </summary>
+        public bool CreateParrentsIfNeeded { get; set; } = true;
 
         /// <summary>
         /// Returns string representation of <see cref="CreateRequest"/>.

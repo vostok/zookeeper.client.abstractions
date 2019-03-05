@@ -17,7 +17,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <summary>
         /// <para>Returns an observable of client connection state.</para>
         /// <para>Calls <see cref="IObserver{T}.OnNext"/> on each connection state changed.</para>
-        /// <para>May calls <see cref="IObserver{T}.OnCompleted"/> if client implementation is disposed.</para>
+        /// <para>May calls <see cref="IObserver{ConnectionState}.OnCompleted"/> if client implementation is disposed.</para>
         /// <para>Does not call <see cref="IObserver{ConnectionState}.OnError"/></para>
         /// <para>All calls are consequent.</para>
         /// <para>All transitions between <see cref="ConnectionState"/> are possible.</para>
@@ -37,13 +37,14 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
         /// <summary>
         /// <para>Creates new node using given <paramref name="request" />.</para>
+        /// <para>By default, all parent nodes will be created if they do not exist.</para>
         /// <para>In case of unsuccessful, result of this operation is not guaranteed.</para>
-        /// <para>This operation, if successful, will trigger all the <see cref="INodeWatcher"/> watchers left on the node.</para>
         /// </summary>
         Task<CreateResult> CreateAsync(CreateRequest request);
 
         /// <summary>
-        /// Deletes the node using given <paramref name="request"/>.
+        /// <para>Deletes the node using given <paramref name="request"/>.</para>
+        /// <para>By default, all children nodes will be deleted if they exist.</para>
         /// </summary>
         Task<DeleteResult> DeleteAsync(DeleteRequest request);
 
