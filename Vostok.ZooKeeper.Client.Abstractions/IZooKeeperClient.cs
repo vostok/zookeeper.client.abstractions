@@ -15,12 +15,18 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     public interface IZooKeeperClient
     {
         /// <summary>
-        /// Returns an observable of client connection state.
+        /// <para>Returns an observable of client connection state.</para>
+        /// <para>Calls <see cref="IObserver{ConnectionState}.OnNext"/> on each connection state changed.</para>
+        /// <para>May calls <see cref="IObserver{T}.OnCompleted"/> if client implementation is disposed.</para>
+        /// <para>Does not call <see cref="IObserver{ConnectionState}.OnError"/></para>
+        /// <para>All calls are consequent.</para>
+        /// <para>All transitions between <see cref="ConnectionState"/> are possible.</para>
         /// </summary>
         IObservable<ConnectionState> OnConnectionStateChanged { get; }
 
         /// <summary>
-        /// Returns client connection state.
+        /// <para>Returns client connection state.</para>
+        /// <para>Initial connection state is <see cref="F:ConnectionState.Disconnected"/>.</para>
         /// </summary>
         ConnectionState ConnectionState { get; }
 
