@@ -9,7 +9,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <list type="bullet">
     ///     <item><description><see cref="ZooKeeperStatus.NodeAlreadyExists"/></description></item>
     ///     <item><description><see cref="ZooKeeperStatus.ChildrenForEphemeralsAreNotAllowed"/></description></item>
-    ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/> (if <see cref="CreateRequest.CreateParrentsIfNeeded"/> is not specified)</description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/> (if <see cref="CreateRequest.CreateParentsIfNeeded"/> is not specified)</description></item>
     /// </list>
     /// </summary>
     [PublicAPI]

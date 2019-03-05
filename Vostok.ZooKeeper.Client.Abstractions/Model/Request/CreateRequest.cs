@@ -33,9 +33,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         public CreateMode CreateMode { get; }
 
         /// <summary>
-        /// Request will be successful if <see cref="CreateParrentsIfNeeded"/> are specified or all parent nodes already exist.
+        /// Request will be successful if <see cref="CreateParentsIfNeeded"/> are specified or all parent nodes already exist.
         /// </summary>
-        public bool CreateParrentsIfNeeded { get; set; } = true;
+        public bool CreateParentsIfNeeded { get; set; } = true;
 
         /// <summary>
         /// Returns string representation of <see cref="CreateRequest"/>.
