@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
@@ -8,7 +9,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <list type="bullet">
     ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
     ///     <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/></description></item>
-    ///     <item><description><see cref="ZooKeeperStatus.NodeHasChildren"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.NodeHasChildren"/> (if <see cref="DeleteRequest.DeleteChildrenIfNeeded"/> is not specified)</description></item>
     /// </list>
     /// </summary>
     [PublicAPI]
@@ -23,5 +24,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
             : base(status, path)
         {
         }
+
+        /// <inheritdoc />
+        public override bool IsSuccessful => Status == ZooKeeperStatus.Ok || Status == ZooKeeperStatus.NodeNotFound;
     }
 }

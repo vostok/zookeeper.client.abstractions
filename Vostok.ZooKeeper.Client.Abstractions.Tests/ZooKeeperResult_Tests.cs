@@ -31,6 +31,24 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
                 .Throw<ZooKeeperException>();
         }
 
+        [TestCase(ZooKeeperStatus.Ok, true)]
+        [TestCase(ZooKeeperStatus.NodeNotFound, true)]
+        [TestCase(ZooKeeperStatus.BadArguments, false)]
+        [TestCase(ZooKeeperStatus.ConnectionLoss, false)]
+        public void DeleteResult_NodeNotFound_should_be_successful(ZooKeeperStatus status, bool isSuccessfulStatus)
+        {
+            new DeleteResult(status, "path").IsSuccessful.Should().Be(isSuccessfulStatus);
+        }
+
+        [TestCase(ZooKeeperStatus.Ok, true)]
+        [TestCase(ZooKeeperStatus.NodeNotFound, false)]
+        [TestCase(ZooKeeperStatus.BadArguments, false)]
+        [TestCase(ZooKeeperStatus.ConnectionLoss, false)]
+        public void TestResult_NodeNotFound_should_not_be_successful(ZooKeeperStatus status, bool isSuccessfulStatus)
+        {
+            new TestResult(status, "path", 42).IsSuccessful.Should().Be(isSuccessfulStatus);
+        }
+
         private class TestResult : ZooKeeperResult<int>
         {
             public TestResult(ZooKeeperStatus status, string path, int payload)

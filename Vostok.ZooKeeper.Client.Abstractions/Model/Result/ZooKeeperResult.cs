@@ -23,7 +23,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <summary>
         /// Checks that operation is successful.
         /// </summary>
-        public bool IsSuccessful => Status == ZooKeeperStatus.Ok;
+        public virtual bool IsSuccessful => Status == ZooKeeperStatus.Ok;
 
         /// <summary>
         /// Returns operation status.
