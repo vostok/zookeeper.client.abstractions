@@ -9,12 +9,15 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     [PublicAPI]
     public static class ZooKeeperPath
     {
+        private const char Slash = '/';
+
         /// <summary>
-        /// Splits <paramref name="path"/> to segments.
+        /// <para>Splits node <paramref name="path"/> to segments.</para>
+        /// <para>Produces empty name at the end, if path ends with slash.</para>
         /// </summary>
         public static string[] Split(string path)
         {
-            return path.Trim('/').Split('/');
+            return path.TrimStart(Slash).Split(Slash);
         }
 
         /// <summary>
@@ -25,14 +28,13 @@ namespace Vostok.ZooKeeper.Client.Abstractions
             var result = new StringBuilder();
             for (var i = 0; i < segments.Length; i++)
             {
-                if (string.IsNullOrEmpty(segments[i]))
-                    continue;
+                if (result.Length == 0 || result[result.Length - 1] != Slash)
+                    result.Append(Slash);
 
-                result.Append("/");
                 result.Append(
                     i + 1 != segments.Length
-                        ? segments[i].Trim('/')
-                        : segments[i].TrimStart('/'));
+                        ? segments[i].Trim(Slash)
+                        : segments[i].TrimStart(Slash));
             }
 
             return result.ToString();
