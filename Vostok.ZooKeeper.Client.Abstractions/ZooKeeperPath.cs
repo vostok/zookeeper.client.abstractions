@@ -20,7 +20,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <summary>
         /// Combines path <paramref name="segments"/>.
         /// </summary>
-        public static string Combine(string[] segments)
+        public static string Combine(params string[] segments)
         {
             var result = new StringBuilder();
             for (var i = 0; i < segments.Length; i++)
