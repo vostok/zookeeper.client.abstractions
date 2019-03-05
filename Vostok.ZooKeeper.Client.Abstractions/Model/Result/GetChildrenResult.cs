@@ -11,7 +11,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// </list>
     /// </summary>
     [PublicAPI]
-    public class GetChildrenResult : ZooKeeperResult<(List<string> childrenNames, NodeStat stat)>
+    public class GetChildrenResult : ZooKeeperResult<(IReadOnlyList<string> childrenNames, NodeStat stat)>
     {
         /// <summary>
         /// Creates a new instance of <see cref="CreateResult"/>.
@@ -28,7 +28,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <summary>
         /// Returns unordered children names (not absolute pathes) of the node.
         /// </summary>
-        public List<string> ChildrenNames => Payload.childrenNames;
+        public IReadOnlyList<string> ChildrenNames => Payload.childrenNames;
 
         /// <summary>
         /// Returns stat of node.
