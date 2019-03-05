@@ -19,7 +19,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <para>Calls <see cref="IObserver{T}.OnNext"/> on each connection state changed.</para>
         /// <para>May calls <see cref="IObserver{ConnectionState}.OnCompleted"/> if client implementation is disposed.</para>
         /// <para>Does not call <see cref="IObserver{ConnectionState}.OnError"/></para>
-        /// <para>All calls are consequent.</para>
+        /// <para>All calls are consequent. So, you should not process changes for a long time.</para>
         /// <para>All transitions between <see cref="ConnectionState"/> are possible.</para>
         /// </summary>
         IObservable<ConnectionState> OnConnectionStateChanged { get; }

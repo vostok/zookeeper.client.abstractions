@@ -10,7 +10,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     public interface INodeWatcher
     {
         /// <summary>
-        /// Processes the specified event with given <paramref name="type"/> and node <paramref name="path"/>.
+        /// <para>Processes the specified event with given <paramref name="type"/> and node <paramref name="path"/>.</para>
+        /// <para>All calls are consequent. So, you should not process event for a long time.</para>
         /// </summary>
         Task ProcessEvent(NodeChangedEventType type, string path);
     }
