@@ -11,11 +11,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     public class NodeStat
     {
         /// <inheritdoc />
-        public NodeStat(long createdZxid, long modifiedZxid, long modifiedChildrenZxid, long createdTimeMs, long modifiedTimeMs, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
+        public NodeStat(long createdZxId, long modifiedZxId, long modifiedChildrenZxId, long createdTimeMs, long modifiedTimeMs, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren)
         {
-            CreatedZxid = createdZxid;
-            ModifiedZxid = modifiedZxid;
-            ModifiedChildrenZxid = modifiedChildrenZxid;
+            CreatedZxId = createdZxId;
+            ModifiedZxId = modifiedZxId;
+            ModifiedChildrenZxId = modifiedChildrenZxId;
             CreatedTimeMs = createdTimeMs;
             ModifiedTimeMs = modifiedTimeMs;
             Version = version;
@@ -27,68 +27,68 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         }
 
         /// <summary>
-        /// Returns the zxid of the change that caused this znode to be created.
+        /// Returns the ZxId of the change that caused this node to be created.
         /// </summary>
-        public long CreatedZxid { get; }
+        public long CreatedZxId { get; }
 
         /// <summary>
-        /// Returns the zxid of the change that last modified this znode.
+        /// Returns the ZxId of the change that last modified this node.
         /// </summary>
-        public long ModifiedZxid { get; }
+        public long ModifiedZxId { get; }
 
         /// <summary>
-        /// Returns the zxid of the change that last modified children of this znode.
+        /// Returns the ZxId of the change that last modified children of this node.
         /// </summary>
-        public long ModifiedChildrenZxid { get; }
+        public long ModifiedChildrenZxId { get; }
 
         /// <summary>
-        /// Returns the time in milliseconds from epoch when this znode was created.
+        /// Returns the time in milliseconds from epoch when this node was created.
         /// </summary>
         public long CreatedTimeMs { get; }
 
         /// <summary>
-        /// Returns the time when this znode was created.
+        /// Returns the time when this node was created.
         /// </summary>
         public DateTimeOffset CreatedTime => EpochHelper.FromUnixTimeMilliseconds(CreatedTimeMs);
 
         /// <summary>
-        /// Returns the time in milliseconds from epoch when this znode was last modified.
+        /// Returns the time in milliseconds from epoch when this node was last modified.
         /// </summary>
         public long ModifiedTimeMs { get; }
 
         /// <summary>
-        /// Returns the time when this znode was created.
+        /// Returns the time when this node was created.
         /// </summary>
         public DateTimeOffset ModifiedTime => EpochHelper.FromUnixTimeMilliseconds(ModifiedTimeMs);
 
         /// <summary>
-        /// Returns the number of changes to the data of this znode.
+        /// Returns the number of changes to the data of this node.
         /// </summary>
         public int Version { get; }
 
         /// <summary>
-        /// Returns the number of changes to the children of this znode.
+        /// Returns the number of changes to the children of this node.
         /// </summary>
         public int ChildrenVersion { get; }
 
         /// <summary>
-        /// Returns the number of changes to the ACL of this znode.
+        /// Returns the number of changes to the ACL of this node.
         /// </summary>
         public int AclVersion { get; }
 
         /// <summary>
-        /// Returns the session id of the owner of this znode if the znode is an ephemeral node.
+        /// Returns the session id of the owner of this node if the node is an ephemeral node.
         /// If it is not an ephemeral node, it will be zero.
         /// </summary>
         public long EphemeralOwner { get; }
 
         /// <summary>
-        /// Returns the length of the data field of this znode.
+        /// Returns the length of the data field of this node.
         /// </summary>
         public int DataLength { get; }
 
         /// <summary>
-        /// Returns the number of children of this znode.
+        /// Returns the number of children of this node.
         /// </summary>
         public int NumberOfChildren { get; }
 
@@ -99,7 +99,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// </summary>
         public bool Equals(NodeStat other)
         {
-            return CreatedZxid == other.CreatedZxid && ModifiedZxid == other.ModifiedZxid && ModifiedChildrenZxid == other.ModifiedChildrenZxid && CreatedTimeMs == other.CreatedTimeMs && ModifiedTimeMs == other.ModifiedTimeMs && Version == other.Version && ChildrenVersion == other.ChildrenVersion && AclVersion == other.AclVersion && EphemeralOwner == other.EphemeralOwner && DataLength == other.DataLength && NumberOfChildren == other.NumberOfChildren;
+            return CreatedZxId == other.CreatedZxId && ModifiedZxId == other.ModifiedZxId && ModifiedChildrenZxId == other.ModifiedChildrenZxId && CreatedTimeMs == other.CreatedTimeMs && ModifiedTimeMs == other.ModifiedTimeMs && Version == other.Version && ChildrenVersion == other.ChildrenVersion && AclVersion == other.AclVersion && EphemeralOwner == other.EphemeralOwner && DataLength == other.DataLength && NumberOfChildren == other.NumberOfChildren;
         }
 
         /// <inheritdoc />
@@ -119,9 +119,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         {
             unchecked
             {
-                var hashCode = CreatedZxid.GetHashCode();
-                hashCode = (hashCode * 397) ^ ModifiedZxid.GetHashCode();
-                hashCode = (hashCode * 397) ^ ModifiedChildrenZxid.GetHashCode();
+                var hashCode = CreatedZxId.GetHashCode();
+                hashCode = (hashCode * 397) ^ ModifiedZxId.GetHashCode();
+                hashCode = (hashCode * 397) ^ ModifiedChildrenZxId.GetHashCode();
                 hashCode = (hashCode * 397) ^ CreatedTimeMs.GetHashCode();
                 hashCode = (hashCode * 397) ^ ModifiedTimeMs.GetHashCode();
                 hashCode = (hashCode * 397) ^ Version;
