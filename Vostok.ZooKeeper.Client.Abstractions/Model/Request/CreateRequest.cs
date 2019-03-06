@@ -25,6 +25,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// <para>Data of node to be created.</para>
         /// <para>The maximum allowed size of the data array is 1 Mb.</para>
         /// </summary>
+        [CanBeNull]
         public byte[] Data { get; set; }
 
         /// <summary>

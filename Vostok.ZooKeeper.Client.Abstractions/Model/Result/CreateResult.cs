@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
@@ -8,27 +9,39 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <para>Possible unsuccessful statuses:</para>
     /// <list type="bullet">
     ///     <item><description><see cref="ZooKeeperStatus.NodeAlreadyExists"/></description></item>
-    ///     <item><description><see cref="ZooKeeperStatus.ChildrenForEphemeralsAreNotAllowed"/></description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.ChildrenForEphemeralAreNotAllowed"/></description></item>
     ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/> (if <see cref="CreateRequest.CreateParentsIfNeeded"/> is not specified)</description></item>
     /// </list>
     /// </summary>
     [PublicAPI]
     public class CreateResult : ZooKeeperResult<string>
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="CreateResult"/>.
-        /// </summary>
-        /// <param name="status">Operation status.</param>
-        /// <param name="path">Path of node to be created.</param>
-        /// <param name="newPath">Path of created node.</param>
-        public CreateResult(ZooKeeperStatus status, string path, string newPath)
+        private CreateResult(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] string newPath)
             : base(status, path, newPath)
         {
         }
 
         /// <summary>
+        /// Creates a new instance of successful <see cref="CreateResult"/>.
+        /// </summary>
+        /// <param name="path">Path of node to be created.</param>
+        /// <param name="newPath">Path of created node.</param>
+        public static CreateResult Successful([NotNull] string path, [NotNull] string newPath) =>
+            new CreateResult(ZooKeeperStatus.Ok, path, newPath);
+
+        /// <summary>
+        /// Creates a new instance of unsuccessful <see cref="CreateResult"/>.
+        /// </summary>
+        /// <param name="status">Operation status.</param>
+        /// <param name="path">Path of node to be created.</param>
+        /// <param name="exception">Exception occured during execution.</param>
+        public static CreateResult Unsuccessful(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception) =>
+            new CreateResult(status, path, null) {Exception = exception};
+
+        /// <summary>
         /// Returns path of created node.
         /// </summary>
+        [NotNull]
         public string NewPath => Payload;
     }
 }

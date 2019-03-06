@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
@@ -15,15 +16,27 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     [PublicAPI]
     public class DeleteResult : ZooKeeperResult
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="DeleteResult"/>.
-        /// </summary>
-        /// <param name="status">Operation status.</param>
-        /// <param name="path">Path of node.</param>
-        public DeleteResult(ZooKeeperStatus status, string path)
+        private DeleteResult(ZooKeeperStatus status, [NotNull] string path)
             : base(status, path)
         {
         }
+
+        /// <summary>
+        /// Creates a new instance of successful <see cref="DeleteResult"/>.
+        /// </summary>
+        /// <param name="path">Path of node.</param>
+        public static DeleteResult Successful([NotNull] string path) =>
+            new DeleteResult(ZooKeeperStatus.Ok, path);
+
+        /// <summary>
+        /// Creates a new instance of unsuccessful <see cref="DeleteResult"/>.
+        /// </summary>
+        /// <param name="status">Operation status.</param>
+        /// <param name="path">Path of node.</param>
+        /// <param name="exception">Exception occured during execution.</param>
+        public static DeleteResult Unsuccessful(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception) =>
+            new DeleteResult(status, path) {Exception = exception};
+
 
         /// <inheritdoc />
         public override bool IsSuccessful => Status == ZooKeeperStatus.Ok || Status == ZooKeeperStatus.NodeNotFound;

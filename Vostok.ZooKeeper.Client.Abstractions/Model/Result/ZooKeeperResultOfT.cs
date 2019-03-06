@@ -8,6 +8,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     [PublicAPI]
     public class ZooKeeperResult<TPayload> : ZooKeeperResult
     {
+        [CanBeNull]
         private readonly TPayload payload;
 
         /// <summary>
@@ -16,7 +17,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <param name="status">Operation status.</param>
         /// <param name="path">Path of node.</param>
         /// <param name="payload">Result payload.</param>
-        public ZooKeeperResult(ZooKeeperStatus status, string path, TPayload payload)
+        public ZooKeeperResult(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] TPayload payload)
             : base(status, path)
         {
             this.payload = payload;

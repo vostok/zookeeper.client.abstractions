@@ -37,7 +37,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         [TestCase(ZooKeeperStatus.ConnectionLoss, false)]
         public void DeleteResult_NodeNotFound_should_be_successful(ZooKeeperStatus status, bool isSuccessfulStatus)
         {
-            new DeleteResult(status, "path").IsSuccessful.Should().Be(isSuccessfulStatus);
+            DeleteResult.Unsuccessful(status, "path", null).IsSuccessful.Should().Be(isSuccessfulStatus);
         }
 
         [TestCase(ZooKeeperStatus.Ok, true)]

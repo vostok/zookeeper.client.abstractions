@@ -27,7 +27,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Creating children inside ephemeral nodes are not allowed.
         /// </summary>
-        ChildrenForEphemeralsAreNotAllowed,
+        ChildrenForEphemeralAreNotAllowed,
 
         /// <summary>
         /// Creating already existing node are not allowed.
@@ -40,7 +40,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         NodeNotFound,
 
         /// <summary>
-        /// Client is not curently connected to ZooKeeper cluster.
+        /// Client is not currently connected to ZooKeeper cluster.
         /// </summary>
         NotConnected,
 

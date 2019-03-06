@@ -16,7 +16,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <param name="status">ZooKeeper unsuccessful operation status.</param>
         /// <param name="path">ZooKeeper operation path.</param>
         /// <param name="exception">Inner exception.</param>
-        public ZooKeeperException(ZooKeeperStatus status, string path, Exception exception)
+        public ZooKeeperException(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception)
             : base($"ZooKeeper operation has failed with status '{status}' for path '{path}'.", exception)
         {
         }

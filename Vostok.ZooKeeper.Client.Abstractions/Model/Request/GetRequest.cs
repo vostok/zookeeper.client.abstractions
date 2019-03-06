@@ -26,6 +26,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// <para>The watcher will be triggered by a successful operation that sets data on the node, creates or deletes the node.</para>
         /// <para>The watcher will be triggered only once.</para>
         /// </summary>
+        [CanBeNull]
         public INodeWatcher Watcher { get; set; }
 
         /// <summary>

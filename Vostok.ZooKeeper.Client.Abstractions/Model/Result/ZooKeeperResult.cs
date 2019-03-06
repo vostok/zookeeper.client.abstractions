@@ -14,7 +14,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// </summary>
         /// <param name="status">Operation status.</param>
         /// <param name="path">Path of node.</param>
-        public ZooKeeperResult(ZooKeeperStatus status, string path)
+        public ZooKeeperResult(ZooKeeperStatus status, [NotNull] string path)
         {
             Status = status;
             Path = path;
@@ -31,13 +31,15 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         public ZooKeeperStatus Status { get; private set; }
 
         /// <summary>
-        /// Returns exception if unseccessful result.
+        /// Returns exception if unsuccessful result.
         /// </summary>
+        [CanBeNull]
         public Exception Exception { get; set; }
 
         /// <summary>
         /// Returns operation node path.
         /// </summary>
+        [NotNull]
         public string Path { get; set; }
 
         /// <summary>
