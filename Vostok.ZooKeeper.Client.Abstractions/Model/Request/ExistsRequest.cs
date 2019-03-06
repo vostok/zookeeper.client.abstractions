@@ -23,5 +23,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Returns string representation of <see cref="ExistsRequest"/>.
         /// </summary>
         public override string ToString() => $"EXISTS {base.ToString()}";
+
+        /// <summary>
+        /// Creates a new instance of <see cref="ExistsRequest"/> with given <paramref name="path"/>.
+        /// </summary>
+        public static implicit operator ExistsRequest([NotNull] string path) => new ExistsRequest(path);
     }
 }

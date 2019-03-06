@@ -35,7 +35,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <param name="path">Path of node.</param>
         /// <param name="exception">Exception occured during execution.</param>
         public static GetChildrenResult Unsuccessful(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception) =>
-            new GetChildrenResult(status, path, null, null) { Exception = exception };
+            new GetChildrenResult(status, path, null, null) {Exception = exception};
 
         /// <summary>
         /// Returns unordered children names (not absolute paths) of the node.

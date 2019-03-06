@@ -37,7 +37,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         public static DeleteResult Unsuccessful(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception) =>
             new DeleteResult(status, path) {Exception = exception};
 
-
         /// <inheritdoc />
         public override bool IsSuccessful => Status == ZooKeeperStatus.Ok || Status == ZooKeeperStatus.NodeNotFound;
     }

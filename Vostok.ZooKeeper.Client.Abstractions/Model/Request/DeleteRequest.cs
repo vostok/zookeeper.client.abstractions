@@ -36,5 +36,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Returns string representation of <see cref="DeleteRequest"/>.
         /// </summary>
         public override string ToString() => $"DELETE {base.ToString()}, {nameof(Version)}: {Version}, {nameof(DeleteChildrenIfNeeded)}: {DeleteChildrenIfNeeded}";
+
+        /// <summary>
+        /// <para>Creates a new instance of <see cref="DeleteRequest"/> with given <paramref name="path"/>.</para>
+        /// <para>All children nodes will be deleted if they exist.</para>
+        /// </summary>
+        public static implicit operator DeleteRequest([NotNull] string path) => new DeleteRequest(path);
     }
 }

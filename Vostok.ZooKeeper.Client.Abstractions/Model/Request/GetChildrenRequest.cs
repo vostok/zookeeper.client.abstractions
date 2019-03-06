@@ -23,5 +23,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Returns string representation of <see cref="GetChildrenRequest"/>.
         /// </summary>
         public override string ToString() => $"GET CHILDREN {base.ToString()}";
+
+        /// <summary>
+        /// Creates a new instance of <see cref="GetChildrenRequest"/> with given <paramref name="path"/>.
+        /// </summary>
+        public static implicit operator GetChildrenRequest([NotNull] string path) => new GetChildrenRequest(path);
     }
 }

@@ -23,5 +23,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Returns string representation of <see cref="GetDataRequest"/>.
         /// </summary>
         public override string ToString() => $"GET DATA {base.ToString()}";
+
+        /// <summary>
+        /// Creates a new instance of <see cref="GetDataRequest"/> with given <paramref name="path"/>.
+        /// </summary>
+        public static implicit operator GetDataRequest([NotNull] string path) => new GetDataRequest(path);
     }
 }

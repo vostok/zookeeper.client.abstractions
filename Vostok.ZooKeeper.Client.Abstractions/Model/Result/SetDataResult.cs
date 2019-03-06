@@ -34,7 +34,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// <param name="path">Path of node.</param>
         /// <param name="exception">Exception occured during execution.</param>
         public static SetDataResult Unsuccessful(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception) =>
-            new SetDataResult(status, path, null) { Exception = exception };
+            new SetDataResult(status, path, null) {Exception = exception};
 
         /// <summary>
         /// Returns stat of node.
