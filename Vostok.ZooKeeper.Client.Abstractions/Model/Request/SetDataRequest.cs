@@ -3,17 +3,13 @@
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
     /// <summary>
-    /// Represents ZooKeeper set data request.
+    /// Represents ZooKeeper data write request.
     /// </summary>
     [PublicAPI]
     public class SetDataRequest : ZooKeeperRequest
     {
-        /// <inheritdoc/>
-        /// <summary>
-        /// Creates a new instance of <see cref="GetDataRequest"/>.
-        /// </summary>
-        /// <param name="path">Path of node.</param>
-        /// <param name="data">Data of node to be saved.</param>
+        /// <param name="path">Full path to the node being written to.</param>
+        /// <param name="data">Data being written to the node.</param>
         public SetDataRequest([NotNull] string path, [CanBeNull] byte[] data)
             : base(path)
         {
@@ -21,20 +17,18 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         }
 
         /// <summary>
-        /// Data of node to be saved.
+        /// Data being written to the node.
         /// </summary>
         [CanBeNull]
         public byte[] Data { get; }
 
         /// <summary>
-        /// <para>Request will be successful if <see cref="Version"/> matches the current version of the node.</para>
-        /// <para>If the given version is -1, it matches any node's versions.</para>
+        /// <para>If set to value other than <c>-1</c>, write will only occur if node's current <see cref="NodeStat.Version"/> equals provided one.</para>
+        /// <para>Default value of <c>-1</c> disables version check.</para>
         /// </summary>
         public int Version { get; set; } = -1;
 
-        /// <summary>
-        /// Returns string representation of <see cref="SetDataRequest"/>.
-        /// </summary>
-        public override string ToString() => $"SET DATA {base.ToString()}, {nameof(Data)} length: {Data?.Length}, {nameof(Version)}: {Version}";
+        public override string ToString() 
+            => $"SET DATA for '{Path}'; Data length = {Data?.Length ?? 0}; Version = {Version}";
     }
 }

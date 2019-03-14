@@ -2,31 +2,18 @@
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
-    /// <inheritdoc/>
-    /// <summary>
-    /// Represents ZooKeeper exists node request.
-    /// </summary>
+    /// <inheritdoc />
     [PublicAPI]
     public class ExistsRequest : GetRequest
     {
-        /// <inheritdoc/>
-        /// <summary>
-        /// Creates a new instance of <see cref="ExistsRequest"/>.
-        /// </summary>
-        /// <param name="path">Path of node.</param>
+        /// <param name="path">Full path to the node being queried.</param>
         public ExistsRequest([NotNull] string path)
             : base(path)
         {
         }
 
-        /// <summary>
-        /// Returns string representation of <see cref="ExistsRequest"/>.
-        /// </summary>
-        public override string ToString() => $"EXISTS {base.ToString()}";
+        public override string ToString() => $"EXISTS '{Path}'";
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ExistsRequest"/> with given <paramref name="path"/>.
-        /// </summary>
         public static implicit operator ExistsRequest([NotNull] string path) => new ExistsRequest(path);
     }
 }

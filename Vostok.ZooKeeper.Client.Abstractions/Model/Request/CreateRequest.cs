@@ -3,18 +3,13 @@
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
     /// <summary>
-    /// Represents ZooKeeper create node request.
+    /// Represents ZooKeeper node creation request.
     /// </summary>
     [PublicAPI]
     public class CreateRequest : ZooKeeperRequest
     {
-        /// <inheritdoc/>
-        /// <summary>
-        /// <para>Creates a new instance of <see cref="CreateRequest"/>.</para>
-        /// <para>By default, all parent nodes will be created if they do not exist.</para>
-        /// </summary>
-        /// <param name="path">Path of node to be created.</param>
-        /// <param name="createMode">Type of node to be created. May be ephemeral/persistent and/or sequential.</param>
+        /// <param name="path">Full path to the node being created.</param>
+        /// <param name="createMode">Type of node to be created. See <see cref="CreateMode"/> for possible values.</param>
         public CreateRequest([NotNull] string path, CreateMode createMode)
             : base(path)
         {
@@ -22,25 +17,23 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         }
 
         /// <summary>
-        /// <para>Data of node to be created.</para>
-        /// <para>The maximum allowed size of the data array is 1 Mb.</para>
+        /// <para>Data of node to be created; <c>null</c> means no data.</para>
+        /// <para>The maximum allowed size of the data array is 1 megabyte.</para>
         /// </summary>
         [CanBeNull]
         public byte[] Data { get; set; }
 
         /// <summary>
-        /// Type of node to be created. May be ephemeral/persistent and/or sequential.
+        /// Type of node to be created. May be ephemeral/persistent, ordinary/sequential.
         /// </summary>
         public CreateMode CreateMode { get; }
 
         /// <summary>
-        /// Request will be successful if <see cref="CreateParentsIfNeeded"/> are specified or all parent nodes already exist.
+        /// If set to <c>true</c>, client will also create all missing nodes on the path to given one.
         /// </summary>
         public bool CreateParentsIfNeeded { get; set; } = true;
 
-        /// <summary>
-        /// Returns string representation of <see cref="CreateRequest"/>.
-        /// </summary>
-        public override string ToString() => $"CREATE {base.ToString()}, {nameof(Data)} length: {Data?.Length}, {nameof(CreateMode)}: {CreateMode}";
+        public override string ToString() 
+            => $"CREATE '{Path}'; Data length = {Data?.Length ?? 0}; Mode: {CreateMode}";
     }
 }
