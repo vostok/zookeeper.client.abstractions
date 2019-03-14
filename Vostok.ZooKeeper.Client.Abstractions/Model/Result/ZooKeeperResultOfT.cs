@@ -3,7 +3,7 @@
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
     /// <summary>
-    /// Represents base ZooKeeper node result with path, status and some payload.
+    /// Represents a ZooKeeper generic operation result with node path, status and payload in case of success.
     /// </summary>
     [PublicAPI]
     public class ZooKeeperResult<TPayload> : ZooKeeperResult
@@ -11,12 +11,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         [CanBeNull]
         private readonly TPayload payload;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ZooKeeperResult"/>.
-        /// </summary>
-        /// <param name="status">Operation status.</param>
-        /// <param name="path">Path of node.</param>
-        /// <param name="payload">Result payload.</param>
         public ZooKeeperResult(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] TPayload payload)
             : base(status, path)
         {
@@ -24,7 +18,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         }
 
         /// <summary>
-        /// In case of success returns result payload, else throws <see cref="ZooKeeperException"/>.
+        /// <para>Returns the payload if this result's <see cref="ZooKeeperResult.IsSuccessful"/> property returns <c>true</c>.</para>
+        /// <para>Throws a <see cref="ZooKeeperException"/> otherwise.</para>
         /// </summary>
         protected TPayload Payload
         {

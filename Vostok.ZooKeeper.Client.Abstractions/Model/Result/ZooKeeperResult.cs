@@ -4,16 +4,11 @@ using JetBrains.Annotations;
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
 {
     /// <summary>
-    /// Represents base ZooKeeper node result with path and status.
+    /// Represents a ZooKeeper generic operation result with node path and status.
     /// </summary>
     [PublicAPI]
     public class ZooKeeperResult
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="ZooKeeperResult"/>.
-        /// </summary>
-        /// <param name="status">Operation status.</param>
-        /// <param name="path">Path of node.</param>
         public ZooKeeperResult(ZooKeeperStatus status, [NotNull] string path)
         {
             Status = status;
@@ -21,40 +16,38 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         }
 
         /// <summary>
-        /// Checks that operation is successful.
+        /// Returns <c>true</c> of this operation result is considered to be successful or <c>false</c> otherwise.
         /// </summary>
         public virtual bool IsSuccessful => Status == ZooKeeperStatus.Ok;
 
         /// <summary>
         /// Returns operation status.
         /// </summary>
-        public ZooKeeperStatus Status { get; private set; }
+        public ZooKeeperStatus Status { get; }
 
         /// <summary>
-        /// Returns exception if unsuccessful result.
+        /// Returns operation node's full path.
+        /// </summary>
+        [NotNull]
+        public string Path { get; }
+
+        /// <summary>
+        /// Returns an optional exception that may accompany failed operation results.
         /// </summary>
         [CanBeNull]
         public Exception Exception { get; set; }
 
         /// <summary>
-        /// Returns operation node path.
-        /// </summary>
-        [NotNull]
-        public string Path { get; set; }
-
-        /// <summary>
-        /// Throws <see cref="ZooKeeperException"/> in case of unsuccessful operation status.
+        /// Throws a <see cref="ZooKeeperException"/> if this result's <see cref="IsSuccessful"/> property returns <c>false</c>.
         /// </summary>
         public ZooKeeperResult EnsureSuccess()
         {
             if (!IsSuccessful)
                 throw new ZooKeeperException(Status, Path, Exception);
+
             return this;
         }
 
-        /// <summary>
-        /// Returns string representation of <see cref="ZooKeeperResult"/>.
-        /// </summary>
         public override string ToString() => $"'{Status}' for path '{Path}'";
     }
 }
