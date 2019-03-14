@@ -24,7 +24,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         DataChanged,
 
         /// <summary>
-        /// Node children was changed.
+        /// Node children list was changed (some were created or deleted).
         /// </summary>
         ChildrenChanged
     }

@@ -1,81 +1,80 @@
 ﻿using JetBrains.Annotations;
-using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
     /// <summary>
-    /// Represents ZooKeeper operation status.
+    /// Represents a status of arbitrary ZooKeeper operation.
     /// </summary>
     [PublicAPI]
     public enum ZooKeeperStatus
     {
         /// <summary>
-        /// Operation finished successfully.
+        /// Operation has completed successfully.
         /// </summary>
         Ok,
 
         /// <summary>
-        /// Operation finished with some network/cluster error.
+        /// Operation has failed with an unclassified server/network error.
         /// </summary>
         UnknownError,
 
         /// <summary>
-        /// Invalid <see cref="ZooKeeperRequest"/> was given.
+        /// Operation has failed due to invalid request.
         /// </summary>
         BadArguments,
 
         /// <summary>
-        /// Creating children inside ephemeral nodes are not allowed.
+        /// Node creation has failed due to parent node being ephemeral.
         /// </summary>
         ChildrenForEphemeralAreNotAllowed,
 
         /// <summary>
-        /// Creating already existing node are not allowed.
+        /// Node creation has failed due to given node already existing.
         /// </summary>
         NodeAlreadyExists,
 
         /// <summary>
-        /// Node not found.
+        /// Operation has failed due to given node not being found.
         /// </summary>
         NodeNotFound,
 
         /// <summary>
-        /// Client is not currently connected to ZooKeeper cluster.
+        /// Operation has failed due to inability to connect to ZooKeeper cluster.
         /// </summary>
         NotConnected,
 
         /// <summary>
-        /// Connection lost during operation execution.
+        /// Operation has failed due to loss of connection with ZooKeeper cluster during execution.
         /// </summary>
         ConnectionLoss,
 
         /// <summary>
-        /// Session expired during operation execution.
+        /// Operation has failed due to client session expiry.
         /// </summary>
         SessionExpired,
 
         /// <summary>
-        /// Session moved to another server, so operation is ignored.
+        /// Operation has failed due to client session being moved to another server in cluster.
         /// </summary>
         SessionMoved,
 
         /// <summary>
-        /// Operation timed out.
+        /// Operation has timed out.
         /// </summary>
         Timeout,
 
         /// <summary>
-        /// Mismatch of current and provided node versions.
+        /// Operation has failed due to mismatch of current node version and the one provided in request.
         /// </summary>
         VersionsMismatch,
 
         /// <summary>
-        /// Node has children.
+        /// Node removal has failed due to given node having child nodes.
         /// </summary>
         NodeHasChildren,
 
         /// <summary>
-        /// Write operation rejected in read-only mode.
+        /// Write operation has been rejected due to read-only mode.
         /// </summary>
         NotReadonlyOperation
     }

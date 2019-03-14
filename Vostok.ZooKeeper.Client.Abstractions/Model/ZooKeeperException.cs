@@ -5,17 +5,11 @@ using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
     /// <summary>
-    /// Represents exception that can only be thrown from <see cref="ZooKeeperResult.EnsureSuccess"/>.
+    /// Represents an exception that can only be thrown from <see cref="ZooKeeperResult.EnsureSuccess"/> and denotes a failure of ZK operation.
     /// </summary>
     [PublicAPI]
     public class ZooKeeperException : Exception
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="ZooKeeperException"/>
-        /// </summary>
-        /// <param name="status">ZooKeeper unsuccessful operation status.</param>
-        /// <param name="path">ZooKeeper operation path.</param>
-        /// <param name="exception">Inner exception.</param>
         public ZooKeeperException(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception)
             : base($"ZooKeeper operation has failed with status '{status}' for path '{path}'.", exception)
         {

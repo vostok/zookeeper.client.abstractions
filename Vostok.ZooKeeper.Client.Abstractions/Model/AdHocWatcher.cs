@@ -5,27 +5,23 @@ using JetBrains.Annotations;
 namespace Vostok.ZooKeeper.Client.Abstractions.Model
 {
     /// <summary>
-    /// Represents a node watcher which uses action to process events.
+    /// Represents a node watcher that uses an external delegate to process events.
     /// </summary>
     [PublicAPI]
     public class AdHocWatcher : INodeWatcher
     {
         [NotNull]
-        private readonly Action<NodeChangedEventType, string> processingDelegate;
+        private readonly Action<NodeChangedEventType, string> watcher;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="AdHocWatcher"/>.
-        /// </summary>
-        /// <param name="processingDelegate">Delegate for node events processing. Receives <see cref="NodeChangedEventType"/> and node path.</param>
-        public AdHocWatcher([NotNull] Action<NodeChangedEventType, string> processingDelegate)
+        public AdHocWatcher([NotNull] Action<NodeChangedEventType, string> watcher)
         {
-            this.processingDelegate = processingDelegate;
+            this.watcher = watcher ?? throw new ArgumentNullException(nameof(watcher));
         }
 
         /// <inheritdoc />
         public Task ProcessEvent(NodeChangedEventType type, string path)
         {
-            processingDelegate(type, path);
+            watcher(type, path);
             return Task.CompletedTask;
         }
     }

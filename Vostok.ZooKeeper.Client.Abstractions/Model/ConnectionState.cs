@@ -24,7 +24,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         Disconnected,
 
         /// <summary>
-        /// Client session is expired. All <see cref="CreateMode.Ephemeral"/> nodes should be recreated.
+        /// Client's current session has expired. All <see cref="CreateMode.Ephemeral"/> nodes should be recreated.
         /// </summary>
         Expired
     }
