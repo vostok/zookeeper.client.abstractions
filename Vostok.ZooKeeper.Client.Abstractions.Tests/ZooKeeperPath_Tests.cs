@@ -25,11 +25,22 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             ZooKeeperPath.Combine(segments).Should().Be(expected);
         }
 
+        [TestCase("foo", "bar", "foo/bar")]
+        [TestCase("/foo", "bar", "/foo/bar")]
+        [TestCase("/foo/", "bar", "/foo/bar")]
+        [TestCase("/foo", "/bar", "/foo/bar")]
+        [TestCase("/foo/", "/bar", "/foo/bar")]
+        [TestCase("/foo/", "/bar/", "/foo/bar/")]
+        public void Combine_should_work_correctly_for_two_arguments(string basePath, string relativePath, string expected)
+        {
+            ZooKeeperPath.Combine(basePath, relativePath).Should().Be(expected);
+        }
+
         [TestCase("/aaaa")]
         [TestCase("/aaaa/")]
         [TestCase("/aaaa/bbb")]
         [TestCase("/aaaa/bbb/")]
-        public void Split_Combine_should_not_change_path(string path)
+        public void Split_followed_by_Combine_should_not_change_path(string path)
         {
             var expected = path;
             for (var i = 0; i < 10; i++)
@@ -38,6 +49,16 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             }
 
             path.Should().Be(expected);
+        }
+
+        [TestCase("/", null)]
+        [TestCase("/foo", "/")]
+        [TestCase("/foo/bar", "/foo")]
+        [TestCase("/foo/bar/baz", "/foo/bar")]
+        [TestCase("/foo/bar/baz/", "/foo/bar/baz")]
+        public void GetParentPath_should_provide_correct_parent_paths(string path, string expectedParent)
+        {
+            ZooKeeperPath.GetParentPath(path).Should().Be(expectedParent);
         }
     }
 }
