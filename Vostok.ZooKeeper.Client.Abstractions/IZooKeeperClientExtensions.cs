@@ -16,19 +16,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         public static CreateResult Create(this IZooKeeperClient client, CreateRequest request) =>
             client.CreateAsync(request).GetAwaiter().GetResult();
 
-        /// <summary>
-        /// <para>Creates new node using given node <paramref name="path" />, <paramref name="createMode"/> and <paramref name="data"/>.</para>
-        /// <para>All parent nodes will be created if they do not exist.</para>
-        /// <para>In case of unsuccessful, result of this operation is not guaranteed.</para>
-        /// </summary>
+        /// <inheritdoc cref="IZooKeeperClient.CreateAsync"/>
         public static async Task<CreateResult> CreateAsync(this IZooKeeperClient client, [NotNull] string path, CreateMode createMode, [CanBeNull] byte[] data = null) =>
             await client.CreateAsync(new CreateRequest(path, createMode) {Data = data}).ConfigureAwait(false);
 
-        /// <summary>
-        /// <para>Creates new node using given node <paramref name="path" />, <paramref name="createMode"/> and <paramref name="data"/>.</para>
-        /// <para>All parent nodes will be created if they do not exist.</para>
-        /// <para>In case of unsuccessful, result of this operation is not guaranteed.</para>
-        /// </summary>
+        /// <inheritdoc cref="IZooKeeperClient.CreateAsync"/>
         public static CreateResult Create(this IZooKeeperClient client, [NotNull] string path, CreateMode createMode, [CanBeNull] byte[] data = null) =>
             client.Create(new CreateRequest(path, createMode) {Data = data});
 
@@ -40,15 +32,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         public static SetDataResult SetData(this IZooKeeperClient client, SetDataRequest request) =>
             client.SetDataAsync(request).GetAwaiter().GetResult();
 
-        /// <summary>
-        /// Sets the given <paramref name="data"/> for the node using given <paramref name="path"/>.
-        /// </summary>
+        /// <inheritdoc cref="IZooKeeperClient.SetDataAsync"/>
         public static async Task<SetDataResult> SetDataAsync(this IZooKeeperClient client, [NotNull] string path, [CanBeNull] byte[] data) =>
             await client.SetDataAsync(new SetDataRequest(path, data)).ConfigureAwait(false);
 
-        /// <summary>
-        /// Sets the given <paramref name="data"/> for the node using given <paramref name="path"/>.
-        /// </summary>
+        /// <inheritdoc cref="IZooKeeperClient.SetDataAsync"/>
         public static SetDataResult SetData(this IZooKeeperClient client, [NotNull] string path, [CanBeNull] byte[] data) =>
             client.SetData(new SetDataRequest(path, data));
 
