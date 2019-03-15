@@ -27,6 +27,7 @@
     <PackageProjectUrl>https://github.com/vostok/zookeeper.client.abstractions</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/vostok/zookeeper.client.abstractions/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>vostok vostok.zookeeper</PackageTags>
+    <PackageReleaseNotes>https://github.com/vostok/zookeeper.client.abstractions/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/vostok/zookeeper.client.abstractions</RepositoryUrl>
   </PropertyGroup>
   
