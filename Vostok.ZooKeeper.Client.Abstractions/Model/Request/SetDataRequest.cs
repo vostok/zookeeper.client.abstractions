@@ -28,7 +28,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// </summary>
         public int Version { get; set; } = -1;
 
-        public override string ToString() 
+        public override string ToString()
             => $"SET DATA for '{Path}'; Data length = {Data?.Length ?? 0}; Version = {Version}";
     }
 }

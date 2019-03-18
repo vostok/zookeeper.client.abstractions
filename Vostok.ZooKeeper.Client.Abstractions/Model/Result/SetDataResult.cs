@@ -19,6 +19,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
             : base(status, path, stat)
         {
         }
+
         public static SetDataResult Successful([NotNull] string path, [NotNull] NodeStat stat) =>
             new SetDataResult(ZooKeeperStatus.Ok, path, stat);
 

@@ -23,7 +23,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         public static GetChildrenResult Successful([NotNull] string path, [NotNull] [ItemNotNull] IReadOnlyList<string> childrenNames, [CanBeNull] NodeStat stat) =>
             new GetChildrenResult(ZooKeeperStatus.Ok, path, childrenNames, stat);
 
-       
         public static GetChildrenResult Unsuccessful(ZooKeeperStatus status, [NotNull] string path, [CanBeNull] Exception exception) =>
             new GetChildrenResult(status, path, null, null) {Exception = exception};
 

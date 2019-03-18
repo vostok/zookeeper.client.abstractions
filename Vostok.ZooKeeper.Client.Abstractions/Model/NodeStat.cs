@@ -11,16 +11,16 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
     public class NodeStat
     {
         public NodeStat(
-            long createdZxId, 
-            long modifiedZxId, 
-            long modifiedChildrenZxId, 
-            long createdTimeMs, 
-            long modifiedTimeMs, 
-            int version, 
-            int childrenVersion, 
-            int aclVersion, 
-            long ephemeralOwner, 
-            int dataLength, 
+            long createdZxId,
+            long modifiedZxId,
+            long modifiedChildrenZxId,
+            long createdTimeMs,
+            long modifiedTimeMs,
+            int version,
+            int childrenVersion,
+            int aclVersion,
+            long ephemeralOwner,
+            int dataLength,
             int numberOfChildren)
         {
             CreatedZxId = createdZxId;
@@ -106,16 +106,16 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
 
         public bool Equals(NodeStat other)
         {
-            return CreatedZxId == other.CreatedZxId && 
-                   ModifiedZxId == other.ModifiedZxId && 
-                   ModifiedChildrenZxId == other.ModifiedChildrenZxId && 
-                   CreatedTimeMs == other.CreatedTimeMs && 
-                   ModifiedTimeMs == other.ModifiedTimeMs && 
-                   Version == other.Version && 
-                   ChildrenVersion == other.ChildrenVersion && 
-                   AclVersion == other.AclVersion && 
-                   EphemeralOwner == other.EphemeralOwner && 
-                   DataLength == other.DataLength && 
+            return CreatedZxId == other.CreatedZxId &&
+                   ModifiedZxId == other.ModifiedZxId &&
+                   ModifiedChildrenZxId == other.ModifiedChildrenZxId &&
+                   CreatedTimeMs == other.CreatedTimeMs &&
+                   ModifiedTimeMs == other.ModifiedTimeMs &&
+                   Version == other.Version &&
+                   ChildrenVersion == other.ChildrenVersion &&
+                   AclVersion == other.AclVersion &&
+                   EphemeralOwner == other.EphemeralOwner &&
+                   DataLength == other.DataLength &&
                    NumberOfChildren == other.NumberOfChildren;
         }
 

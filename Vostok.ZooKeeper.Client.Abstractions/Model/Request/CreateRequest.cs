@@ -33,7 +33,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// </summary>
         public bool CreateParentsIfNeeded { get; set; } = true;
 
-        public override string ToString() 
+        public override string ToString()
             => $"CREATE '{Path}'; Data length = {Data?.Length ?? 0}; Mode: {CreateMode}";
     }
 }
