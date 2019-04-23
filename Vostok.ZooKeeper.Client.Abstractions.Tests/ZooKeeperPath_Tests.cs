@@ -20,7 +20,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         [TestCase(new[] {"/aaaa/", "/bbb"}, "/aaaa/bbb")]
         [TestCase(new[] {"/aaaa/", "/bbb/"}, "/aaaa/bbb/")]
         [TestCase(new[] {"aaaa", "bbb", "c", "d", "e", "f", "long_123"}, "/aaaa/bbb/c/d/e/f/long_123")]
-        public void Combine_should_combine_by_slashes(string[] segments, string expected)
+        [TestCase(new[] { "aaaa", "bbb", "", "e", "/", "f", "long_123" }, "/aaaa/bbb/e/f/long_123")]
+        public void Combine_should_work_correctly_for_multiple_segments(string[] segments, string expected)
         {
             ZooKeeperPath.Combine(segments).Should().Be(expected);
         }
@@ -31,7 +32,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         [TestCase("/foo", "/bar", "/foo/bar")]
         [TestCase("/foo/", "/bar", "/foo/bar")]
         [TestCase("/foo/", "/bar/", "/foo/bar/")]
-        public void Combine_should_work_correctly_for_two_arguments(string basePath, string relativePath, string expected)
+        public void Combine_should_work_correctly_for_two_segments(string basePath, string relativePath, string expected)
         {
             ZooKeeperPath.Combine(basePath, relativePath).Should().Be(expected);
         }
