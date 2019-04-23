@@ -25,7 +25,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             ZooKeeperPath.Combine(segments).Should().Be(expected);
         }
 
-        [TestCase("foo", "bar", "foo/bar")]
+        [TestCase("foo", "bar", "/foo/bar")]
         [TestCase("/foo", "bar", "/foo/bar")]
         [TestCase("/foo/", "bar", "/foo/bar")]
         [TestCase("/foo", "/bar", "/foo/bar")]
