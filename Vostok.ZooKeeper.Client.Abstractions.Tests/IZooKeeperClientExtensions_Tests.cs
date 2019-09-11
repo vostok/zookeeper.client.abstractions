@@ -23,36 +23,38 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         }
 
         [Test]
-        public void TryUpdateDataAsync_should_return_true_if_get_update_set_data_are_successful()
+        public void UpdateData_should_return_success_if_get_update_set_data_are_successful()
         {
             const string path = "zk/default";
             var bytes = new byte[] {0, 1, 1, 2, 3, 5, 8, 13};
-            zooKeeperClient.GetDataAsync(Arg.Any<GetDataRequest>()).Returns(GetDataResult.Successful(path, bytes, Stat));
+            zooKeeperClient.GetDataAsync(Arg.Any<GetDataRequest>())
+                .Returns(GetDataResult.Successful(path, bytes, Stat));
 
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>()).Returns(SetDataResult.Successful(path, Stat));
 
-            zooKeeperClient.TryUpdateDataAsync(path, dummyUpdate)
-                .GetAwaiter()
-                .GetResult()
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, dummyUpdate))
                 .Should()
-                .BeTrue();
+                .BeEquivalentTo(UpdateDataResult.Successful(path));
         }
 
-        [Test]
-        public void TryUpdateDataAsync_should_return_false_without_retries_if_cant_read_data()
+        [TestCaseSource(nameof(TryUpdate_FailFast_OnTheseErrors))]
+        public void UpdateData_should_return_fail_without_retries_if_cant_read_data(ZooKeeperStatus errorStatus)
         {
             const string path = "zk/default";
-            zooKeeperClient.GetDataAsync(Arg.Any<GetDataRequest>()).Returns(UnknownErrorGetData(path));
+            zooKeeperClient.GetDataAsync(Arg.Any<GetDataRequest>()).Returns(GetDataResult.Unsuccessful(errorStatus, path, null));
 
-            zooKeeperClient.TryUpdateDataAsync(path, dummyUpdate)
-                .GetAwaiter()
-                .GetResult()
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, dummyUpdate))
                 .Should()
-                .BeFalse();
+                .BeEquivalentTo(UpdateDataResult.Unsuccessful(errorStatus, path, null));
+
+            zooKeeperClient.ReceivedWithAnyArgs(1)
+                .GetDataAsync(Arg.Any<GetDataRequest>());
+            zooKeeperClient.DidNotReceiveWithAnyArgs()
+                .SetDataAsync(Arg.Any<SetDataRequest>());
         }
 
         [Test]
-        public void TryUpdateDataAsync_should_make_all_attempts_to_set_data_and_return_false()
+        public void UpdateData_should_make_all_attempts_to_set_data_and_return_fail()
         {
             const string path = "zk/default";
             const int attempts = 10;
@@ -63,18 +65,16 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>())
                 .Returns(SetDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
-            zooKeeperClient.TryUpdateDataAsync(path, dummyUpdate, attempts)
-                .GetAwaiter()
-                .GetResult()
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, dummyUpdate, attempts))
                 .Should()
-                .BeFalse();
+                .BeEquivalentTo(UpdateDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
             zooKeeperClient.ReceivedWithAnyArgs(attempts)
                 .SetDataAsync(Arg.Any<SetDataRequest>());
         }
 
         [Test]
-        public void TryUpdateDataAsync_should_apply_update_func_to_bytes()
+        public void UpdateData_should_apply_update_func_to_bytes()
         {
             const string path = "zk/default";
             const int attempts = 10;
@@ -90,18 +90,14 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>())
                 .Returns(SetDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
-            zooKeeperClient.TryUpdateDataAsync(path, UpdateFunc, attempts)
-                .GetAwaiter()
-                .GetResult()
-                .Should()
-                .BeFalse();
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, UpdateFunc, attempts));
 
             zooKeeperClient.Received(attempts)
                 .SetDataAsync(Arg.Is<SetDataRequest>(sendReq => sendReq.Data.Equals(updatedBytes)));
         }
 
         [TestCaseSource(nameof(TryUpdate_FailFast_OnTheseErrors))]
-        public void TryUpdateDataAsync_should_return_false_after_one_attempt_if_set_data_fails(ZooKeeperStatus failFastStatus)
+        public void UpdateData_should_return_false_after_one_attempt_if_set_data_fails(ZooKeeperStatus failFastStatus)
         {
             const string path = "zk/default";
             var bytes = new byte[] {0, 1, 1, 2, 3, 5, 8, 13};
@@ -112,11 +108,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>())
                 .Returns(SetDataResult.Unsuccessful(failFastStatus, path, null));
 
-            zooKeeperClient.TryUpdateDataAsync(path, dummyUpdate)
-                .GetAwaiter()
-                .GetResult()
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, dummyUpdate))
                 .Should()
-                .BeFalse();
+                .BeEquivalentTo(UpdateDataResult.Unsuccessful(failFastStatus, path, null));
 
             zooKeeperClient.ReceivedWithAnyArgs(1).SetDataAsync(Arg.Any<SetDataRequest>());
         }
@@ -139,10 +133,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
                 ZooKeeperStatus.UnknownError
             };
         }
-
-        private static GetDataResult UnknownErrorGetData(string path) =>
-            GetDataResult.Unsuccessful(ZooKeeperStatus.UnknownError, path, null);
-
+        
         private static NodeStat Stat
         {
             get => new NodeStat(1, 2, 3, 4, 5, 6, 1, 1, 1, 1, 0);
