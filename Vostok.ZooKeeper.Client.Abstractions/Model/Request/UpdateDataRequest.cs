@@ -18,7 +18,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         }
 
         /// <summary>
-        /// <para>Amount of update attempts.</para>
+        /// <para>Number of update attempts.</para>
         /// </summary>
         public int Attempts { get; set; } = 5;
 
