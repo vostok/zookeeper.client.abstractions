@@ -15,6 +15,25 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         private IZooKeeperClient zooKeeperClient;
         private Func<byte[], byte[]> dummyUpdate;
 
+        public static IEnumerable<ZooKeeperStatus> TryUpdate_FailFast_OnTheseErrors()
+        {
+            return new[]
+            {
+                ZooKeeperStatus.BadArguments,
+                ZooKeeperStatus.ChildrenForEphemeralAreNotAllowed,
+                ZooKeeperStatus.ConnectionLoss,
+                ZooKeeperStatus.NodeHasChildren,
+                ZooKeeperStatus.NodeAlreadyExists,
+                ZooKeeperStatus.NodeNotFound,
+                ZooKeeperStatus.NotConnected,
+                ZooKeeperStatus.NotReadonlyOperation,
+                ZooKeeperStatus.SessionExpired,
+                ZooKeeperStatus.SessionMoved,
+                ZooKeeperStatus.Timeout,
+                ZooKeeperStatus.UnknownError
+            };
+        }
+
         [SetUp]
         public void SetUp()
         {
@@ -90,7 +109,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>())
                 .Returns(SetDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
-            zooKeeperClient.UpdateData(new UpdateDataRequest(path, UpdateFunc) { Attempts = attempts });
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, UpdateFunc) {Attempts = attempts});
 
             zooKeeperClient.Received(attempts)
                 .SetDataAsync(Arg.Is<SetDataRequest>(sendReq => sendReq.Data.Equals(updatedBytes)));
@@ -115,25 +134,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.ReceivedWithAnyArgs(1).SetDataAsync(Arg.Any<SetDataRequest>());
         }
 
-        public static IEnumerable<ZooKeeperStatus> TryUpdate_FailFast_OnTheseErrors()
-        {
-            return new[]
-            {
-                ZooKeeperStatus.BadArguments,
-                ZooKeeperStatus.ChildrenForEphemeralAreNotAllowed,
-                ZooKeeperStatus.ConnectionLoss,
-                ZooKeeperStatus.NodeHasChildren,
-                ZooKeeperStatus.NodeAlreadyExists,
-                ZooKeeperStatus.NodeNotFound,
-                ZooKeeperStatus.NotConnected,
-                ZooKeeperStatus.NotReadonlyOperation,
-                ZooKeeperStatus.SessionExpired,
-                ZooKeeperStatus.SessionMoved,
-                ZooKeeperStatus.Timeout,
-                ZooKeeperStatus.UnknownError
-            };
-        }
-        
         private static NodeStat Stat
         {
             get => new NodeStat(1, 2, 3, 4, 5, 6, 1, 1, 1, 1, 0);
