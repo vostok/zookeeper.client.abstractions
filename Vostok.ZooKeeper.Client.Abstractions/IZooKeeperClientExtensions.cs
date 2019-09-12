@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
@@ -51,5 +52,54 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <inheritdoc cref="IZooKeeperClient.GetDataAsync"/>
         public static GetDataResult GetData(this IZooKeeperClient client, GetDataRequest request) =>
             client.GetDataAsync(request).GetAwaiter().GetResult();
+
+        ///<inheritdoc cref="UpdateDataAsync(IZooKeeperClient, UpdateDataRequest)"/>
+        public static UpdateDataResult UpdateData(this IZooKeeperClient zooKeeperClient, UpdateDataRequest request) =>
+            zooKeeperClient.UpdateDataAsync(request).GetAwaiter().GetResult();
+
+        ///<inheritdoc cref="UpdateDataAsync(IZooKeeperClient, UpdateDataRequest)"/>
+        public static UpdateDataResult UpdateData(this IZooKeeperClient zooKeeperClient, [NotNull] string path, [NotNull] Func<byte[], byte[]> update) =>
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, update));
+
+        ///<inheritdoc cref="UpdateDataAsync(IZooKeeperClient, UpdateDataRequest)"/>
+        public static Task<UpdateDataResult> UpdateDataAsync(this IZooKeeperClient zooKeeperClient, [NotNull] string path, [NotNull] Func<byte[], byte[]> update) =>
+            zooKeeperClient.UpdateDataAsync(new UpdateDataRequest(path, update));
+
+        /// <summary>
+        /// <para>Trying to update node data with optimistic concurrency strategy according to given <paramref name="request"/>.</para>
+        /// <para>Check returned <see cref="UpdateDataResult"/> to see if operation was successful.</para>
+        /// </summary>
+        public static async Task<UpdateDataResult> UpdateDataAsync(this IZooKeeperClient zooKeeperClient, UpdateDataRequest request)
+        {
+            try
+            {
+                for (var i = 0; i < request.Attempts; i++)
+                {
+                    var readResult = await zooKeeperClient.GetDataAsync(new GetDataRequest(request.Path)).ConfigureAwait(false);
+                    if (!readResult.IsSuccessful)
+                        return UpdateDataResult.Unsuccessful(readResult.Status, readResult.Path, readResult.Exception);
+
+                    var newData = request.Update(readResult.Data);
+
+                    var setDataRequest = new SetDataRequest(request.Path, newData)
+                    {
+                        Version = readResult.Stat.Version
+                    };
+
+                    var updateResult = await zooKeeperClient.SetDataAsync(setDataRequest).ConfigureAwait(false);
+
+                    if (updateResult.Status == ZooKeeperStatus.VersionsMismatch)
+                        continue;
+
+                    return updateResult.IsSuccessful ? UpdateDataResult.Successful(updateResult.Path) : UpdateDataResult.Unsuccessful(updateResult.Status, updateResult.Path, updateResult.Exception);
+                }
+
+                return UpdateDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, request.Path, null);
+            }
+            catch (Exception e)
+            {
+                return UpdateDataResult.Unsuccessful(ZooKeeperStatus.UnknownError, request.Path, e);
+            }
+        }
     }
 }

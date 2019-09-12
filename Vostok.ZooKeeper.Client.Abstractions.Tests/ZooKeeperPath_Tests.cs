@@ -20,7 +20,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         [TestCase(new[] {"/aaaa/", "/bbb"}, "/aaaa/bbb")]
         [TestCase(new[] {"/aaaa/", "/bbb/"}, "/aaaa/bbb/")]
         [TestCase(new[] {"aaaa", "bbb", "c", "d", "e", "f", "long_123"}, "/aaaa/bbb/c/d/e/f/long_123")]
-        [TestCase(new[] { "aaaa", "bbb", "", "e", "/", "f", "long_123" }, "/aaaa/bbb/e/f/long_123")]
+        [TestCase(new[] {"aaaa", "bbb", "", "e", "/", "f", "long_123"}, "/aaaa/bbb/e/f/long_123")]
         public void Combine_should_work_correctly_for_multiple_segments(string[] segments, string expected)
         {
             ZooKeeperPath.Combine(segments).Should().Be(expected);
