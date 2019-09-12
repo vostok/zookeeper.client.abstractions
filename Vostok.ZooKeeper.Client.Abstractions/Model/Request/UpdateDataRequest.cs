@@ -4,31 +4,29 @@ using JetBrains.Annotations;
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
     /// <summary>
-    /// Represents ZooKeeper data update request.
+    /// Represents ZooKeeper update data request.
     /// </summary>
     [PublicAPI]
     public class UpdateDataRequest : ZooKeeperRequest
     {
         /// <param name="path">Full path to the node being updated.</param>
-        /// <param name="updateFunc">Node data update delegate.</param>
-        /// <param name="attempts">Optimistic update attempts.</param>
-        public UpdateDataRequest([NotNull] string path, [NotNull] Func<byte[], byte[]> updateFunc, int attempts = 5)
+        /// <param name="update">Node data update delegate.</param>
+        public UpdateDataRequest([NotNull] string path, [NotNull] Func<byte[], byte[]> update)
             : base(path)
         {
-            UpdateFunc = updateFunc;
-            Attempts = attempts;
+            Update = update ?? throw new ArgumentNullException(nameof(update));
         }
 
         /// <summary>
-        /// <para>Optimistic update attempts.</para>
+        /// <para>Amount of update attempts.</para>
         /// </summary>
-        public int Attempts { get; }
+        public int Attempts { get; set; } = 5;
 
         /// <summary>
         /// <para>Node data update delegate.</para>
         /// </summary>
         [NotNull]
-        public Func<byte[], byte[]> UpdateFunc { get; }
+        public Func<byte[], byte[]> Update { get; }
 
         public override string ToString()
             => $"UPDATE DATA for '{Path}'; attempts = {Attempts}";

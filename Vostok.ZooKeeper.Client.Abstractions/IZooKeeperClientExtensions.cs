@@ -53,13 +53,20 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         public static GetDataResult GetData(this IZooKeeperClient client, GetDataRequest request) =>
             client.GetDataAsync(request).GetAwaiter().GetResult();
 
-        ///<inheritdoc cref="UpdateDataAsync"/>
+        ///<inheritdoc cref="UpdateDataAsync(IZooKeeperClient, UpdateDataRequest)"/>
         public static UpdateDataResult UpdateData(this IZooKeeperClient zooKeeperClient, UpdateDataRequest request) =>
             zooKeeperClient.UpdateDataAsync(request).GetAwaiter().GetResult();
 
+        ///<inheritdoc cref="UpdateDataAsync(IZooKeeperClient, UpdateDataRequest)"/>
+        public static UpdateDataResult UpdateData(this IZooKeeperClient zooKeeperClient, [NotNull] string path, [NotNull] Func<byte[], byte[]> update) =>
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, update));
+
+        ///<inheritdoc cref="UpdateDataAsync(IZooKeeperClient, UpdateDataRequest)"/>
+        public static Task<UpdateDataResult> UpdateDataAsync(this IZooKeeperClient zooKeeperClient, [NotNull] string path, [NotNull] Func<byte[], byte[]> update) =>
+            zooKeeperClient.UpdateDataAsync(new UpdateDataRequest(path, update));
+
         /// <summary>
-        /// <para>Tries update node data with optimistic strategy and returns result.</para>
-        /// <para>Node path, data update function and update attempts count are represented by <paramref name="request" />.</para>
+        /// <para>Trying to update node data with optimistic concurrency strategy according to given <paramref name="request"/>.</para>
         /// <para>Check returned <see cref="UpdateDataResult"/> to see if operation was successful.</para>
         /// </summary>
         public static async Task<UpdateDataResult> UpdateDataAsync(this IZooKeeperClient zooKeeperClient, UpdateDataRequest request)
@@ -72,7 +79,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
                     if (!readResult.IsSuccessful)
                         return UpdateDataResult.Unsuccessful(readResult.Status, readResult.Path, readResult.Exception);
 
-                    var newData = request.UpdateFunc(readResult.Data);
+                    var newData = request.Update(readResult.Data);
 
                     var setDataRequest = new SetDataRequest(request.Path, newData)
                     {

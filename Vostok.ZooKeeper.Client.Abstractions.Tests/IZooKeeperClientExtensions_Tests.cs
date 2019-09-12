@@ -65,7 +65,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>())
                 .Returns(SetDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
-            zooKeeperClient.UpdateData(new UpdateDataRequest(path, dummyUpdate, attempts))
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, dummyUpdate) {Attempts = attempts})
                 .Should()
                 .BeEquivalentTo(UpdateDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
@@ -90,7 +90,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             zooKeeperClient.SetDataAsync(Arg.Any<SetDataRequest>())
                 .Returns(SetDataResult.Unsuccessful(ZooKeeperStatus.VersionsMismatch, path, null));
 
-            zooKeeperClient.UpdateData(new UpdateDataRequest(path, UpdateFunc, attempts));
+            zooKeeperClient.UpdateData(new UpdateDataRequest(path, UpdateFunc) { Attempts = attempts });
 
             zooKeeperClient.Received(attempts)
                 .SetDataAsync(Arg.Is<SetDataRequest>(sendReq => sendReq.Data.Equals(updatedBytes)));
