@@ -79,7 +79,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         NotReadonlyOperation,
 
         /// <summary>
-        /// Client is not usable any more.
+        /// Client is not usable anymore.
         /// </summary>
         Died
     }
