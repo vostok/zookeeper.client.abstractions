@@ -23,6 +23,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         [CanBeNull]
         public INodeWatcher Watcher { get; set; }
 
+        /// <summary>
+        /// Whether or not to wrap watcher for deduplicate node events.
+        /// </summary>
+        public bool IgnoreWatchersCache { get; set; }
+
         public override string ToString() => $"Get '{Path}'";
     }
 }
