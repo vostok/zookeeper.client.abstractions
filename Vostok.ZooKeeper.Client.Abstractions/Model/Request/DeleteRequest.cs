@@ -27,8 +27,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// </summary>
         public bool DeleteChildrenIfNeeded { get; set; } = true;
 
-        public override string ToString()
-            => $"DELETE '{Path}'; Version = {Version}; Remove children = {DeleteChildrenIfNeeded}";
+        public override string ToString() =>
+            $"DELETE '{Path}'; Version = {Version}; Remove children = {DeleteChildrenIfNeeded}";
 
         public static implicit operator DeleteRequest([NotNull] string path) => new DeleteRequest(path);
     }
