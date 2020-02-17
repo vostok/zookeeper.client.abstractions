@@ -30,7 +30,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// </summary>
         [NotNull]
         public static string Combine([NotNull] string basePath, [NotNull] string relativePath)
-            => $"/{basePath.Trim(Slash)}/{relativePath.TrimStart(Slash)}";
+            => Combine(new []{basePath, relativePath});
 
         /// <summary>
         /// Combines given <paramref name="segments"/> into a path.

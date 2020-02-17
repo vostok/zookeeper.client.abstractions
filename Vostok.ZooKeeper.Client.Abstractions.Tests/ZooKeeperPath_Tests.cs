@@ -15,6 +15,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             ZooKeeperPath.Split(path).Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
         }
 
+        [TestCase(new[] {"/", "/aaaa"}, "/aaaa")]
+        [TestCase(new[] {"/", "aaaa"}, "/aaaa")]
         [TestCase(new[] {"aaaa"}, "/aaaa")]
         [TestCase(new[] {"aaaa", "bbb"}, "/aaaa/bbb")]
         [TestCase(new[] {"/aaaa/", "/bbb"}, "/aaaa/bbb")]
@@ -26,6 +28,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             ZooKeeperPath.Combine(segments).Should().Be(expected);
         }
 
+        [TestCase("/", "bar", "/bar")]
+        [TestCase("/", "/bar", "/bar")]
         [TestCase("foo", "bar", "/foo/bar")]
         [TestCase("/foo", "bar", "/foo/bar")]
         [TestCase("/foo/", "bar", "/foo/bar")]
