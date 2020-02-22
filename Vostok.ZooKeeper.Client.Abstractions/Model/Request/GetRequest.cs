@@ -24,7 +24,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         public INodeWatcher Watcher { get; set; }
 
         /// <summary>
-        /// Whether or not to wrap watcher for deduplicate node events.
+        /// If set to <c>true</c>, disables the deduplicating watcher cache for the request: every call with the same watcher will set up a separate watch in ZooKeeper.
         /// </summary>
         public bool IgnoreWatchersCache { get; set; }
 
