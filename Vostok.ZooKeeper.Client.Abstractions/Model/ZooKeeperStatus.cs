@@ -76,6 +76,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Write operation has been rejected due to read-only mode.
         /// </summary>
-        NotReadonlyOperation
+        NotReadonlyOperation,
+
+        /// <summary>
+        /// Client is not usable anymore.
+        /// </summary>
+        Died
     }
 }

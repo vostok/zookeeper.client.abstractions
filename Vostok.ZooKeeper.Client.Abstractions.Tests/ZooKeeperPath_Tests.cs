@@ -15,6 +15,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             ZooKeeperPath.Split(path).Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
         }
 
+        [TestCase(new[] {"/", "/aaaa"}, "/aaaa")]
+        [TestCase(new[] {"/", "aaaa"}, "/aaaa")]
         [TestCase(new[] {"aaaa"}, "/aaaa")]
         [TestCase(new[] {"aaaa", "bbb"}, "/aaaa/bbb")]
         [TestCase(new[] {"/aaaa/", "/bbb"}, "/aaaa/bbb")]
@@ -26,6 +28,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             ZooKeeperPath.Combine(segments).Should().Be(expected);
         }
 
+        [TestCase("/", "bar", "/bar")]
+        [TestCase("/", "/bar", "/bar")]
         [TestCase("foo", "bar", "/foo/bar")]
         [TestCase("/foo", "bar", "/foo/bar")]
         [TestCase("/foo/", "bar", "/foo/bar")]
@@ -52,6 +56,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
             path.Should().Be(expected);
         }
 
+        [TestCase("xxx", null)]
         [TestCase("/", null)]
         [TestCase("/foo", "/")]
         [TestCase("/foo/bar", "/foo")]
@@ -60,6 +65,25 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Tests
         public void GetParentPath_should_provide_correct_parent_paths(string path, string expectedParent)
         {
             ZooKeeperPath.GetParentPath(path).Should().Be(expectedParent);
+        }
+
+        [TestCase("xxx", null)]
+        [TestCase("/", null)]
+        [TestCase("/foo", "foo")]
+        [TestCase("/foo/bar", "bar")]
+        [TestCase("/foo/bar/baz", "baz")]
+        [TestCase("/foo/bar/baz/", "")]
+        public void GetNodeName_should_provide_correct_node_name(string path, string expectedName)
+        {
+            ZooKeeperPath.GetNodeName(path).Should().Be(expectedName);
+        }
+
+        [TestCase("xx123456789", null)]
+        [TestCase("xx1123456789", 1123456789L)]
+        [TestCase("x11123456789", 1123456789L)]
+        public void GetSequentialNodeIndex_should_provide_correct_node_index(string path, long? expectedIndex)
+        {
+            ZooKeeperPath.GetSequentialNodeIndex(path).Should().Be(expectedIndex);
         }
     }
 }

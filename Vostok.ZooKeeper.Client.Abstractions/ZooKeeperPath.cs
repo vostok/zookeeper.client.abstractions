@@ -30,7 +30,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// </summary>
         [NotNull]
         public static string Combine([NotNull] string basePath, [NotNull] string relativePath)
-            => $"/{basePath.Trim(Slash)}/{relativePath.TrimStart(Slash)}";
+            => Combine(new []{basePath, relativePath});
 
         /// <summary>
         /// Combines given <paramref name="segments"/> into a path.
@@ -69,6 +69,37 @@ namespace Vostok.ZooKeeper.Client.Abstractions
                 return path == Root ? null : Root;
 
             return path.Substring(0, lastSlashIndex);
+        }
+
+        /// <summary>
+        /// <para>Returns the name of the node located by given <paramref name="path"/>.</para>
+        /// <para>May return <c>null</c> if presented with a root node path.</para>
+        /// </summary>
+        [CanBeNull]
+        public static string GetNodeName([NotNull] string path)
+        {
+            var lastSlashIndex = path.LastIndexOf(Slash);
+            if (lastSlashIndex < 0 || path == Root)
+                return null;
+
+            return path.Substring(lastSlashIndex + 1);
+        }
+
+        /// <summary>
+        /// <para>Returns the index of the sequential node located by given <paramref name="path"/>.</para>
+        /// <para>May return <c>null</c> if presented with a not sequential node path.</para>
+        /// </summary>
+        [CanBeNull]
+        public static long? GetSequentialNodeIndex([NotNull] string path)
+        {
+            if (path.Length < 10)
+                return null;
+
+            var suffix = path.Substring(path.Length - 10);
+            if (long.TryParse(suffix, out var result))
+                return result;
+
+            return null;
         }
     }
 }

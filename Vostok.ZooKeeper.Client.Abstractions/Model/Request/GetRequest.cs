@@ -23,6 +23,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         [CanBeNull]
         public INodeWatcher Watcher { get; set; }
 
+        /// <summary>
+        /// If set to <c>true</c>, disables the deduplicating watcher cache for the request: every call with the same watcher will set up a separate watch in ZooKeeper.
+        /// </summary>
+        public bool IgnoreWatchersCache { get; set; }
+
         public override string ToString() => $"Get '{Path}'";
     }
 }
