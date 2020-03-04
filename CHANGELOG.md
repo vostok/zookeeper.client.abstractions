@@ -1,3 +1,7 @@
+## 0.1.3 (04-03-2020):
+
+Added `Died` status, `IgnoreWatchersCache` flag and some path extensions.
+
 ## 0.1.2 (12-09-2019): 
 
 Added IZooKeeperClient extension method UpdateData.
