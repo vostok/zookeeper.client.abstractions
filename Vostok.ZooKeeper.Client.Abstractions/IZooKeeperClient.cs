@@ -50,6 +50,12 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         long SessionId { get; }
 
         /// <summary>
+        /// <para>Establishes connection with ZooKeeper cluster.</para>
+        /// </summary>
+        /// <returns><c>true</c> on successful connection, false otherwise.</returns>
+        Task<bool> ConnectAsync();
+
+        /// <summary>
         /// <para>Creates new node specified in given <paramref name="request" />.</para>
         /// <para>By default, all parent nodes will be created if they do not exist.</para>
         /// <para>Check returned <see cref="CreateResult"/> to see if operation was successful.</para>
