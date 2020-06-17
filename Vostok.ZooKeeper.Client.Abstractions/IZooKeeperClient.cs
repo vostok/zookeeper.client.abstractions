@@ -40,7 +40,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         ConnectionState ConnectionState { get; }
 
         /// <summary>
-        /// Returns negotiated session timeout if client is connected, or <see cref="System.TimeSpan.Zero"/> otherwise.
+        /// <para>Returns negotiated session timeout if client is connected, or <see cref="System.TimeSpan.Zero"/> otherwise.</para>
         /// </summary>
         TimeSpan SessionTimeout { get; }
 
