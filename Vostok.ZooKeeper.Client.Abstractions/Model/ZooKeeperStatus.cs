@@ -81,6 +81,16 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Client is not usable anymore.
         /// </summary>
-        Died
+        Died,
+
+        /// <summary>
+        /// Operation has failed due to invalid ACL.
+        /// </summary>
+        InvalidAcl,
+
+        /// <summary>
+        /// Operation has failed due to invalid authentication.
+        /// </summary>
+        NoAuth
     }
 }

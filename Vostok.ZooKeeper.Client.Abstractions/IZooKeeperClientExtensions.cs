@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
@@ -101,5 +102,21 @@ namespace Vostok.ZooKeeper.Client.Abstractions
                 return UpdateDataResult.Unsuccessful(ZooKeeperStatus.UnknownError, request.Path, e);
             }
         }
+
+        /// <inheritdoc cref="IZooKeeperClient.GetAclAsync"/>
+        public static GetAclResult GetAcl(this IZooKeeperClient client, GetAclRequest request) =>
+            client.GetAclAsync(request).GetAwaiter().GetResult();
+
+        /// <inheritdoc cref="IZooKeeperClient.SetAclAsync"/>
+        public static SetAclResult SetAcl(this IZooKeeperClient client, SetAclRequest request) =>
+            client.SetAclAsync(request).GetAwaiter().GetResult();
+
+        /// <inheritdoc cref="IZooKeeperClient.SetAclAsync"/>
+        public static Task<SetAclResult> SetAclAsync(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
+            client.SetAclAsync(new SetAclRequest(path, acls));
+
+        /// <inheritdoc cref="IZooKeeperClient.SetAclAsync"/>
+        public static SetAclResult SetAcl(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
+            client.SetAcl(new SetAclRequest(path, acls));
     }
 }

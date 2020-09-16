@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
@@ -33,7 +34,15 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// </summary>
         public bool CreateParentsIfNeeded { get; set; } = true;
 
+        /// <summary>
+        /// <para>ACL to be set on node; <c>null</c> means default OpenUnsafe acl.</para>
+        /// </summary>
+        public List<Acl> Acls { get; set; }
+
         public override string ToString()
-            => $"CREATE '{Path}'; Data length = {Data?.Length ?? 0}; Mode: {CreateMode}";
+        {
+            var acls = string.Join(",", Acls);
+            return $"CREATE '{Path}'; Data length = {Data?.Length ?? 0}; Mode: {CreateMode}; ACLs = '{acls}'";
+        }
     }
 }

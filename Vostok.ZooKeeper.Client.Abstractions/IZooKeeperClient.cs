@@ -18,6 +18,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     ///     <item><description><see cref="GetChildrenAsync"/></description></item>
     ///     <item><description><see cref="GetDataAsync"/></description></item>
     ///     <item><description><see cref="SetDataAsync"/></description></item>
+    ///     <item><description><see cref="GetAclAsync"/></description></item>
+    ///     <item><description><see cref="SetAclAsync"/></description></item>
     /// </list>
     /// </summary>
     [PublicAPI]
@@ -87,5 +89,19 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// </summary>
         [ItemNotNull]
         Task<GetDataResult> GetDataAsync([NotNull] GetDataRequest request);
+
+        /// <summary>
+        /// <para>Returns the ACLs and stat of the node specified in given <paramref name="request" />.</para>
+        /// <para>Check returned <see cref="GetAclResult"/> to see if operation was successful.</para>
+        /// </summary>
+        [ItemNotNull]
+        Task<GetAclResult> GetAclAsync([NotNull] GetAclRequest request);
+
+        /// <summary>
+        /// <para>Sets the ACL for the node specified in given <paramref name="request" />.</para>
+        /// <para>Check returned <see cref="SetAclResult"/> to see if operation was successful.</para>
+        /// </summary>
+        [ItemNotNull]
+        Task<SetAclResult> SetAclAsync([NotNull] SetAclRequest request);
     }
 }
