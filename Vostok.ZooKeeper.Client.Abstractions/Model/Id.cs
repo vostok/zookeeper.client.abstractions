@@ -11,7 +11,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// This Id represents anyone.
         /// </summary>
-        public static Id AnyOne = new Id(AclSchemes.World, "anyone");
+        public static Id Anyone = new Id(AclSchemes.World, "anyone");
 
         /// <summary>
         /// This Id is only usable to set ACLs. It will get substituted with the
