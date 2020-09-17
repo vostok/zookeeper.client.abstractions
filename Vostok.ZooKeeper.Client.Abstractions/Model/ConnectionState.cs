@@ -31,6 +31,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Client is not usable anymore.
         /// </summary>
-        Died
+        Died,
+
+        /// <summary>
+        /// Client has failed authentication.
+        /// </summary>
+        AuthFailed
     }
 }

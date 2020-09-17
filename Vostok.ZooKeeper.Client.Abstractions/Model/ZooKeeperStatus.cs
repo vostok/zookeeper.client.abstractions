@@ -91,6 +91,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Operation has failed due to invalid authentication.
         /// </summary>
-        NoAuth
+        NoAuth,
+
+        /// <summary>
+        /// Operation has failed due to AUTH_FAILED connection state.
+        /// </summary>
+        AuthFailed
     }
 }
