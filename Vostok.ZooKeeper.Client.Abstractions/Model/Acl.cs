@@ -14,7 +14,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// Represents completely open ACL
         /// </summary>
-        public static Acl OpenUnsafe = new Acl(Permissions.All, Id.AnyOne);
+        public static Acl OpenUnsafe = new Acl(Permissions.All, Id.Anyone);
 
         /// <summary>
         /// This ACL gives the creators authentication id's all permissions.
@@ -24,7 +24,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model
         /// <summary>
         /// This ACL gives the world the ability to read.
         /// </summary>
-        public static Acl ReadUnsafe = new Acl(Permissions.Read, Id.AnyOne);
+        public static Acl ReadUnsafe = new Acl(Permissions.Read, Id.Anyone);
 
         /// <summary>
         /// <para>Generates Digest ACL for given <paramref name="login"/> and <paramref name="plainTextPassword"/>.</para>
