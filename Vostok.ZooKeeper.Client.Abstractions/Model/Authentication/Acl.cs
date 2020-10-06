@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using JetBrains.Annotations;
 
-namespace Vostok.ZooKeeper.Client.Abstractions.Model
+namespace Vostok.ZooKeeper.Client.Abstractions.Model.Authentication
 {
     /// <summary>
     /// Represents access control list.

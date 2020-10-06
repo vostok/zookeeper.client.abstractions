@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
+using Vostok.ZooKeeper.Client.Abstractions.Model.Authentication;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 
@@ -103,5 +104,11 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// </summary>
         [ItemNotNull]
         Task<SetAclResult> SetAclAsync([NotNull] SetAclRequest request);
+
+        /// <summary>
+        /// <para>Authenticate using given <paramref name="authenticationInfo"/>.</para>
+        /// <para>The function can be called multiple times if the application wants to authenticate using different <paramref name="authenticationInfo"/>.</para>>
+        /// </summary>
+        void AddAuthenticationInfo([NotNull] AuthenticationInfo authenticationInfo);
     }
 }

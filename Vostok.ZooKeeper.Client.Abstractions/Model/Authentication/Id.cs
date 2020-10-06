@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Vostok.ZooKeeper.Client.Abstractions.Model
+namespace Vostok.ZooKeeper.Client.Abstractions.Model.Authentication
 {
     /// <summary>
     /// Represents an authentication identifier.
