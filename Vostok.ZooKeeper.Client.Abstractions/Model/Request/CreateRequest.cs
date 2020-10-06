@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Vostok.ZooKeeper.Client.Abstractions.Model.Authentication;
 
 namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 {
