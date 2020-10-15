@@ -42,7 +42,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
 
         public override string ToString()
         {
-            var acls = string.Join(",", Acls);
+            var acls = Acls != null ? string.Join(",", Acls) : string.Empty;
             return $"CREATE '{Path}'; Data length = {Data?.Length ?? 0}; Mode: {CreateMode}; ACLs = '{acls}'";
         }
     }
