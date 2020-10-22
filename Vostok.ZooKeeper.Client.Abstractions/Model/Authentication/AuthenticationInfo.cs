@@ -18,7 +18,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Authentication
         public static AuthenticationInfo Digest([NotNull] string login, [NotNull] string password)
         {
             var data = Encoding.UTF8.GetBytes($"{login}:{password}");
-            return new AuthenticationInfo(AuthSchemes.Digest, data);
+            return new AuthenticationInfo(AclSchemes.Digest, data);
         }
 
         [NotNull]

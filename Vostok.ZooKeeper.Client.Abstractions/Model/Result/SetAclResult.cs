@@ -9,7 +9,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
     /// <para>Common error statuses:</para>
     /// <list type="bullet">
     ///     <item><description><see cref="ZooKeeperStatus.NodeNotFound"/></description></item>
-    ///     <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/> (if <see cref="SetDataRequest.Version"/> is specified)</description></item>
+    ///     <item><description><see cref="ZooKeeperStatus.VersionsMismatch"/> (if <see cref="SetAclRequest.AclVersion"/> is specified)</description></item>
     /// </list>
     /// </summary>
     [PublicAPI]

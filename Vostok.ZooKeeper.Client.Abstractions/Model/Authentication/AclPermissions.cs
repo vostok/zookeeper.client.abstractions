@@ -8,7 +8,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Authentication
     /// </summary>
     [Flags]
     [PublicAPI]
-    public enum Permissions
+    public enum AclPermissions
     {
         /// <summary>
         /// Permission to get data from a node and list its children.
