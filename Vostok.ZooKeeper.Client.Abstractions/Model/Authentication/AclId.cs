@@ -6,20 +6,20 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Authentication
     /// Represents an authentication identifier.
     /// </summary>
     [PublicAPI]
-    public class Id
+    public class AclId
     {
         /// <summary>
         /// This Id represents anyone.
         /// </summary>
-        public static Id Anyone = new Id(AclSchemes.World, "anyone");
+        public static AclId Anyone = new AclId(AclSchemes.World, "anyone");
 
         /// <summary>
         /// This Id is only usable to set ACLs. It will get substituted with the
         /// Id's the client authenticated with.
         /// </summary>
-        public static Id Auth = new Id(AclSchemes.Auth, string.Empty);
+        public static AclId Auth = new AclId(AclSchemes.Auth, string.Empty);
 
-        public Id([NotNull] string scheme, [NotNull] string identifier)
+        public AclId([NotNull] string scheme, [NotNull] string identifier)
         {
             Scheme = scheme;
             Identifier = identifier;
