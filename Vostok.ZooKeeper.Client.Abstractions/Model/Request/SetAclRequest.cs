@@ -22,7 +22,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// Access lists being written to the node.
         /// </summary>
         [NotNull]
-        public List<Acl> Acls { get; }
+        public IReadOnlyList<Acl> Acls { get; }
 
         /// <summary>
         /// <para>If set to value other than <c>-1</c>, write will only occur if node's current <see cref="NodeStat.AclVersion"/> equals provided one.</para>

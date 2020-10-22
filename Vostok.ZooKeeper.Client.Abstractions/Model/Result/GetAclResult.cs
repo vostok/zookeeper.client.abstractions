@@ -31,7 +31,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Result
         /// Returns the data of the queried node.
         /// </summary>
         [NotNull]
-        public List<Acl> Acls => Payload.acls;
+        public IReadOnlyList<Acl> Acls => Payload.acls;
 
         /// <summary>
         /// Returns the stat of the queried node.

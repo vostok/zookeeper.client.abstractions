@@ -14,43 +14,43 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Authentication
         /// <summary>
         /// Represents completely open ACL
         /// </summary>
-        public static Acl OpenUnsafe = new Acl(Permissions.All, Id.Anyone);
+        public static Acl OpenUnsafe = new Acl(AclPermissions.All, AclId.Anyone);
 
         /// <summary>
         /// This ACL gives the creators authentication id's all permissions.
         /// </summary>
-        public static Acl CreatorAll = new Acl(Permissions.All, Id.Auth);
+        public static Acl CreatorAll = new Acl(AclPermissions.All, AclId.Auth);
 
         /// <summary>
         /// This ACL gives the world the ability to read.
         /// </summary>
-        public static Acl ReadUnsafe = new Acl(Permissions.Read, Id.Anyone);
+        public static Acl ReadUnsafe = new Acl(AclPermissions.Read, AclId.Anyone);
 
         /// <summary>
         /// <para>Generates Digest ACL for given <paramref name="login"/> and <paramref name="plainTextPassword"/>.</para>
         /// </summary>
-        public static Acl Digest(Permissions permissions, string login, string plainTextPassword)
+        public static Acl Digest(AclPermissions permissions, string login, string plainTextPassword)
         {
             using (var sha = new SHA1Managed())
             {
                 var loginPasswordString = $"{login}:{plainTextPassword}";
                 var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(loginPasswordString));
                 var digest = Convert.ToBase64String(hash);
-                var id = new Id(AclSchemes.Digest, $"{login}:{digest}");
+                var id = new AclId(AclSchemes.Digest, $"{login}:{digest}");
                 return new Acl(permissions, id);
             }
         }
 
-        public Acl(Permissions permissions, [NotNull] Id id)
+        public Acl(AclPermissions permissions, [NotNull] AclId id)
         {
             Permissions = permissions;
             Id = id;
         }
 
-        public Permissions Permissions { get; }
+        public AclPermissions Permissions { get; }
 
         [NotNull]
-        public Id Id { get; }
+        public AclId Id { get; }
 
         public override string ToString() => $"{Id}:{(int)Permissions}";
     }

@@ -38,7 +38,8 @@ namespace Vostok.ZooKeeper.Client.Abstractions.Model.Request
         /// <summary>
         /// <para>ACL to be set on node; <c>null</c> means default OpenUnsafe acl.</para>
         /// </summary>
-        public List<Acl> Acls { get; set; }
+        [CanBeNull]
+        public IReadOnlyList<Acl> Acls { get; set; }
 
         public override string ToString()
         {
