@@ -23,6 +23,10 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         public static async Task<CreateResult> CreateAsync(this IZooKeeperClient client, [NotNull] string path, CreateMode createMode, [CanBeNull] byte[] data = null) =>
             await client.CreateAsync(new CreateRequest(path, createMode) {Data = data}).ConfigureAwait(false);
 
+        /// <inheritdoc cref="IZooKeeperClient.ConnectAsync"/>
+        public static bool Connect(this IZooKeeperClient client) =>
+            client.ConnectAsync().GetAwaiter().GetResult();
+
         /// <inheritdoc cref="IZooKeeperClient.CreateAsync"/>
         public static CreateResult Create(this IZooKeeperClient client, [NotNull] string path, CreateMode createMode, [CanBeNull] byte[] data = null) =>
             client.Create(new CreateRequest(path, createMode) {Data = data});
