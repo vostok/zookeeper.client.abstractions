@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
-using Vostok.ZooKeeper.Client.Abstractions.Model.Authentication;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
 
@@ -19,8 +18,6 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     ///     <item><description><see cref="GetChildrenAsync"/></description></item>
     ///     <item><description><see cref="GetDataAsync"/></description></item>
     ///     <item><description><see cref="SetDataAsync"/></description></item>
-    ///     <item><description><see cref="GetAclAsync"/></description></item>
-    ///     <item><description><see cref="SetAclAsync"/></description></item>
     /// </list>
     /// </summary>
     [PublicAPI]
@@ -89,7 +86,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<ExistsResult> ExistsAsync([NotNull] ExistsRequest request);
 
         /// <summary>
-        /// <para>Returns the stat and child node names of the node specified given <paramref name="request" />.</para>
+        /// <para>Returns the stat and child node names of the node specified given <paramref name="reqsuest" />.</para>
         /// <para>Check returned <see cref="GetChildrenResult"/> to see if operation was successful.</para>
         /// </summary>
         [ItemNotNull]
@@ -101,25 +98,5 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// </summary>
         [ItemNotNull]
         Task<GetDataResult> GetDataAsync([NotNull] GetDataRequest request);
-
-        /// <summary>
-        /// <para>Returns the ACLs and stat of the node specified in given <paramref name="request" />.</para>
-        /// <para>Check returned <see cref="GetAclResult"/> to see if operation was successful.</para>
-        /// </summary>
-        [ItemNotNull]
-        Task<GetAclResult> GetAclAsync([NotNull] GetAclRequest request);
-
-        /// <summary>
-        /// <para>Sets the ACL for the node specified in given <paramref name="request" />.</para>
-        /// <para>Check returned <see cref="SetAclResult"/> to see if operation was successful.</para>
-        /// </summary>
-        [ItemNotNull]
-        Task<SetAclResult> SetAclAsync([NotNull] SetAclRequest request);
-
-        /// <summary>
-        /// <para>Authenticate using given <paramref name="authenticationInfo"/>.</para>
-        /// <para>The function can be called multiple times if the application wants to authenticate using different <paramref name="authenticationInfo"/>.</para>>
-        /// </summary>
-        void AddAuthenticationInfo([NotNull] AuthenticationInfo authenticationInfo);
     }
 }
