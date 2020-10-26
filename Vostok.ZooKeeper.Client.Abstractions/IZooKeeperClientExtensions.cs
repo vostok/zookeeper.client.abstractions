@@ -108,19 +108,19 @@ namespace Vostok.ZooKeeper.Client.Abstractions
             }
         }
 
-        /// <inheritdoc cref="IZooKeeperClient.GetAclAsync"/>
+        /// <inheritdoc cref="IAuthZooKeeperClient.GetAclAsync"/>
         public static GetAclResult GetAcl(this IZooKeeperClient client, GetAclRequest request) =>
-            client.GetAclAsync(request).GetAwaiter().GetResult();
+            client.AsAuthZooKeeperClient().GetAclAsync(request).GetAwaiter().GetResult();
 
-        /// <inheritdoc cref="IZooKeeperClient.SetAclAsync"/>
+        /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
         public static SetAclResult SetAcl(this IZooKeeperClient client, SetAclRequest request) =>
-            client.SetAclAsync(request).GetAwaiter().GetResult();
+            client.AsAuthZooKeeperClient().SetAclAsync(request).GetAwaiter().GetResult();
 
-        /// <inheritdoc cref="IZooKeeperClient.SetAclAsync"/>
+        /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
         public static Task<SetAclResult> SetAclAsync(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
-            client.SetAclAsync(new SetAclRequest(path, acls));
+            client.AsAuthZooKeeperClient().SetAclAsync(new SetAclRequest(path, acls));
 
-        /// <inheritdoc cref="IZooKeeperClient.SetAclAsync"/>
+        /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
         public static SetAclResult SetAcl(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
             client.SetAcl(new SetAclRequest(path, acls));
     }
