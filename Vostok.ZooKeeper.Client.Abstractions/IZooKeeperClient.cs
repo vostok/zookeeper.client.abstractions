@@ -75,7 +75,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         Task<ExistsResult> ExistsAsync([NotNull] ExistsRequest request);
 
         /// <summary>
-        /// <para>Returns the stat and child node names of the node specified given <paramref name="reqsuest" />.</para>
+        /// <para>Returns the stat and child node names of the node specified given <paramref name="request" />.</para>
         /// <para>Check returned <see cref="GetChildrenResult"/> to see if operation was successful.</para>
         /// </summary>
         [ItemNotNull]
