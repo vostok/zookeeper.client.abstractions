@@ -108,17 +108,33 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         public static GetAclResult GetAcl(this IZooKeeperClient client, GetAclRequest request) =>
             client.AsAuthZooKeeperClient().GetAclAsync(request).GetAwaiter().GetResult();
 
+        /// <inheritdoc cref="IAuthZooKeeperClient.GetAclAsync"/>
+        public static Task<GetAclResult> GetAclAsync(this IZooKeeperClient client, GetAclRequest request) =>
+            client.AsAuthZooKeeperClient().GetAclAsync(request);
+
+        /// <inheritdoc cref="IAuthZooKeeperClient.GetAclAsync"/>
+        public static GetAclResult GetAcl(this IZooKeeperClient client, [NotNull] string path) =>
+            client.AsAuthZooKeeperClient().GetAclAsync(new GetAclRequest(path)).GetAwaiter().GetResult();
+
+        /// <inheritdoc cref="IAuthZooKeeperClient.GetAclAsync"/>
+        public static Task<GetAclResult> GetAclAsync(this IZooKeeperClient client, [NotNull] string path) =>
+            client.AsAuthZooKeeperClient().GetAclAsync(new GetAclRequest(path));
+
         /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
         public static SetAclResult SetAcl(this IZooKeeperClient client, SetAclRequest request) =>
             client.AsAuthZooKeeperClient().SetAclAsync(request).GetAwaiter().GetResult();
 
         /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
-        public static Task<SetAclResult> SetAclAsync(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
-            client.AsAuthZooKeeperClient().SetAclAsync(new SetAclRequest(path, acls));
+        public static Task<SetAclResult> SetAclAsync(this IZooKeeperClient client, SetAclRequest setAclRequest) =>
+            client.AsAuthZooKeeperClient().SetAclAsync(setAclRequest);
 
         /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
         public static SetAclResult SetAcl(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
             client.SetAcl(new SetAclRequest(path, acls));
+
+        /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
+        public static Task<SetAclResult> SetAclAsync(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
+            client.AsAuthZooKeeperClient().SetAclAsync(new SetAclRequest(path, acls));
 
         /// <inheritdoc cref="IAuthZooKeeperClient.AddAuthenticationInfo"/>
         public static void AddAuthenticationInfo(this IZooKeeperClient client, AuthenticationInfo authInfo) =>
