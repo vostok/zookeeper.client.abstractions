@@ -119,5 +119,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <inheritdoc cref="IAuthZooKeeperClient.SetAclAsync"/>
         public static SetAclResult SetAcl(this IZooKeeperClient client, [NotNull] string path, [NotNull] List<Acl> acls) =>
             client.SetAcl(new SetAclRequest(path, acls));
+
+        /// <inheritdoc cref="IAuthZooKeeperClient.AddAuthenticationInfo"/>
+        public static void AddAuthenticationInfo(this IZooKeeperClient client, AuthenticationInfo authInfo) =>
+            client.AsAuthZooKeeperClient().AddAuthenticationInfo(authInfo);
     }
 }
