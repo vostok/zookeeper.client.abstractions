@@ -37,11 +37,5 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <para>The function can be called multiple times if the application wants to authenticate using different <paramref name="authenticationInfo"/>.</para>>
         /// </summary>
         void AddAuthenticationInfo([NotNull] AuthenticationInfo authenticationInfo);
-
-        /// <summary>
-        /// <para>Authenticate using given <paramref name="login"/> and <paramref name="password"/> with <see cref="AclSchemes.Digest"/> scheme.</para>
-        /// <para>The function can be called multiple times if the application wants to authenticate using different <paramref name="login"/> and <paramref name="password"/>.</para>>
-        /// </summary>
-        void AddAuthenticationInfo([NotNull] string login, [NotNull] string password);
     }
 }
