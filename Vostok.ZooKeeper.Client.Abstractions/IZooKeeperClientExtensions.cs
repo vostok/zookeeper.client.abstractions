@@ -139,5 +139,12 @@ namespace Vostok.ZooKeeper.Client.Abstractions
         /// <inheritdoc cref="IZooKeeperAuthClient.AddAuthenticationInfo"/>
         public static void AddAuthenticationInfo(this IZooKeeperClient client, AuthenticationInfo authInfo) =>
             client.AsAuthZooKeeperClient().AddAuthenticationInfo(authInfo);
+
+        /// <summary>
+        /// <para>Authenticate using given <paramref name="login"/> and <paramref name="password"/> with <see cref="AclSchemes.Digest"/> scheme.</para>
+        /// <para>The function can be called multiple times if the application wants to authenticate using different <paramref name="login"/> and <paramref name="password"/>.</para>>
+        /// </summary>
+        public static void AddAuthenticationInfo(this IZooKeeperClient client, [NotNull] string login, [NotNull] string password) =>
+            client.AddAuthenticationInfo(AuthenticationInfo.Digest(login, password));
     }
 }
