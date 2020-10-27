@@ -16,7 +16,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
     /// </list>
     /// </summary>
     [PublicAPI]
-    public interface IAuthZooKeeperClient
+    public interface IZooKeeperAuthClient
     {
         /// <summary>
         /// <para>Returns the ACLs and stat of the node specified in given <paramref name="request" />.</para>
