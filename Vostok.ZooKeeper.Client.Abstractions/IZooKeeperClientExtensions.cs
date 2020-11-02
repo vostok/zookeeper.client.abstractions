@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Vostok.Commons.Binary;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Result;
@@ -80,6 +81,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions
                         return UpdateDataResult.Unsuccessful(readResult.Status, readResult.Path, readResult.Exception);
 
                     var newData = request.Update(readResult.Data);
+                    
+                    if (ByteArraysAreEquals(readResult.Data, newData))
+                        return UpdateDataResult.Successful(readResult.Path);
 
                     var setDataRequest = new SetDataRequest(request.Path, newData)
                     {
@@ -100,6 +104,18 @@ namespace Vostok.ZooKeeper.Client.Abstractions
             {
                 return UpdateDataResult.Unsuccessful(ZooKeeperStatus.UnknownError, request.Path, e);
             }
+        }
+
+        private static bool ByteArraysAreEquals([CanBeNull] byte[] first, [CanBeNull] byte[] second)
+        {
+            if (ReferenceEquals(first, second))
+                return true;
+            
+            if (first == null || second == null)
+                return false;
+
+            return new ByteArrayKey(first, 0, first.Length)
+                .Equals(new ByteArrayKey(second, 0, second.Length));
         }
     }
 }
