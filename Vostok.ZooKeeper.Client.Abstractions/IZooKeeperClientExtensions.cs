@@ -82,7 +82,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
 
                     var newData = request.Update(readResult.Data);
                     
-                    if (ByteArraysAreEquals(readResult.Data, newData))
+                    if (ByteArrayKey.Equals(readResult.Data, newData))
                         return UpdateDataResult.Successful(readResult.Path);
 
                     var setDataRequest = new SetDataRequest(request.Path, newData)
@@ -114,8 +114,7 @@ namespace Vostok.ZooKeeper.Client.Abstractions
             if (first == null || second == null)
                 return false;
 
-            return new ByteArrayKey(first, 0, first.Length)
-                .Equals(new ByteArrayKey(second, 0, second.Length));
+            return ByteArrayKey.Equals(first, second);
         }
     }
 }
