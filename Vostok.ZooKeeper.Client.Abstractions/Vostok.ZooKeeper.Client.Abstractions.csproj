@@ -8,6 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release</Configurations>
     <LangVersion>7.2</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,6 +22,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
+    <Compile Include="..\..\vostok.commons.binary\Vostok.Commons.Binary\ByteArrayKey.cs" Link="Commons\ByteArrayKey.cs" />
   </ItemGroup>
 
   <PropertyGroup>
