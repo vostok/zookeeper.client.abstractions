@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Vostok.Commons.Binary;
 using Vostok.ZooKeeper.Client.Abstractions.Model;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Authentication;
 using Vostok.ZooKeeper.Client.Abstractions.Model.Request;
@@ -82,6 +83,9 @@ namespace Vostok.ZooKeeper.Client.Abstractions
                         return UpdateDataResult.Unsuccessful(readResult.Status, readResult.Path, readResult.Exception);
 
                     var newData = request.Update(readResult.Data);
+                    
+                    if (ByteArrayKey.Equals(readResult.Data, newData))
+                        return UpdateDataResult.Successful(readResult.Path);
 
                     var setDataRequest = new SetDataRequest(request.Path, newData)
                     {
