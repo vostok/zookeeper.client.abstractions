@@ -105,16 +105,5 @@ namespace Vostok.ZooKeeper.Client.Abstractions
                 return UpdateDataResult.Unsuccessful(ZooKeeperStatus.UnknownError, request.Path, e);
             }
         }
-
-        private static bool ByteArraysAreEquals([CanBeNull] byte[] first, [CanBeNull] byte[] second)
-        {
-            if (ReferenceEquals(first, second))
-                return true;
-            
-            if (first == null || second == null)
-                return false;
-
-            return ByteArrayKey.Equals(first, second);
-        }
     }
 }
