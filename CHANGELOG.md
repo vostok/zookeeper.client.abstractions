@@ -1,3 +1,7 @@
+## 0.1.5 (03-11-2020):
+
+Add IZooKeeperAuthClient interface and authentication models.
+
 ## 0.1.4 (03-11-2020):
 
 Do not call `SetDataAsync` in the `UpdateDataAsync` method if data does not update.
