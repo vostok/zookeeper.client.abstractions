@@ -11,6 +11,7 @@ notests *default:
   deps:
     - vostok.devtools
     - vostok.commons.time/src
+    - vostok.commons.binary/src
 
 full-build > notests:
   build:
