@@ -1,3 +1,7 @@
+## 0.1.4 (03-11-2020):
+
+Do not call `SetDataAsync` in the `UpdateDataAsync` method if data does not update.
+
 ## 0.1.3 (04-03-2020):
 
 Added `Died` status, `IgnoreWatchersCache` flag and some path extensions.
