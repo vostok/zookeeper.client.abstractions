@@ -1,3 +1,7 @@
+## 0.1.6 (13-11-2020):
+
+Added `IsRetriableNetworkError` extension.
+
 ## 0.1.5 (03-11-2020):
 
 Add IZooKeeperAuthClient interface and authentication models.
