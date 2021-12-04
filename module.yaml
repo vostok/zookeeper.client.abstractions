@@ -14,6 +14,10 @@ notests *default:
     - vostok.commons.binary/src
 
 full-build > notests:
+  deps:
+    - -vostok.devtools
+    - vostok.devtools@with-net6.0
+
   build:
     target: Vostok.ZooKeeper.Client.Abstractions.sln
     configuration: Release
