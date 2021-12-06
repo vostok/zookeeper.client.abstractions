@@ -1,3 +1,7 @@
+## 0.1.7 (06-12-2021):
+
+Added `net6.0` target.
+
 ## 0.1.6 (13-11-2020):
 
 Added `IsRetriableNetworkError` extension.
