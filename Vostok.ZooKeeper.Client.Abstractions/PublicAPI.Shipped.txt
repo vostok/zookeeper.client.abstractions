@@ -1,0 +1,271 @@
+const Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclSchemes.Auth = "auth" -> string
+const Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclSchemes.Digest = "digest" -> string
+const Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclSchemes.Ip = "ip" -> string
+const Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclSchemes.World = "world" -> string
+const Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclSchemes.X509 = "x509" -> string
+const Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.Root = "/" -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.Equals(object obj) -> bool
+override Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.GetHashCode() -> int
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Request.ZooKeeperRequest.ToString() -> string
+override Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult.IsSuccessful.get -> bool
+override Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.ToString() -> string
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.AddAuthenticationInfo(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string login, string password) -> void
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.AddAuthenticationInfo(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo authInfo) -> void
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.Create(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path, Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode createMode, byte[] data = null) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.Create(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.CreateAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path, Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode createMode, byte[] data = null) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.Delete(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.Exists(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.GetAcl(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.GetAcl(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.GetAclAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.GetAclAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.GetChildren(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.GetData(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetAcl(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path, System.Collections.Generic.List<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl> acls) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetAcl(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetAclAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path, System.Collections.Generic.List<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl> acls) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetAclAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest setAclRequest) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetData(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path, byte[] data) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetData(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.SetDataAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient client, string path, byte[] data) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.UpdateData(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient zooKeeperClient, string path, System.Func<byte[], byte[]> update) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.UpdateData(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient zooKeeperClient, Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest request) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.UpdateDataAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient zooKeeperClient, string path, System.Func<byte[], byte[]> update) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult>
+static Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions.UpdateDataAsync(this Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient zooKeeperClient, Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult>
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.CreatorAll -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.Digest(Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions permissions, string login, string plainTextPassword) -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.OpenUnsafe -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.ReadUnsafe -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId.Anyone -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId.Auth -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId
+static Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo.Digest(string login, string password) -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo
+static Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionStateExtensions.IsConnected(this Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState state, bool canBeReadOnly) -> bool
+static Vostok.ZooKeeper.Client.Abstractions.Model.CreateModeExtensions.IsEphemeral(this Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode createMode) -> bool
+static Vostok.ZooKeeper.Client.Abstractions.Model.CreateModeExtensions.IsSequential(this Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode createMode) -> bool
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.implicit operator Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest.implicit operator Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest.implicit operator Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest.implicit operator Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest.implicit operator Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.RequestsExtensions.WithPath(this Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest request, string newPath) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Request.RequestsExtensions.WithPath(this Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest request, string newPath) -> Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult.Successful(string path, string newPath) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult.Successful(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult.Successful(string path, Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat stat) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult.Successful(string path, System.Collections.Generic.List<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl> acls, Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat stat) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult.Successful(string path, System.Collections.Generic.IReadOnlyList<string> childrenNames, Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat stat) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult.Successful(string path, byte[] data, Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat stat) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult.Successful(string path, Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat stat) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult.Successful(string path, Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat stat) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult.Successful(string path) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult.Unsuccessful(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult
+static Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResultExtensions.IsRetriableNetworkError(this Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult result) -> bool
+static Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.Combine(params string[] segments) -> string
+static Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.Combine(string basePath, string relativePath) -> string
+static Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.GetNodeName(string path) -> string
+static Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.GetParentPath(string path) -> string
+static Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.GetSequentialNodeIndex(string path) -> long?
+static Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath.Split(string path) -> string[]
+virtual Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.IsSuccessful.get -> bool
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperAuthClient
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperAuthClient.AddAuthenticationInfo(Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo authenticationInfo) -> void
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperAuthClient.GetAclAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperAuthClient.SetAclAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.ConnectionState.get -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.CreateAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.DeleteAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.ExistsAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.GetChildrenAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.GetDataAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.OnConnectionStateChanged.get -> System.IObservable<Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.SessionId.get -> long
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClient.SetDataAsync(Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest request) -> System.Threading.Tasks.Task<Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult>
+Vostok.ZooKeeper.Client.Abstractions.IZooKeeperClientExtensions
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocConnectionStateObserver
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocConnectionStateObserver.AdHocConnectionStateObserver(System.Action<Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState> onNext, System.Action onCompleted) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocConnectionStateObserver.OnCompleted() -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocConnectionStateObserver.OnError(System.Exception error) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocConnectionStateObserver.OnNext(Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState value) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocNodeWatcher
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocNodeWatcher.AdHocNodeWatcher(System.Action<Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType, string> onEvent) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.AdHocNodeWatcher.ProcessEvent(Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType type, string path) -> System.Threading.Tasks.Task
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.Acl(Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions permissions, Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId id) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.Id.get -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl.Permissions.get -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId.AclId(string scheme, string identifier) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId.Identifier.get -> string
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclId.Scheme.get -> string
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Admin = 16 -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.All = Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Read | Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Write | Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Create | Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Delete | Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Admin -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Create = 4 -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Delete = 8 -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Read = 1 -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions.Write = 2 -> Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclPermissions
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AclSchemes
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo.AuthenticationInfo(string scheme, byte[] data) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo.Data.get -> byte[]
+Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.AuthenticationInfo.Scheme.get -> string
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState.AuthFailed = 5 -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState.Connected = 0 -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState.ConnectedReadonly = 1 -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState.Died = 4 -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState.Disconnected = 2 -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState.Expired = 3 -> Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionState
+Vostok.ZooKeeper.Client.Abstractions.Model.ConnectionStateExtensions
+Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode
+Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode.Ephemeral = 1 -> Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode
+Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode.EphemeralSequential = 3 -> Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode
+Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode.Persistent = 0 -> Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode
+Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode.PersistentSequential = 2 -> Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode
+Vostok.ZooKeeper.Client.Abstractions.Model.CreateModeExtensions
+Vostok.ZooKeeper.Client.Abstractions.Model.INodeWatcher
+Vostok.ZooKeeper.Client.Abstractions.Model.INodeWatcher.ProcessEvent(Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType type, string path) -> System.Threading.Tasks.Task
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType.ChildrenChanged = 3 -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType.Created = 0 -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType.DataChanged = 2 -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType.Deleted = 1 -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeChangedEventType
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.AclVersion.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.ChildrenVersion.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.CreatedTime.get -> System.DateTimeOffset
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.CreatedTimeMs.get -> long
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.CreatedZxId.get -> long
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.DataLength.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.EphemeralOwner.get -> long
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.Equals(Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat other) -> bool
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.ModifiedChildrenZxId.get -> long
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.ModifiedTime.get -> System.DateTimeOffset
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.ModifiedTimeMs.get -> long
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.ModifiedZxId.get -> long
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.NodeStat(long createdZxId, long modifiedZxId, long modifiedChildrenZxId, long createdTimeMs, long modifiedTimeMs, int version, int childrenVersion, int aclVersion, long ephemeralOwner, int dataLength, int numberOfChildren) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.NumberOfChildren.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat.Version.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.Acls.get -> System.Collections.Generic.IReadOnlyList<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl>
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.Acls.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.CreateMode.get -> Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.CreateParentsIfNeeded.get -> bool
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.CreateParentsIfNeeded.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.CreateRequest(string path, Vostok.ZooKeeper.Client.Abstractions.Model.CreateMode createMode) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.Data.get -> byte[]
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.CreateRequest.Data.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.DeleteChildrenIfNeeded.get -> bool
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.DeleteChildrenIfNeeded.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.DeleteRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.Version.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.DeleteRequest.Version.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.ExistsRequest.ExistsRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetAclRequest.GetAclRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetChildrenRequest.GetChildrenRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetDataRequest.GetDataRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest.GetRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest.IgnoreWatchersCache.get -> bool
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest.IgnoreWatchersCache.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest.Watcher.get -> Vostok.ZooKeeper.Client.Abstractions.Model.INodeWatcher
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.GetRequest.Watcher.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.RequestsExtensions
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest.Acls.get -> System.Collections.Generic.IReadOnlyList<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl>
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest.AclVersion.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest.AclVersion.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetAclRequest.SetAclRequest(string path, System.Collections.Generic.List<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl> acls) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest.Data.get -> byte[]
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest.SetDataRequest(string path, byte[] data) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest.Version.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.SetDataRequest.Version.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest.Attempts.get -> int
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest.Attempts.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest.Update.get -> System.Func<byte[], byte[]>
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.UpdateDataRequest.UpdateDataRequest(string path, System.Func<byte[], byte[]> update) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.ZooKeeperRequest
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.ZooKeeperRequest.Path.get -> string
+Vostok.ZooKeeper.Client.Abstractions.Model.Request.ZooKeeperRequest.ZooKeeperRequest(string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.CreateResult.NewPath.get -> string
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.DeleteResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult.Exists.get -> bool
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ExistsResult.Stat.get -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult.Acls.get -> System.Collections.Generic.IReadOnlyList<Vostok.ZooKeeper.Client.Abstractions.Model.Authentication.Acl>
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetAclResult.Stat.get -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult.ChildrenNames.get -> System.Collections.Generic.IReadOnlyList<string>
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetChildrenResult.Stat.get -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult.Data.get -> byte[]
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.GetDataResult.Stat.get -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetAclResult.Stat.get -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.SetDataResult.Stat.get -> Vostok.ZooKeeper.Client.Abstractions.Model.NodeStat
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.UpdateDataResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.EnsureSuccess() -> Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.Exception.get -> System.Exception
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.Exception.set -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.Path.get -> string
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.Status.get -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult.ZooKeeperResult(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult<TPayload>
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult<TPayload>.Payload.get -> TPayload
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResult<TPayload>.ZooKeeperResult(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, TPayload payload) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.Result.ZooKeeperResultExtensions
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperException
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperException.ZooKeeperException(Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus status, string path, System.Exception exception) -> void
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.AuthFailed = 17 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.BadArguments = 2 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.ChildrenForEphemeralAreNotAllowed = 3 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.ConnectionLoss = 7 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.Died = 14 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.InvalidAcl = 15 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.NoAuth = 16 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.NodeAlreadyExists = 4 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.NodeHasChildren = 12 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.NodeNotFound = 5 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.NotConnected = 6 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.NotReadonlyOperation = 13 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.Ok = 0 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.SessionExpired = 8 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.SessionMoved = 9 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.Timeout = 10 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.UnknownError = 1 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus.VersionsMismatch = 11 -> Vostok.ZooKeeper.Client.Abstractions.Model.ZooKeeperStatus
+Vostok.ZooKeeper.Client.Abstractions.ZooKeeperPath
