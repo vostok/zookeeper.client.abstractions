@@ -7,6 +7,16 @@ notests *default:
 
   install:
     - Vostok.ZooKeeper.Client.Abstractions/bin/Release/netstandard2.0/Vostok.ZooKeeper.Client.Abstractions.dll
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.ZooKeeper.Client.Abstractions/bin/Release/netstandard2.0/Vostok.ZooKeeper.Client.Abstractions.dll
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.ZooKeeper.Client.Abstractions/bin/Release/net6.0/Vostok.ZooKeeper.Client.Abstractions.dll
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.ZooKeeper.Client.Abstractions/bin/Release/net8.0/Vostok.ZooKeeper.Client.Abstractions.dll
 
   deps:
     - vostok.devtools
@@ -17,6 +27,19 @@ full-build > notests:
   deps:
     - -vostok.devtools
     - vostok.devtools@with-net6.0
+  
+  install:
+    - Vostok.ZooKeeper.Client.Abstractions/bin/Release/netstandard2.0/Vostok.ZooKeeper.Client.Abstractions.dll
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.ZooKeeper.Client.Abstractions/bin/Release/netstandard2.0/Vostok.ZooKeeper.Client.Abstractions.dll
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.ZooKeeper.Client.Abstractions/bin/Release/net6.0/Vostok.ZooKeeper.Client.Abstractions.dll
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.ZooKeeper.Client.Abstractions/bin/Release/net8.0/Vostok.ZooKeeper.Client.Abstractions.dll
 
   build:
     target: Vostok.ZooKeeper.Client.Abstractions.sln
